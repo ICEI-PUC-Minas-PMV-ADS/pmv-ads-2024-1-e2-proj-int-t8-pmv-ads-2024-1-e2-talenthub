@@ -1,23 +1,23 @@
-# TÍTULO DO PROJETO
+# TalentHub
 
-`CURSO`
+`Análise e Desenvolvimento de Sistemas - PUC Minas`
 
-`DISCIPLINA`
+`Desenvolvimento de uma Aplicação Interativa`
 
-`SEMESTRE`
+`1º semestre/2024`
 
 Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
 
 ## Integrantes
 
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
+- Nome completo do aluno 1
+- Nome completo do aluno 2
+- Nome completo do aluno 3
+- Nome completo do aluno 4
 
 ## Orientador
 
-* Nome completo do professor 1
+- Nome completo do professor 1
 
 ## Instruções de utilização
 
