@@ -8,37 +8,33 @@ Apresente uma visão geral do que será abordado nesta parte do documento, enume
 
 ## Personas
 
-Pedro Paulo tem 26 anos, é arquiteto recém-formado e autônomo. Pensa em se desenvolver profissionalmente através de um mestrado fora do país, pois adora viajar, é solteiro e sempre quis fazer um intercâmbio. Está buscando uma agência que o ajude a encontrar universidades na Europa que aceitem alunos estrangeiros.
 
-Enumere e detalhe as personas da sua solução. Para tanto, baseie-se tanto nos documentos disponibilizados na disciplina e/ou nos seguintes links:
-
-> **Links Úteis**:
-> - [Rock Content](https://rockcontent.com/blog/personas/)
-> - [Hotmart](https://blog.hotmart.com/pt-br/como-criar-persona-negocio/)
-> - [O que é persona?](https://resultadosdigitais.com.br/blog/persona-o-que-e/)
-> - [Persona x Público-alvo](https://flammo.com.br/blog/persona-e-publico-alvo-qual-a-diferenca/)
-> - [Mapa de Empatia](https://resultadosdigitais.com.br/blog/mapa-da-empatia/)
-> - [Mapa de Stalkeholders](https://www.racecomunicacao.com.br/blog/como-fazer-o-mapeamento-de-stakeholders/)
->
-Lembre-se que você deve ser enumerar e descrever precisamente e personalizada todos os clientes ideais que sua solução almeja.
+| **FOTO** | **NOME** | **IDADE** | **OCUPAÇÃO** | **MOTIVAÇÕES** | **INSATISFAÇÕES** | **HOBBIES** |
+| --------- | -------- | ---- |------------ | ----------- | -------------- | ------- |
+| ![Isabel Mendes](img/personas/Isabel-Mendes.jpg) | Isabel Mendes | 43 anos| Professora | Ensinar, desenvolver habilidades, incentivar pesquisa, preparar para o mercado, inspirar alunos e contribuir para o avanço da disciplina |  Dispersão de projetos em diferentes plataformas, demandando esforço extra para revisão individual. A falta de centralização compromete a eficiência da avaliação acadêmica | Ler, ir em observatórios, museus, assistir documentários |
+| ![Ana Silva](img/personas/Ana-Silva.jpg) | Ana Silva | 22 anos | Estudante de Análise e Desenvolvimento de Sistemas | Engajar em projetos acadêmicos, deseja compartilhar seu trabalho, receber feedbacks e melhorar constantemente.  | Dificuldade em encontrar projetos relevantes, falta de filtros por área de estudo e popularidade limitando a experiência de aprendizado e inspiração  | Escrever, ir ao cinema, assistir séries |
+| ![Lucas Santos](img/personas/Lucas-Santos.jpg) | Lucas Santos | 25 anos | Visitante | Busca inspiração e aprendizado além dos limites do seu curso, tanto por curiosidade quanto por impulsionar o desenvolvimento pessoal | Falta de um sistema de avaliações e ranking, limitam oportunidades de estudo e inspiração em projetos para aprendizado e desenvolvimento | Sair com a família, viajar, ler |
+| ![Rodrigo Oliveira](img/personas/Rodrigo-Oliveira.jpg) |Rodrigo Oliveira |  33 anos | Tech Recruiter | Recrutar talentos que impulsionem o crescimento futuro | Dificuldade em encontrar bons profissionais em início de carreira para contratação | Jogar futebol, assistir a filmes de ação |
 
 ## Histórias de Usuários
 
-Com base na análise das personas forma identificadas as seguintes histórias de usuários:
+| **EU COMO...** | **QUERO/PRECISO DE...** | **PARA ...** |
+| -------------- | --------------------- | ------------ |
+|Isabel Mendes (Professora) | Organizar projetos em uma plataforma | Acessar todos os projetos de uma única plataforma|
+|Isabel Mendes (Professora) | Avaliar projetos | Avaliá-los de maneira mais organizada e eficiente por comentários (sugestões, críticas) e numero de estrelas|
+|Ana Silva (Aluna) | Divulgar meus projetos | Avaliação, feedback e visibilidade|
+|Ana Silva (Aluna) | Buscar Projetos | Facilitar a busca e visualização dos projetos| 
+|Ana Silva (Aluna) | Filtrar Projetos | Filtrar projetos por área de estudo, popularidade e avaliação média| 
+|Ana Silva (Aluna) |Acessar projetos de diferentes turmas |Promover a interação e a colaboração entre alunos de diferentes grupos e cursos |
+|Ana Silva (Aluna)  | Receber Avaliações| Aprimorar meu trabalho com base em críticas, feedbacks e avaliações| 
+|Ana Silva (Aluna)  | Avaliar Projetos (estrelas)| Dar destaque para os projetos que acharam interessantes|
+|Ana Silva (Aluna)  | Acesso fácil a projetos de destaque| Inspirar-me em trabalhos para elevar a qualidade dos meus projetos| 
+|Lucas Santos (Visitante) |Encontrar projetos inspiradores | Inspiração para desenvolver projetos mais criativos e impactantes |
+|Lucas Santos (Visitante) |Ter uma plataforma intuitiva | Facilitar a navegação e a busca por projetos relevantes de diferentes áreas de estudo |
+|Rodrigo Oliveira (Visitante-Tech Recruiter) | Identificar talentos promissores| Encontrar candidatos qualificados para fortalecer minha equipe de desenvolvimento|
+|Rodrigo Oliveira (Visitante-Tech Recruiter) | Acesso fácil a projetos destacados| Encontrar rapidamente trabalhos acadêmicos de alta qualidade para análise e recrutamento|
+|Rodrigo Oliveira (Visitante-Tech Recruiter) | Avaliar potencial de novos talentos|Identificar estudantes com habilidades alinhadas às demandas do mercado de trabalho|
 
-|EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
-|--------------------|------------------------------------|----------------------------------------|
-|Usuário do sistema  | Registrar minhas tarefas           | Não esquecer de fazê-las               |
-|Administrador       | Alterar permissões                 | Permitir que possam administrar contas |
-
-Apresente aqui as histórias de usuário que são relevantes para o projeto de sua solução. As Histórias de Usuário consistem em uma ferramenta poderosa para a compreensão e elicitação dos requisitos funcionais e não funcionais da sua aplicação. Se possível, agrupe as histórias de usuário por contexto, para facilitar consultas recorrentes à essa parte do documento.
-
-> **Links Úteis**:
-> - [Histórias de usuários com exemplos e template](https://www.atlassian.com/br/agile/project-management/user-stories)
-> - [Como escrever boas histórias de usuário (User Stories)](https://medium.com/vertice/como-escrever-boas-users-stories-hist%C3%B3rias-de-usu%C3%A1rios-b29c75043fac)
-> - [User Stories: requisitos que humanos entendem](https://www.luiztools.com.br/post/user-stories-descricao-de-requisitos-que-humanos-entendem/)
-> - [Histórias de Usuários: mais exemplos](https://www.reqview.com/doc/user-stories-example.html)
-> - [9 Common User Story Mistakes](https://airfocus.com/blog/user-story-mistakes/)
 
 ## Requisitos
 
