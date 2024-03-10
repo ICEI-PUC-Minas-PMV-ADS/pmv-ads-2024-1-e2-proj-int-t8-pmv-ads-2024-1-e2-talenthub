@@ -35,7 +35,6 @@ Apresente uma visão geral do que será abordado nesta parte do documento, enume
 |Rodrigo Oliveira (Visitante-Tech Recruiter) | Acesso fácil a projetos destacados| Encontrar rapidamente trabalhos acadêmicos de alta qualidade para análise e recrutamento|
 |Rodrigo Oliveira (Visitante-Tech Recruiter) | Avaliar potencial de novos talentos|Identificar estudantes com habilidades alinhadas às demandas do mercado de trabalho|
 
-
 ## Requisitos
 
 As tabelas que se seguem apresentam os requisitos funcionais e não funcionais que detalham o escopo do projeto.
@@ -67,13 +66,7 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |ID| Restrição                                             |
 |--|-------------------------------------------------------|
 |01| A aplicação deverá ser concluído dentro de um cronograma específico |
-
-
-Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
-
-> **Links Úteis**:
-> - [O que são Requisitos Funcionais e Requisitos Não Funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
-> - [O que são requisitos funcionais e requisitos não funcionais?](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
+|02| Não é permitido o uso de qualquer framework frontend (como Angular, React, etc) no desenvolvimento do projeto |
 
 ## Diagrama de Casos de Uso
 
