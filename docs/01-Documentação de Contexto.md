@@ -31,13 +31,6 @@ O que nos incentivou a realizar esse trabalho é permitir que os alunos tenham i
 
 ## Público-Alvo
 
-Descreva quem serão as pessoas que usarão a sua aplicação indicando os diferentes perfis. O objetivo aqui não é definir quem serão os clientes ou quais serão os papéis dos usuários na aplicação. A ideia é, dentro do possível, conhecer um pouco mais sobre o perfil dos usuários: conhecimentos prévios, relação com a tecnologia, relações
-hierárquicas, etc.
+Frequentemente alunos estão sempre desenvolvendo projetos acadêmicos pela plataforma Github. Diferentes turmas e grupos de estudantes de diversas áreas e disciplinas EaD, semipresencial e presencial. O Talenthub vinculada a essa plataforma, atrai público universitários, embora tenha a possibilidade de visitantes como agentes externos, também terem acesso a ela.
 
-Adicione informações sobre o público-alvo por meio de uma descrição textual, diagramas de personas e mapa de stakeholders.
-
-> **Links Úteis**:
-> - [Público-alvo](https://blog.hotmart.com/pt-br/publico-alvo/)
-> - [Como definir o público alvo](https://exame.com/pme/5-dicas-essenciais-para-definir-o-publico-alvo-do-seu-negocio/)
-> - [Público-alvo: o que é, tipos, como definir seu público e exemplos](https://klickpages.com.br/blog/publico-alvo-o-que-e/)
-> - [Qual a diferença entre público-alvo e persona?](https://rockcontent.com/blog/diferenca-publico-alvo-e-persona/)
+Desse modo, constitui-se um público alvo focado para o corpo docente e o corpo discente homens e mulheres acima de 18 anos de idade evolvidas pela plataforma Github. Onde os professores poderão avaliar, inspecionar e dar feedback aos seus alunos. Quanto aos alunos, poderão além de receber os feedback dos professores, conhecer projetos e trabalhos de seus colegas de mesma turma e de turmas diferentes em várias áreas. Por conseguinte a conexão de um público visitante como as dos recrutadores de talentos e pessoas na busca de inspiração em diversos trabalhos.
