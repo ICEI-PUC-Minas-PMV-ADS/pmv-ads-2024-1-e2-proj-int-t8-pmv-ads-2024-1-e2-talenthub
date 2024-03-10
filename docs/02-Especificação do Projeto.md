@@ -85,16 +85,39 @@ Enumere as restrições à sua solução. Lembre-se de que as restrições geral
 
 ## Diagrama de Casos de Uso
 
-O diagrama de casos de uso é o próximo passo após a elicitação de requisitos, que utiliza um modelo gráfico e uma tabela com as descrições sucintas dos casos de uso e dos atores. Ele contempla a fronteira do sistema e o detalhamento dos requisitos funcionais com a indicação dos atores, casos de uso e seus relacionamentos.
+    @startuml
+    skinparam style strictuml
+    skinparam backgroundColor #EEEBDC
 
-As referências abaixo irão auxiliá-lo na geração do artefato “Diagrama de Casos de Uso”.
+    left to right direction
+    skinparam packageStyle rectangle
+    actor Aluno
+    actor Professor
+    actor "Agente Externo" as AE
 
-> **Links Úteis**:
->
-> - [Criando Casos de Uso](https://www.ibm.com/docs/pt-br/elm/6.0?topic=requirements-creating-use-cases)
-> - [Como Criar Diagrama de Caso de Uso: Tutorial Passo a Passo](https://gitmind.com/pt/fazer-diagrama-de-caso-uso.html/)
-> - [Lucidchart](https://www.lucidchart.com/)
-> - [Astah](https://astah.net/)
-> - [Diagrams](https://app.diagrams.net/)
+    rectangle TalentHub {
+      (Login) as Login
+      (Cadastrar Projeto) as CP
+      (Buscar/Consultar Projetos) as BCP
+      (Fazer Anotações sobre Projetos) as FAP
+      (Avaliar Qualidade do Projeto) as AQP
+      (Obter Contato para Projetos) as OCP
 
-![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e2-proj-int-t8-pmv-ads-2024-1-e2-talenthub/assets/3586967/0e4beed3-4e58-4ff4-acbf-06cf853804a4)
+      Login -down-> CP : <<include>>
+      Login -down-> FAP : <<include>>
+      Login -down-> AQP : <<include>>
+      Login -down-> OCP : <<include>>
+
+      CP --> BCP : <<include>>
+
+      Aluno -right-> Login : Realiza\npara atividades específicas
+      Professor -right-> Login : Realiza\npara atividades específicas
+      AE -right-> Login : Realiza para\nObter Contato
+
+      Aluno --> BCP : Utiliza
+      Professor --> BCP : Utiliza
+      AE --> BCP : Utiliza
+    }
+    @enduml
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e2-proj-int-t8-pmv-ads-2024-1-e2-talenthub/assets/3586967/d7c7ce1c-1f35-4257-b455-dbc1e691261a)
