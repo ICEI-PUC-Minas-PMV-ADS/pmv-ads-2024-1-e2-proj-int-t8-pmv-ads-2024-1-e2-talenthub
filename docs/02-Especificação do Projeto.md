@@ -121,3 +121,16 @@ Enumere as restrições à sua solução. Lembre-se de que as restrições geral
     @enduml
 
 ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e2-proj-int-t8-pmv-ads-2024-1-e2-talenthub/assets/3586967/d7c7ce1c-1f35-4257-b455-dbc1e691261a)
+
+| Ator           | Caso de Uso                    | Descrição                                                                                 |
+| -------------- | ------------------------------ | ----------------------------------------------------------------------------------------- |
+| Aluno          | Login                          | Alunos precisam realizar login para acessar funcionalidades específicas do sistema.       |
+| Aluno          | Cadastrar Projeto              | Alunos podem cadastrar novos projetos após realizar login.                                |
+| Aluno          | Buscar/Consultar Projetos      | Alunos podem buscar e consultar projetos sem necessidade de login.                        |
+| Professor      | Login                          | Professores precisam realizar login para acessar funcionalidades específicas do sistema.  |
+| Professor      | Fazer Anotações sobre Projetos | Professores podem fazer anotações em projetos após realizar login.                        |
+| Professor      | Avaliar Qualidade do Projeto   | Professores podem avaliar a qualidade dos projetos após realizar login.                   |
+| Professor      | Buscar/Consultar Projetos      | Professores podem buscar e consultar projetos sem necessidade de login.                   |
+| Agente Externo | Login                          | Agentes externos precisam realizar login para obter contato para projetos.                |
+| Agente Externo | Obter Contato para Projetos    | Agentes externos podem obter informações de contato para projetos específicos após login. |
+| Agente Externo | Buscar/Consultar Projetos      | Agentes externos podem buscar e consultar projetos sem necessidade de login.              |
