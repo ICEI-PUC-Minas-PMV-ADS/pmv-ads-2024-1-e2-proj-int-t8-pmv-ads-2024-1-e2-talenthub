@@ -44,19 +44,21 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| Os alunos devem ser capazes de cadastrar seus projetos no sistema, fornecendo informações essenciais como nome do projeto, descrição, integrantes do grupo | ALTA | 
-|RF-002| O sistema deve permitir que os professores cadastrem comentários em cada projeto, facilitando o feedback direto aos alunos  | ALTA |
-|RF-003| Deve ser possível filtrar os projetos por categoria, nome e outros filtros relevantes. | ALTA |
-|RF-004| Tanto professores quanto alunos devem poder avaliar os projetos por meio de um sistema de estrelas. | MÉDIA |
-|RF-005| A página inicial deve destacar projetos com base em critérios como maiores avaliações e número de acessos. | MÉDIA |
-|RF-006| Os alunos devem receber novas notificações sobre atualizações importantes, como novos comentários nos projetos. | BAIXA |
+|RF-001| Os alunos devem ser capazes de cadastrar seus projetos na aplicação, fornecendo informações essenciais como nome do projeto, descrição, integrantes do grupo | ALTA | 
+|RF-002| A aplicação deve permitir que os professores cadastrem comentários em cada projeto, facilitando o feedback direto aos alunos  | ALTA |
+|RF-003| Deve ser possível filtrar os projetos por categoria, nome e outros filtros relevantes | ALTA |
+|RF-004| Tanto professores quanto alunos devem poder avaliar os projetos por meio de um sistema de estrelas | MÉDIA |
+|RF-005| A página inicial deve destacar projetos com base em critérios como maiores avaliações e número de acessos | MÉDIA |
+|RF-007| Os alunos devem receber novas notificações sobre atualizações importantes, como novos comentários nos projetos | BAIXA |
 
 ### Requisitos não Funcionais
 
 |ID     | Descrição do Requisito  |Prioridade |
 |-------|-------------------------|----|
-|RNF-001| A aplicação deve ser responsiva | MÉDIA | 
-|RNF-002| A aplicação deve processar requisições do usuário em no máximo 3s |  BAIXA | 
+|RNF-001| A aplicação deve ser responsiva e acessível através de diferentes dispositivos e navegadores | MÉDIA |
+|RNF-002| A aplicação deve ser fácil de utilizar, com uma interface intuitiva para todos os usuários | MÉDIA |
+|RNF-003| A aplicação deve ter suporte para usuários que utilizam leitores de tela. | BAIXA |
+|RNF-004| A aplicação deve responder rapidamente às solicitações do usuário, mesmo durante períodos de alta demanda | BAIXA |
 
 Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
 
