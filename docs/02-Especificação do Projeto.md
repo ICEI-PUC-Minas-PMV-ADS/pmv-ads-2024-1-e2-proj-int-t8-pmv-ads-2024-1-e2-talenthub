@@ -44,8 +44,12 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| A aplicação deve permitir que o usuário gerencie suas tarefas | ALTA | 
-|RF-002| A aplicação deve emitir um relatório de tarefas realizadas no mês   | MÉDIA |
+|RF-001| Os alunos devem ser capazes de cadastrar seus projetos no sistema, fornecendo informações essenciais como nome do projeto, descrição, integrantes do grupo | ALTA | 
+|RF-002| O sistema deve permitir que os professores cadastrem comentários em cada projeto, facilitando o feedback direto aos alunos  | ALTA |
+|RF-003| Deve ser possível filtrar os projetos por categoria, nome e outros filtros relevantes. | ALTA |
+|RF-004| Tanto professores quanto alunos devem poder avaliar os projetos por meio de um sistema de estrelas. | MÉDIA |
+|RF-005| A página inicial deve destacar projetos com base em critérios como maiores avaliações e número de acessos. | MÉDIA |
+|RF-006| Os alunos devem receber novas notificações sobre atualizações importantes, como novos comentários nos projetos. | BAIXA |
 
 ### Requisitos não Funcionais
 
