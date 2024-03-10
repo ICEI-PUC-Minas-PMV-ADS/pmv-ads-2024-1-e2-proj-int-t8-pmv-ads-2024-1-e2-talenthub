@@ -56,7 +56,7 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |-------|-------------------------|----|
 |RNF-001| A aplicação deve ser responsiva e acessível através de diferentes dispositivos e navegadores | MÉDIA |
 |RNF-002| A aplicação deve ser fácil de utilizar, com uma interface intuitiva para todos os usuários | MÉDIA |
-|RNF-003| A aplicação deve ter suporte para usuários que utilizam leitores de tela. | BAIXA |
+|RNF-003| A aplicação deve ter suporte para usuários que utilizam leitores de tela | BAIXA |
 |RNF-004| A aplicação deve responder rapidamente às solicitações do usuário, mesmo durante períodos de alta demanda | BAIXA |
 
 ## Restrições
