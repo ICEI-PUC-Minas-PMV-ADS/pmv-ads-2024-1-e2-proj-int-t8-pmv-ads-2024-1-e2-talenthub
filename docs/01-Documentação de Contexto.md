@@ -9,31 +9,21 @@ A aplicação proposta visa resolver este problema, fornecendo uma plataforma ce
 
 ## Objetivos
 
-Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima. 
+O objetivo geral deste trabalho é desenvolver um sistema web que funcione como um repositório centralizado para o cadastro, visualização e avaliação de projetos acadêmicos pelo professor. Este sistema vai permitir que os alunos submentessem informações essenciais sobre seus projetos, como o nome do projeto, descrição, integrantes e URL do site do projeto. Já o professor poderá realizar comentários em cada projeto separadamente.
 
-Apresente também alguns (pelo menos 2) objetivos específicos dependendo de onde você vai querer concentrar a sua prática investigativa, ou como você vai aprofundar no seu trabalho.
- 
-> **Links Úteis**:
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
+Como objetivo específicos, podemos abordar:
+**Interface de cadastro:** Para que alunos possam facilmente cadastrar seus projetos, incluindo detalhes essenciais e links para acesso direto.
+**Cadastro de comentários pelo professor:** Permitirá que o professor faça comentários (sugestôes e críticas) em cada projeto, facilitando e centralizando as anotações do mesmo.
+**Visualização e filtragem:** Facilitará a busca e visualização dos projetos por meio de filtros, como área de estud, popularidade e avaliação média.
+**Avaliação de projetos:** Professores e alunos poderão dar notas (estrelas) para os projetos que acharam interessantes, colocando-os em destaque na página inicial.
+**Seção de destaques:** (Página Inicial) Projetos com maiores avaliações ou mais acessados serão destacados na página inical para promover visibilidade.
 
 ## Justificativa
 
-Descreva a importância ou a motivação para trabalhar com esta aplicação que você escolheu. Indique as razões pelas quais você escolheu seus objetivos específicos ou as razões para aprofundar em certos aspectos do software.
-
-O grupo de trabalho pode fazer uso de questionários, entrevistas e dados estatísticos, que podem ser apresentados, com o objetivo de esclarecer detalhes do problema que será abordado pelo grupo.
-
-> **Links Úteis**:
-> - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
+O que nos incentivou a realizar esse trabalho é permitir que os alunos tenham informações tanto do seu projeto quanto a dos outros, como nomes, descrições, integrantes e URL de projetos acadêmicos pelo prfessor. Para avaliar, conhecer, receber e recrutar ideias inovadoras.
 
 ## Público-Alvo
 
-Descreva quem serão as pessoas que usarão a sua aplicação indicando os diferentes perfis. O objetivo aqui não é definir quem serão os clientes ou quais serão os papéis dos usuários na aplicação. A ideia é, dentro do possível, conhecer um pouco mais sobre o perfil dos usuários: conhecimentos prévios, relação com a tecnologia, relações
-hierárquicas, etc.
+Frequentemente alunos estão sempre desenvolvendo projetos acadêmicos pela plataforma Github. Diferentes turmas e grupos de estudantes de diversas áreas e disciplinas EaD, semipresencial e presencial. O Talenthub vinculada a essa plataforma, atrai público universitários, embora tenha a possibilidade de visitantes como agentes externos, também terem acesso a ela.
 
-Adicione informações sobre o público-alvo por meio de uma descrição textual, diagramas de personas e mapa de stakeholders.
-
-> **Links Úteis**:
-> - [Público-alvo](https://blog.hotmart.com/pt-br/publico-alvo/)
-> - [Como definir o público alvo](https://exame.com/pme/5-dicas-essenciais-para-definir-o-publico-alvo-do-seu-negocio/)
-> - [Público-alvo: o que é, tipos, como definir seu público e exemplos](https://klickpages.com.br/blog/publico-alvo-o-que-e/)
-> - [Qual a diferença entre público-alvo e persona?](https://rockcontent.com/blog/diferenca-publico-alvo-e-persona/)
+Desse modo, constitui-se um público alvo focado para o corpo docente e o corpo discente homens e mulheres acima de 18 anos de idade evolvidas pela plataforma Github. Onde os professores poderão avaliar, inspecionar e dar feedback aos seus alunos. Quanto aos alunos, poderão além de receber os feedback dos professores, conhecer projetos e trabalhos de seus colegas de mesma turma e de turmas diferentes em várias áreas. Por conseguinte a conexão de um público visitante como as dos recrutadores de talentos e pessoas na busca de inspiração em diversos trabalhos.
