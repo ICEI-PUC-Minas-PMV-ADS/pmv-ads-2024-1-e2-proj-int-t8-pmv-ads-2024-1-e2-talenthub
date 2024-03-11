@@ -1,29 +1,24 @@
 # Introdução
 
-Texto descritivo com a visão geral do projeto abordado. Inclui o contexto, o problema, os objetivos, a justificativa e o público-alvo do projeto.
+O TalentHub surge como uma solução inovadora para endereçar uma lacuna existente no ecossistema acadêmico: a dispersão de projetos desenvolvidos pelos alunos. Neste contexto, onde a colaboração e o compartilhamento de conhecimento são fundamentais, a falta de uma plataforma centralizada para o gerenciamento desses projetos torna-se um obstáculo significativo. O TalentHub propõe-se a ser esse elo de ligação, facilitando o acesso, a colaboração e a avaliação de projetos acadêmicos, e servindo como uma ponte entre estudantes, professores e o mercado externo
 
 ## Problema
-Atualmente, enfrentamos o desafio da dispersão dos repositórios criados pelos alunos e professores. Os materiais desenvolvidos, fundamentais para o aprendizado e ensino, estão distribuídos em diversos locais do Github, tornando a busca por recursos específicos uma tarefa difícil e demorada. A ausência de uma plataforma centralizada para armazenamento e pesquisa desses códigos impacta negativamente a eficiência de todo o processo.
 
-A aplicação proposta visa resolver este problema, fornecendo uma plataforma centralizada que reúna todos os repositórios de códigos da instituição. Destinada a professores, alunos e terceiros, a plataforma facilitará a pesquisa, acesso e colaboração em projetos de desenvolvimento de software. A utilização desta aplicação tornará mais eficiente o compartilhamento de conhecimento, a colaboração em projetos e a avaliação de trabalhos acadêmicos.
+A dispersão de projetos acadêmicos em plataformas de versionamento de código, como o GitHub, cria uma barreira significativa ao acesso e à colaboração. Esta fragmentação dificulta não apenas a localização de recursos específicos por alunos e professores mas também impede a visibilidade dos trabalhos desenvolvidos, comprometendo as oportunidades de aprendizado colaborativo e a possibilidade de receber feedback construtivo. Sem uma centralização, o processo de buscar e compartilhar conhecimento torna-se ineficiente, afetando a dinâmica de ensino e aprendizagem e a integração com oportunidades externas.
 
 ## Objetivos
 
-O objetivo geral deste trabalho é desenvolver um sistema web que funcione como um repositório centralizado para o cadastro, visualização e avaliação de projetos acadêmicos pelo professor. Este sistema vai permitir que os alunos submentessem informações essenciais sobre seus projetos, como o nome do projeto, descrição, integrantes e URL do site do projeto. Já o professor poderá realizar comentários em cada projeto separadamente.
+O principal objetivo da TalentHub é desenvolver um sistema web centralizado que permita o cadastro, a visualização e a avaliação de projetos acadêmicos. Essa plataforma será capaz de:
 
-Como objetivo específicos, podemos abordar:
-**Interface de cadastro:** Para que alunos possam facilmente cadastrar seus projetos, incluindo detalhes essenciais e links para acesso direto.
-**Cadastro de comentários pelo professor:** Permitirá que o professor faça comentários (sugestôes e críticas) em cada projeto, facilitando e centralizando as anotações do mesmo.
-**Visualização e filtragem:** Facilitará a busca e visualização dos projetos por meio de filtros, como área de estud, popularidade e avaliação média.
-**Avaliação de projetos:** Professores e alunos poderão dar notas (estrelas) para os projetos que acharam interessantes, colocando-os em destaque na página inicial.
-**Seção de destaques:** (Página Inicial) Projetos com maiores avaliações ou mais acessados serão destacados na página inical para promover visibilidade.
+**Facilitar o Cadastro de Projetos:** Permitir que alunos submetam seus projetos de forma intuitiva, incluindo informações essenciais como nome do projeto, descrição, integrantes e URL do site.
+**Centralizar Comentários e Avaliações:** Oferecer aos professores a possibilidade de deixar comentários específicos em cada projeto, além de possibilitar avaliações por parte de ambos professores e alunos, promovendo um ambiente de feedback construtivo.
+**Melhorar a Visualização e Filtragem:** Aperfeiçoar a busca e visualização de projetos através de filtros personalizados, como área de estudo e popularidade, otimizando a experiência de usuário.
+**Destacar Projetos:** Implementar uma seção de destaques na página inicial para promover os projetos mais bem avaliados ou acessados, aumentando a visibilidade dos trabalhos excepcionais.
 
 ## Justificativa
 
-O que nos incentivou a realizar esse trabalho é permitir que os alunos tenham informações tanto do seu projeto quanto a dos outros, como nomes, descrições, integrantes e URL de projetos acadêmicos pelo prfessor. Para avaliar, conhecer, receber e recrutar ideias inovadoras.
+A necessidade de uma plataforma como o TalentHub é evidente diante dos desafios impostos pela dispersão dos projetos acadêmicos. Além de potencializar a visibilidade dos trabalhos desenvolvidos, ela promove uma cultura de colaboração e feedback dentro do ambiente acadêmico, enriquecendo o processo de ensino e aprendizagem. A facilidade de acesso e a centralização de informações e recursos contribuem para uma maior integração entre alunos, professores e o mercado de trabalho, abrindo portas para oportunidades externas e fomentando um ecossistema de inovação e compartilhamento de conhecimento.
 
 ## Público-Alvo
 
-Frequentemente alunos estão sempre desenvolvendo projetos acadêmicos pela plataforma Github. Diferentes turmas e grupos de estudantes de diversas áreas e disciplinas EaD, semipresencial e presencial. O Talenthub vinculada a essa plataforma, atrai público universitários, embora tenha a possibilidade de visitantes como agentes externos, também terem acesso a ela.
-
-Desse modo, constitui-se um público alvo focado para o corpo docente e o corpo discente homens e mulheres acima de 18 anos de idade evolvidas pela plataforma Github. Onde os professores poderão avaliar, inspecionar e dar feedback aos seus alunos. Quanto aos alunos, poderão além de receber os feedback dos professores, conhecer projetos e trabalhos de seus colegas de mesma turma e de turmas diferentes em várias áreas. Por conseguinte a conexão de um público visitante como as dos recrutadores de talentos e pessoas na busca de inspiração em diversos trabalhos.
+O público-alvo d TalentHub é amplo e diversificado, englobando principalmente alunos e professores de diversas áreas e modalidades de ensino, tanto presencial quanto à distância. A plataforma também é relevante para um público secundário, que inclui recrutadores, gerentes de RH, familiares e amigos dos alunos, que podem estar em busca de talentos ou simplesmente interessados em conhecer os projetos desenvolvidos. Através da TalentHub, buscamos atender às necessidades de um grupo heterogêneo, facilitando o acesso e a interação entre todos os envolvidos no ecossistema educacional e profissional.
