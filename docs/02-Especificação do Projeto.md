@@ -1,10 +1,6 @@
 # Especificações do Projeto
 
-<span style="color:red">Pré-requisitos: <a href="1-Documentação de Contexto.md"> Documentação de Contexto</a></span>
-
-Definição do problema e ideia de solução a partir da perspectiva do usuário. É composta pela definição do diagrama de personas, histórias de usuários, requisitos funcionais e não funcionais além das restrições do projeto.
-
-Apresente uma visão geral do que será abordado nesta parte do documento, enumerando as técnicas e/ou ferramentas utilizadas para realizar a especificações do projeto
+As especificações do projeto TalentHub detalham os aspectos técnicos e funcionais necessários para desenvolver uma solução eficaz que enderece a dispersão de projetos acadêmicos. Esta seção inclui a criação de personas, histórias de usuários, requisitos funcionais e não funcionais, além de identificar as restrições do projeto. Utilizaremos técnicas como o diagrama de personas para compreender as necessidades dos usuários, histórias de usuários para capturar os requisitos funcionais a partir de uma perspectiva do usuário, e uma combinação de metodologias ágeis e tradicionais de engenharia de software para definir os requisitos funcionais e não funcionais do sistema.
 
 ## Personas
 
@@ -40,33 +36,32 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 ### Requisitos Funcionais
 
-|ID    | Descrição do Requisito  | Prioridade |
-|------|-----------------------------------------|----|
-|RF-001  | Os alunos devem ser capazes de cadastrar seus projetos na aplicação, fornecendo informações essenciais como nome do projeto, descrição, integrantes do grupo | ALTA | 
-|RF-002  | A aplicação deve permitir que os professores cadastrem comentários em cada projeto, facilitando o feedback direto aos alunos  | ALTA |
-|RF-003  | Deve ser possível filtrar os projetos por categoria, nome e outros filtros relevantes | ALTA |
-|RF-004  | Tanto professores quanto alunos devem poder avaliar os projetos por meio de um sistema de estrelas | MÉDIA |
-|RF-005  | A página inicial deve destacar projetos com base em critérios como maiores avaliações e número de acessos | MÉDIA |
-|RF-007  | Os alunos devem receber novas notificações sobre atualizações importantes, como novos comentários nos projetos | BAIXA |
+| ID     | Descrição do Requisito                                                                                                                                       | Prioridade |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- |
+| RF-001 | Os alunos devem ser capazes de cadastrar seus projetos na aplicação, fornecendo informações essenciais como nome do projeto, descrição, integrantes do grupo | ALTA       |
+| RF-002 | A aplicação deve permitir que os professores cadastrem comentários em cada projeto, facilitando o feedback direto aos alunos                                 | ALTA       |
+| RF-003 | Deve ser possível filtrar os projetos por categoria, nome e outros filtros relevantes                                                                        | ALTA       |
+| RF-004 | Tanto professores quanto alunos devem poder avaliar os projetos por meio de um sistema de estrelas                                                           | MÉDIA      |
+| RF-005 | A página inicial deve destacar projetos com base em critérios como maiores avaliações e número de acessos                                                    | MÉDIA      |
+| RF-007 | Os alunos devem receber novas notificações sobre atualizações importantes, como novos comentários nos projetos                                               | BAIXA      |
 
 ### Requisitos não Funcionais
 
-|ID     | Descrição do Requisito  |Prioridade |
-|-------|-------------------------|----|
-|RNF-001  | A aplicação deve ser responsiva e acessível através de diferentes dispositivos e navegadores | MÉDIA |
-|RNF-002  | A aplicação deve ser fácil de utilizar, com uma interface intuitiva para todos os usuários | MÉDIA |
-|RNF-003  | A aplicação deve ter suporte para usuários que utilizam leitores de tela | BAIXA |
-|RNF-004  | A aplicação deve responder rapidamente às solicitações do usuário, mesmo durante períodos de alta demanda | BAIXA |
+| ID      | Descrição do Requisito                                                                                    | Prioridade |
+| ------- | --------------------------------------------------------------------------------------------------------- | ---------- |
+| RNF-001 | A aplicação deve ser responsiva e acessível através de diferentes dispositivos e navegadores              | MÉDIA      |
+| RNF-002 | A aplicação deve ser fácil de utilizar, com uma interface intuitiva para todos os usuários                | MÉDIA      |
+| RNF-003 | A aplicação deve ter suporte para usuários que utilizam leitores de tela                                  | BAIXA      |
+| RNF-004 | A aplicação deve responder rapidamente às solicitações do usuário, mesmo durante períodos de alta demanda | BAIXA      |
 
 ## Restrições
 
 O projeto está restrito pelos itens apresentados na tabela a seguir.
 
-|ID| Restrição                                             |
-|--|-------------------------------------------------------|
-|01| A aplicação deverá ser concluído dentro de um cronograma específico |
-|02| Não é permitido o uso de qualquer framework frontend (como Angular, React, etc) no desenvolvimento do projeto |
-
+| ID  | Restrição                                                                                                     |
+| --- | ------------------------------------------------------------------------------------------------------------- |
+| 01  | A aplicação deverá ser concluído dentro de um cronograma específico                                           |
+| 02  | Não é permitido o uso de qualquer framework frontend (como Angular, React, etc) no desenvolvimento do projeto |
 
 ## Diagrama de Casos de Uso
 
