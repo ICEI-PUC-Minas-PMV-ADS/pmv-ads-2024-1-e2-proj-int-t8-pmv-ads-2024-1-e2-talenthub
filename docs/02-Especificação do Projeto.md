@@ -1,10 +1,6 @@
 # Especificações do Projeto
 
-<span style="color:red">Pré-requisitos: <a href="1-Documentação de Contexto.md"> Documentação de Contexto</a></span>
-
-Definição do problema e ideia de solução a partir da perspectiva do usuário. É composta pela definição do diagrama de personas, histórias de usuários, requisitos funcionais e não funcionais além das restrições do projeto.
-
-Apresente uma visão geral do que será abordado nesta parte do documento, enumerando as técnicas e/ou ferramentas utilizadas para realizar a especificações do projeto
+As especificações do projeto TalentHub detalham os aspectos técnicos e funcionais necessários para desenvolver uma solução eficaz que enderece a dispersão de projetos acadêmicos. Esta seção inclui a criação de personas, histórias de usuários, requisitos funcionais e não funcionais, além de identificar as restrições do projeto. Utilizaremos técnicas como o diagrama de personas para compreender as necessidades dos usuários, histórias de usuários para capturar os requisitos funcionais a partir de uma perspectiva do usuário, e uma combinação de metodologias ágeis e tradicionais de engenharia de software para definir os requisitos funcionais e não funcionais do sistema.
 
 ## Personas
 
@@ -13,7 +9,7 @@ Apresente uma visão geral do que será abordado nesta parte do documento, enume
 | ![Isabel Mendes](img/personas/Isabel-Mendes.jpg)       | Isabel Mendes    | 43 anos   | Professora                                         | Ensinar, desenvolver habilidades, incentivar pesquisa, preparar para o mercado, inspirar alunos e contribuir para o avanço da disciplina | Dispersão de projetos em diferentes plataformas, demandando esforço extra para revisão individual. A falta de centralização compromete a eficiência da avaliação acadêmica | Ler, ir em observatórios, museus, assistir documentários |
 | ![Ana Silva](img/personas/Ana-Silva.jpg)               | Ana Silva        | 22 anos   | Estudante de Análise e Desenvolvimento de Sistemas | Engajar em projetos acadêmicos, deseja compartilhar seu trabalho, receber feedbacks e melhorar constantemente.                           | Dificuldade em encontrar projetos relevantes, falta de filtros por área de estudo e popularidade limitando a experiência de aprendizado e inspiração                       | Escrever, ir ao cinema, assistir séries                  |
 | ![Lucas Santos](img/personas/Lucas-Santos.jpg)         | Lucas Santos     | 25 anos   | Visitante                                          | Busca inspiração e aprendizado além dos limites do seu curso, tanto por curiosidade quanto por impulsionar o desenvolvimento pessoal     | Falta de um sistema de avaliações e ranking, limitam oportunidades de estudo e inspiração em projetos para aprendizado e desenvolvimento                                   | Sair com a família, viajar, ler                          |
-| ![Rodrigo Oliveira](img/personas/Rodrigo-Oliveira.jpg) | Rodrigo Oliveira | 33 anos   | Tech Recruiter                                     | Recrutar talentos que impulsionem o crescimento futuro                                                                                   | Dificuldade em encontrar bons profissionais em início de carreira para contratação                                                                                         | Jogar futebol, assistir a filmes de ação                 |
+| ![Rodrigo Oliveira](img/personas/Rodrigo-Oliveira.jpg) | Rodrigo Oliveira | 33 anos   | Tech Recruiter| Recrutar talentos que impulsionem o crescimento futuro, Encontrar equipes diversificadas e inovadoras que liderem projetos de ponta, Através de avaliações encontrar talentos que demonstrem proatividade e pensamento crítico. | Dificuldade em encontrar bons profissionais em início de carreira para contratação, Pouca quantidade de informações disponíveis sobre as habilidades práticas dos candidatos, Insatisfação com o tempo e o esforço necessários para filtrar e avaliar candidatos de forma eficaz. | Jogar futebol, assistir a filmes de ação |
 
 ## Histórias de Usuários
 
@@ -57,15 +53,15 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RNF-002  | A aplicação deve ter suporte para usuários que utilizam leitores de tela | BAIXA |
 |RNF-003  | A aplicação deve responder rapidamente às solicitações do usuário, mesmo durante períodos de alta demanda | BAIXA |
 
+
 ## Restrições
 
 O projeto está restrito pelos itens apresentados na tabela a seguir.
 
-|ID| Restrição                                             |
-|--|-------------------------------------------------------|
-|01| A aplicação deverá ser concluído dentro de um cronograma específico |
-|02| Não é permitido o uso de qualquer framework frontend (como Angular, React, etc) no desenvolvimento do projeto |
-
+| ID  | Restrição                                                                                                     |
+| --- | ------------------------------------------------------------------------------------------------------------- |
+| 01  | A aplicação deverá ser concluído dentro de um cronograma específico                                           |
+| 02  | Não é permitido o uso de qualquer framework frontend (como Angular, React, etc) no desenvolvimento do projeto |
 
 ## Diagrama de Casos de Uso
 
