@@ -8,18 +8,41 @@ Não deixe de enumerar os casos de teste de forma sequencial e de garantir que o
 
 Por exemplo:
  
-| **Caso de Teste** 	| **CT-01 – Cadastrar perfil** 	|
-|:---:	|:---:	|
-|	Requisito Associado 	| RF-00X - A aplicação deve apresentar, na página principal, a funcionalidade de cadastro de usuários para que esses consigam criar e gerenciar seu perfil. |
-| Objetivo do Teste 	| Verificar se o usuário consegue se cadastrar na aplicação. |
-| Passos 	| - Acessar o navegador <br> - Informar o endereço do site https://adota-pet.herokuapp.com/src/index.html<br> - Clicar em "Criar conta" <br> - Preencher os campos obrigatórios (e-mail, nome, sobrenome, celular, CPF, senha, confirmação de senha) <br> - Aceitar os termos de uso <br> - Clicar em "Registrar" |
-|Critério de Êxito | - O cadastro foi realizado com sucesso. |
-|  	|  	|
-| Caso de Teste 	| CT-02 – Efetuar login	|
-|Requisito Associado | RF-00Y	- A aplicação deve possuir opção de fazer login, sendo o login o endereço de e-mail. |
-| Objetivo do Teste 	| Verificar se o usuário consegue realizar login. |
-| Passos 	| - Acessar o navegador <br> - Informar o endereço do site https://adota-pet.herokuapp.com/src/index.html<br> - Clicar no botão "Entrar" <br> - Preencher o campo de e-mail <br> - Preencher o campo da senha <br> - Clicar em "Login" |
-|Critério de Êxito | - O login foi realizado com sucesso. |
+### CT-01 - Cadastrar Projetos
+
+| **Caso de Teste**        | **CT-01 – Cadastrar Projetos** |
+|--------------------------|--------------------------------|
+| **Requisito Associado**  | RF-001 - Os alunos devem ser capazes de cadastrar seus projetos na aplicação, fornecendo informações essenciais como nome do projeto, descrição, integrantes do grupo. |
+| **Objetivo do Teste**    | Verificar se os alunos conseguem cadastrar seus projetos na aplicação. |
+| **Passos**               | - Acessar o navegador<br>- Informar o endereço da aplicação<br>- Navegar até a seção de "Cadastrar Projeto"<br>- Preencher os campos obrigatórios (nome do projeto, descrição, integrantes do grupo)<br>- Clicar em "Salvar Projeto" |
+| **Critério de Êxito**    | O cadastro do projeto é realizado com sucesso e os detalhes do projeto cadastrado são exibidos corretamente na aplicação. |
+
+### CT-02 - Filtrar Projetos
+
+| **Caso de Teste**        | **CT-02 – Filtrar Projetos** |
+|--------------------------|------------------------------|
+| **Requisito Associado**  | RF-004 - Deve ser possível filtrar os projetos por categoria, nome e outros filtros relevantes. |
+| **Objetivo do Teste**    | Verificar se a funcionalidade de filtragem de projetos funciona corretamente, permitindo filtrar por categoria, nome, entre outros critérios. |
+| **Passos**               | - Acessar o navegador<br>- Informar o endereço da aplicação<br>- Navegar até a seção de projetos<br>- Utilizar os filtros disponíveis para filtrar projetos por categoria, nome, etc.<br>- Verificar se os resultados são exibidos conforme os filtros aplicados. |
+| **Critério de Êxito**    | A aplicação filtra e exibe os projetos de acordo com os critérios selecionados pelo usuário. |
+
+### CT-03 - Destaque de Projetos
+
+| **Caso de Teste**        | **CT-03 – Destaque de Projetos** |
+|--------------------------|-----------------------------------|
+| **Requisito Associado**  | RF-005 - A página inicial deve destacar projetos com base em critérios como maiores avaliações e número de acessos. |
+| **Objetivo do Teste**    | Verificar se a página inicial destaca projetos conforme especificado, baseando-se em critérios como avaliações e número de acessos. |
+| **Passos**               | - Acessar o navegador<br>- Informar o endereço da aplicação<br>- Observar a página inicial para identificar os projetos em destaque<br>- Verificar se os projetos destacados atendem aos critérios de seleção mencionados. |
+| **Critério de Êxito**    | Os projetos com maiores avaliações e número de acessos são destacados na página inicial conforme esperado. |
+
+### CT-04 - Recebimento de Notificações
+
+| **Caso de Teste**        | **CT-04 – Recebimento de Notificações** |
+|--------------------------|-----------------------------------------|
+| **Requisito Associado**  | RF-006 - Os alunos devem receber novas notificações sobre atualizações importantes, como novas avaliações nos projetos. |
+| **Objetivo do Teste**    | Verificar se os alunos recebem notificações sobre atualizações importantes relacionadas aos projetos. |
+| **Passos**               | - Acessar o navegador<br>- Fazer login na aplicação com uma conta de aluno<br>- Verificar a seção de notificações para novas mensagens relacionadas a atualizações importantes nos projetos. |
+| **Critério de Êxito**    | Os alunos recebem notificações sobre atualizações importantes, como novas avaliações nos projetos, de forma clara e tempestiva. |
 
  
 > **Links Úteis**:
