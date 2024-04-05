@@ -4,7 +4,7 @@ Dentre as preocupações para a montagem da interface do sistema, estamos estabe
 
 ## Diagrama de Fluxo
 
-<img width="1229" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e2-proj-int-t8-pmv-ads-2024-1-e2-talenthub/assets/3586967/db6d6ae1-7196-4fc2-8a5e-2ae92d3c87d0">
+<img width="1211" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e2-proj-int-t8-pmv-ads-2024-1-e2-talenthub/assets/3586967/4f2ff9cf-ae1f-4776-8e7d-5db63d365d81">
 
 ---
 
