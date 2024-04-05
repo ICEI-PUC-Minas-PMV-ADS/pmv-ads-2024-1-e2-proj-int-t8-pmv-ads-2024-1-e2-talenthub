@@ -36,4 +36,4 @@ Dentre as preocupações para a montagem da interface do sistema, estamos estabe
 
 ### 5. Visualização de projeto - Dados do projeto cadastrado, avaliações, visualizações e anotações
 
-![Visualização de projeto - Dados do projeto cadastrado, avaliações, visualizações e anotações](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e2-proj-int-t8-pmv-ads-2024-1-e2-talenthub/assets/3586967/4947e90c-31a3-43b2-b51c-1e6cfc72d946)
+![Visualização de projeto - Dados do projeto cadastrado, avaliações, visualizações e anotações](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e2-proj-int-t8-pmv-ads-2024-1-e2-talenthub/assets/3586967/2ed4fd9c-d8ce-4aa5-b4c3-aab976ccaca1)
