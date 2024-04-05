@@ -24,7 +24,7 @@ Dentre as preocupações para a montagem da interface do sistema, estamos estabe
 
 ### 3. Gerenciar projetos - Lista de projetos cadastrados pelo usuário
 
-![Gerenciar projetos - Lista de projetos cadastrados pelo usuário](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e2-proj-int-t8-pmv-ads-2024-1-e2-talenthub/assets/3586967/636d5354-2f49-4750-a260-f46e54f2a85b)
+![Gerenciar projetos - Lista de projetos cadastrados pelo usuário](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e2-proj-int-t8-pmv-ads-2024-1-e2-talenthub/assets/3586967/30bb06f8-f2dc-4610-b720-c6e761c9565a)
 
 ---
 
