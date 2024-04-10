@@ -32,23 +32,12 @@ Para uma melhor organização e gerenciamento do projeto, o time optou por utili
 
 ### Ferramentas
 
-As ferramentas empregadas no projeto são:
-
-- Editor de código.
-- Ferramentas de comunicação
-- Ferramentas de desenho de tela (_wireframing_)
-
-O editor de código foi escolhido porque ele possui uma integração com o
-sistema de versão. As ferramentas de comunicação utilizadas possuem
-integração semelhante e por isso foram selecionadas. Por fim, para criar
-diagramas utilizamos essa ferramenta por melhor captar as
-necessidades da nossa solução.
-
-Liste quais ferramentas foram empregadas no desenvolvimento do projeto, justificando a escolha delas, sempre que possível.
- 
-> **Possíveis Ferramentas que auxiliarão no gerenciamento**: 
-> - [Slack](https://slack.com/)
-> - [Github](https://github.com/)
+| Ferramenta       | Plataforma   | Justificativa                                                                                           |
+|------------------|--------------|---------------------------------------------------------------------------------------------------------|
+| Ferramenta de comunicação          | WhatsApp e Microsoft Teams   | Facilita a comunicação instantânea entre os membros da equipe, permitindo discussões rápidas, compartilhamento de arquivos e atualizações importantes. |
+| Projeto de Interface e Wireframes     | Figma  | É uma escolha ideal para criar wireframes e projetar interfaces de usuário devido à sua facilidade de uso, colaboração em tempo real e ampla gama de recursos de design. |
+| Gerenciamento do projeto          | Trello  | É uma ferramenta eficaz para gerenciar o projeto, permitindo a criação de quadros Kanban personalizados para acompanhar o progresso das tarefas, atribuir responsabilidades e estabelecer prazos. |
+| Editor de código        | VsCode    | É uma opção popular devido à sua grande variedade de extensões, integração com controle de versão e recursos avançados de edição, tornando-o adequado para desenvolvimento de software eficiente. |
 
 ## Controle de Versão
 
