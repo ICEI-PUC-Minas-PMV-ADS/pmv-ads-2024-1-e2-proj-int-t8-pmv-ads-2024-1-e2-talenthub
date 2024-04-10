@@ -20,7 +20,7 @@ O time está organizado da seguinte forma:
 
 ### Processo
 
-Para uma melhor organização e gerenciamento do projeto, o time optou por utilizar um quadro KANBAN do Trello estruturado da seguinte forma:
+Para uma melhor organização e gerenciamento do projeto, o time optou por utilizar um quadro KANBAN do Trello que ficou estruturado assim:
 
 ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e2-proj-int-t8-pmv-ads-2024-1-e2-talenthub/assets/67551515/c7e7de44-9b37-4efb-942a-c7fa4fcb032b)
 
