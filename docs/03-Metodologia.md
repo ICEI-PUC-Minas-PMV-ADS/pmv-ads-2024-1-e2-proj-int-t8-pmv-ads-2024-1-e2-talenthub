@@ -1,9 +1,7 @@
 
 # Metodologia
 
-<span style="color:red">Pré-requisitos: <a href="2-Especificação do Projeto.md"> Documentação de Especificação</a></span>
-
-Descreva aqui a metodologia de trabalho do grupo para atacar o problema. Definições sobre os ambiente de trabalho utilizados pela  equipe para desenvolver o projeto. Abrange a relação de ambientes utilizados, a estrutura para gestão do código fonte, além da definição do processo e ferramenta através dos quais a equipe se organiza (Gestão de Times).
+Esta documentação apresenta a metodologia adotada pelo grupo para desenvolver o Talenthub, detalhando as ferramentas e ambientes de trabalho utilizados. Isso engloba a descrição dos ambientes de desenvolvimento e a estrutura para gerenciamento do código-fonte. Além disso, abordamos o processo e as ferramentas empregadas para organizar e gerenciar o time de desenvolvimento de forma eficiente.
 
 ## Controle de Versão
 
