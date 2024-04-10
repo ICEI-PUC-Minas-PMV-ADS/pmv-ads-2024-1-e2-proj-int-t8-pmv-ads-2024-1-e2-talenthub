@@ -35,6 +35,19 @@ Discuta como a configuração do projeto foi feita na ferramenta de versionament
 
 ## Gerenciamento de Projeto
 
+Nosso time está utilizando a metodologia ágil de base para gerenciar de forma eficiente todo o processo de planejamento e desenvolvimento.
+O time está organizado da seguinte forma:
+
+**Scrum Master:** Thiago Pires
+
+**Equipe de Desenvolvimento:**
+
+- André Santana
+- Thiago Pires
+- Rodolfo Lannazo
+- Jozimar Santos
+- 
+
 ### Divisão de Papéis
 
 Apresente a divisão de papéis entre os membros do grupo.
