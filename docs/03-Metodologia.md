@@ -10,13 +10,16 @@ O time está organizado da seguinte forma:
 
 **Scrum Master:** Thiago Pires
 
+**Product Owner:** Rodolfo Iannazo
+
 **Equipe de Desenvolvimento:**
 
 - André Santana
-- Thiago Pires
-- Rodolfo Lannazo
-- Jozimar Santos
 - Bruno Lopes
+- Jozimar Santos
+- Rodolfo Iannazo
+- Thiago Pires
+
 
 ### Processo
 
@@ -35,7 +38,7 @@ Para uma melhor organização e gerenciamento do projeto, o time optou por utili
 | Ferramenta       | Plataforma   | Justificativa                                                                                           |
 |------------------|--------------|---------------------------------------------------------------------------------------------------------|
 | Ferramenta de comunicação          | WhatsApp e Microsoft Teams   | Facilita a comunicação instantânea entre os membros da equipe, permitindo discussões rápidas, compartilhamento de arquivos e atualizações importantes. |
-| Projeto de Interface e Wireframes     | Figma  | É uma escolha ideal para criar wireframes e projetar interfaces de usuário devido à sua facilidade de uso, colaboração em tempo real e ampla gama de recursos de design. |
+| Projeto de Interface e Wireframes     | JustInMind  | Oferece uma ampla gama de recursos para criar wireframes e projetar interfaces de usuário, além de permitir colaboração em tempo real e uma interface intuitiva. |
 | Gerenciamento do projeto          | Trello  | É uma ferramenta eficaz para gerenciar o projeto, permitindo a criação de quadros Kanban personalizados para acompanhar o progresso das tarefas, atribuir responsabilidades e estabelecer prazos. |
 | Editor de código        | VsCode    | É uma opção popular devido à sua grande variedade de extensões, integração com controle de versão e recursos avançados de edição, tornando-o adequado para desenvolvimento de software eficiente. |
 
@@ -60,3 +63,12 @@ etiquetas:
 - `enhancement`: uma funcionalidade precisa ser melhorada
 - `feature`: uma nova funcionalidade precisa ser introduzida
 
+## Product Backlog e planos de sprints
+
+| Etapa | Documentos/Atividades |
+|-------|-----------------------|
+| E1    | Documentação de contexto<br>Especificação do projeto |
+| E2    | Diagrama de classes<br>Diagrama de Fluxo (fluxograma)<br>Wireframe interativo<br>Modelo Entidade Relacionamento (Projeto Conceitual)<br>Projeto da Base de Dados<br>Planos de Teste de Software e de Usabilidade<br>Documentação da Metodologia<br>Projeto do Github com Backlog e Plano de Sprints |
+| E3    | Template Padrão da Aplicação<br>Funcionalidades Críticas<br>Registro de Testes de Software<br>Registro de Testes de Usabilidade |
+| E4    | Template Padrão da Aplicação<br>Funcionalidades restantes<br>Registro de Testes de Software<br>Registro de Testes de Usabilidade |
+| E5    | Relatórios de Teste de Software<br>Registro de Testes de Usabilidade |
