@@ -17,7 +17,7 @@ O time está organizado da seguinte forma:
 - André Santana
 - Bruno Lopes
 - Jozimar Santos
-- Rodolfo Iannazo
+- Rodolfo Iannazzo
 - Thiago Pires
 
 
