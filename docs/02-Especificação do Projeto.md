@@ -4,12 +4,12 @@ As especificações do projeto TalentHub detalham os aspectos técnicos e funcio
 
 ## Personas
 
-| **FOTO**                                               | **NOME**         | **IDADE** | **OCUPAÇÃO**                                       | **MOTIVAÇÕES**                                                                                                                           | **INSATISFAÇÕES**                                                                                                                                                          | **HOBBIES**                                              |
-| ------------------------------------------------------ | ---------------- | --------- | -------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| ![Isabel Mendes](img/personas/Isabel-Mendes.jpg)       | Isabel Mendes    | 43 anos   | Professora                                         | Ensinar, desenvolver habilidades, incentivar pesquisa, preparar para o mercado, inspirar alunos e contribuir para o avanço da disciplina | Dispersão de projetos em diferentes plataformas, demandando esforço extra para revisão individual. A falta de centralização compromete a eficiência da avaliação acadêmica | Ler, ir em observatórios, museus, assistir documentários |
-| ![Ana Silva](img/personas/Ana-Silva.jpg)               | Ana Silva        | 22 anos   | Estudante de Análise e Desenvolvimento de Sistemas | Engajar em projetos acadêmicos, deseja compartilhar seu trabalho, receber feedbacks e melhorar constantemente.                           | Dificuldade em encontrar projetos relevantes, falta de filtros por área de estudo e popularidade limitando a experiência de aprendizado e inspiração                       | Escrever, ir ao cinema, assistir séries                  |
-| ![Lucas Santos](img/personas/Lucas-Santos.jpg)         | Lucas Santos     | 25 anos   | Visitante                                          | Busca inspiração e aprendizado além dos limites do seu curso, tanto por curiosidade quanto por impulsionar o desenvolvimento pessoal     | Falta de um sistema de avaliações e ranking, limitam oportunidades de estudo e inspiração em projetos para aprendizado e desenvolvimento                                   | Sair com a família, viajar, ler                          |
-| ![Rodrigo Oliveira](img/personas/Rodrigo-Oliveira.jpg) | Rodrigo Oliveira | 33 anos   | Tech Recruiter| Recrutar talentos que impulsionem o crescimento futuro, Encontrar equipes diversificadas e inovadoras que liderem projetos de ponta, Através de avaliações encontrar talentos que demonstrem proatividade e pensamento crítico. | Dificuldade em encontrar bons profissionais em início de carreira para contratação, Pouca quantidade de informações disponíveis sobre as habilidades práticas dos candidatos, Insatisfação com o tempo e o esforço necessários para filtrar e avaliar candidatos de forma eficaz. | Jogar futebol, assistir a filmes de ação |
+| **FOTO**                                               | **NOME**         | **IDADE** | **OCUPAÇÃO**                                       | **MOTIVAÇÕES**                                                                                                                                                                                                                  | **INSATISFAÇÕES**                                                                                                                                                                                                                                                                 | **HOBBIES**                                              |
+| ------------------------------------------------------ | ---------------- | --------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| ![Isabel Mendes](img/personas/Isabel-Mendes.jpg)       | Isabel Mendes    | 43 anos   | Professora                                         | Ensinar, desenvolver habilidades, incentivar pesquisa, preparar para o mercado, inspirar alunos e contribuir para o avanço da disciplina                                                                                        | Dispersão de projetos em diferentes plataformas, demandando esforço extra para revisão individual. A falta de centralização compromete a eficiência da avaliação acadêmica                                                                                                        | Ler, ir em observatórios, museus, assistir documentários |
+| ![Ana Silva](img/personas/Ana-Silva.jpg)               | Ana Silva        | 22 anos   | Estudante de Análise e Desenvolvimento de Sistemas | Engajar em projetos acadêmicos, deseja compartilhar seu trabalho, receber feedbacks e melhorar constantemente.                                                                                                                  | Dificuldade em encontrar projetos relevantes, falta de filtros por área de estudo e popularidade limitando a experiência de aprendizado e inspiração                                                                                                                              | Escrever, ir ao cinema, assistir séries                  |
+| ![Lucas Santos](img/personas/Lucas-Santos.jpg)         | Lucas Santos     | 25 anos   | Visitante                                          | Busca inspiração e aprendizado além dos limites do seu curso, tanto por curiosidade quanto por impulsionar o desenvolvimento pessoal                                                                                            | Falta de um sistema de avaliações e ranking, limitam oportunidades de estudo e inspiração em projetos para aprendizado e desenvolvimento                                                                                                                                          | Sair com a família, viajar, ler                          |
+| ![Rodrigo Oliveira](img/personas/Rodrigo-Oliveira.jpg) | Rodrigo Oliveira | 33 anos   | Tech Recruiter                                     | Recrutar talentos que impulsionem o crescimento futuro, Encontrar equipes diversificadas e inovadoras que liderem projetos de ponta, Através de avaliações encontrar talentos que demonstrem proatividade e pensamento crítico. | Dificuldade em encontrar bons profissionais em início de carreira para contratação, Pouca quantidade de informações disponíveis sobre as habilidades práticas dos candidatos, Insatisfação com o tempo e o esforço necessários para filtrar e avaliar candidatos de forma eficaz. | Jogar futebol, assistir a filmes de ação                 |
 
 ## Histórias de Usuários
 
@@ -36,23 +36,22 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 ### Requisitos Funcionais
 
-|ID    | Descrição do Requisito  | Prioridade |
-|------|-----------------------------------------|----|
-|RF-001  | Os alunos devem ser capazes de cadastrar seus projetos na aplicação, fornecendo informações essenciais como nome do projeto, descrição, integrantes do grupo | ALTA | 
-|RF-002  | A aplicação deve permitir que os professores cadastrem anotações pessoais em cada projeto, facilitando o acompanhamento dos mesmos | ALTA |
-|RF-003  | Os usuários poderão avaliar e realizar anotações nos projetos | MÉDIA |
-|RF-004  | Deve ser possível filtrar os projetos por categoria, nome e outros filtros relevantes | ALTA |
-|RF-005  | A página inicial deve destacar projetos com base em critérios como maiores avaliações e número de acessos | MÉDIA |
-|RF-006  | Os alunos devem receber novas notificações sobre atualizações importantes, como novas avaliações nos projetos | BAIXA |
+| ID     | Descrição do Requisito                                                                                                                                       | Prioridade |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- |
+| RF-001 | Os alunos devem ser capazes de cadastrar seus projetos na aplicação, fornecendo informações essenciais como nome do projeto, descrição, integrantes do grupo | ALTA       |
+| RF-002 | A aplicação deve permitir que os professores cadastrem anotações pessoais em cada projeto, facilitando o acompanhamento dos mesmos                           | ALTA       |
+| RF-003 | Os usuários poderão avaliar e realizar anotações nos projetos                                                                                                | MÉDIA      |
+| RF-004 | Deve ser possível filtrar os projetos por categoria, nome e outros filtros relevantes                                                                        | ALTA       |
+| RF-005 | A página inicial deve destacar projetos com base em critérios como maiores avaliações e número de acessos                                                    | MÉDIA      |
+| RF-006 | Os alunos devem receber novas notificações sobre atualizações importantes, como novas avaliações nos projetos                                                | BAIXA      |
 
 ### Requisitos não Funcionais
 
-|ID     | Descrição do Requisito  |Prioridade |
-|-------|-------------------------|----|
-|RNF-001  | A aplicação deve ser responsiva e acessível através de diferentes dispositivos e navegadores | MÉDIA |
-|RNF-002  | A aplicação deve ter suporte para usuários que utilizam leitores de tela | BAIXA |
-|RNF-003  | A aplicação deve responder rapidamente às solicitações do usuário, mesmo durante períodos de alta demanda | BAIXA |
-
+| ID      | Descrição do Requisito                                                                                    | Prioridade |
+| ------- | --------------------------------------------------------------------------------------------------------- | ---------- |
+| RNF-001 | A aplicação deve ser responsiva e acessível através de diferentes dispositivos e navegadores              | MÉDIA      |
+| RNF-002 | A aplicação deve ter suporte para usuários que utilizam leitores de tela                                  | BAIXA      |
+| RNF-003 | A aplicação deve responder rapidamente às solicitações do usuário, mesmo durante períodos de alta demanda | BAIXA      |
 
 ## Restrições
 
@@ -100,17 +99,13 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
     }
     @enduml
 
-![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e2-proj-int-t8-pmv-ads-2024-1-e2-talenthub/assets/3586967/d7c7ce1c-1f35-4257-b455-dbc1e691261a)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e2-proj-int-t8-pmv-ads-2024-1-e2-talenthub/assets/3586967/485f706f-c13e-4624-94bd-40e0501d7e45)
 
-| Ator           | Caso de Uso                    | Descrição                                                                                 |
-| -------------- | ------------------------------ | ----------------------------------------------------------------------------------------- |
-| Aluno          | Login                          | Alunos precisam realizar login para acessar funcionalidades específicas do sistema.       |
-| Aluno          | Cadastrar Projeto              | Alunos podem cadastrar novos projetos após realizar login.                                |
-| Aluno          | Buscar/Consultar Projetos      | Alunos podem buscar e consultar projetos sem necessidade de login.                        |
-| Professor      | Login                          | Professores precisam realizar login para acessar funcionalidades específicas do sistema.  |
-| Professor      | Fazer Anotações sobre Projetos | Professores podem fazer anotações em projetos após realizar login.                        |
-| Professor      | Avaliar Qualidade do Projeto   | Professores podem avaliar a qualidade dos projetos após realizar login.                   |
-| Professor      | Buscar/Consultar Projetos      | Professores podem buscar e consultar projetos sem necessidade de login.                   |
-| Agente Externo | Login                          | Agentes externos precisam realizar login para obter contato para projetos.                |
-| Agente Externo | Obter Contato para Projetos    | Agentes externos podem obter informações de contato para projetos específicos após login. |
-| Agente Externo | Buscar/Consultar Projetos      | Agentes externos podem buscar e consultar projetos sem necessidade de login.              |
+| Ator    | Caso de Uso                    | Descrição                                                                             |
+| ------- | ------------------------------ | ------------------------------------------------------------------------------------- |
+| Usuário | Login                          | O usuário precisa realizar login para acessar funcionalidades específicas do sistema. |
+| Usuário | Cadastrar Projeto              | O usuário pode cadastrar novos projetos após realizar login.                          |
+| Usuário | Buscar/Consultar Projetos      | O usuário pode buscar e consultar projetos sem necessidade de login.                  |
+| Usuário | Fazer Anotações sobre Projetos | O usuário pode fazer anotações em projetos após realizar login.                       |
+| Usuário | Avaliar Qualidade do Projeto   | O usuário pode avaliar a qualidade dos projetos após realizar login.                  |
+| Usuário | Obter Contato para Projetos    | O usuário pode obter informações de contato para projetos específicos após login.     |
