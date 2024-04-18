@@ -7,22 +7,27 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8000:80"
+      - "5264:80" # Mapeia a porta 5264 do host para a porta 80 do contêiner
     depends_on:
       - db
     environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
       - ConnectionStrings__DefaultConnection=${CONNECTION_STRING}
+    volumes:
+      - data-protection-keys:/root/.aspnet/DataProtection-Keys
 
   db:
     container_name: sqlserver
     image: "mcr.microsoft.com/mssql/server"
     environment:
-      SA_PASSWORD: ${SQL_SERVER_SA_PASSWORD}
-      ACCEPT_EULA: "Y"
+      - SA_PASSWORD=${SQL_SERVER_SA_PASSWORD}
+      - ACCEPT_EULA=Y
     ports:
       - "1433:1433"
     volumes:
       - sqlserverdata:/var/opt/mssql
 
 volumes:
+  data-protection-keys:
   sqlserverdata:
