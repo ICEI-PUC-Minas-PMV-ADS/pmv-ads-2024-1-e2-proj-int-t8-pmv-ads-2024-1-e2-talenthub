@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  talenthub:
+    container_name: talenthub
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    depends_on:
+      - db
+    environment:
+      - ConnectionStrings__DefaultConnection=${CONNECTION_STRING}
+
+  db:
+    container_name: sqlserver
+    image: "mcr.microsoft.com/mssql/server"
+    environment:
+      SA_PASSWORD: ${SQL_SERVER_SA_PASSWORD}
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserverdata:/var/opt/mssql
+
+volumes:
+  sqlserverdata:
