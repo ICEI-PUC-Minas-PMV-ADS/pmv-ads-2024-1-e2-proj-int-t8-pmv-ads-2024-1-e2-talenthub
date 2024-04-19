@@ -12,7 +12,7 @@ namespace TalentHub.Data
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-      optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=TalentHubDB;Trusted_Connection=True;");
+      optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=TalentHub;Trusted_Connection=True;");
     }
   }
 }
