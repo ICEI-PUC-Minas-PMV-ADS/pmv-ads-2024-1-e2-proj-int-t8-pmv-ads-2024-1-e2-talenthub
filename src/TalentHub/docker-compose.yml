@@ -1,28 +1,12 @@
 version: "3.8"
 
 services:
-  talenthub:
-    container_name: talenthub
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "5264:80"
-    depends_on:
-      - db
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:80
-    env_file:
-      - .env
-    volumes:
-      - data-protection-keys:/root/.aspnet/DataProtection-Keys
-
   db:
     container_name: sqlserver
     image: "mcr.microsoft.com/mssql/server"
     environment:
       - ACCEPT_EULA=Y
+      - SA_PASSWORD=${SQL_SERVER_SA_PASSWORD}
     env_file:
       - .env
     ports:
@@ -30,25 +14,5 @@ services:
     volumes:
       - sqlserverdata:/var/opt/mssql
 
-  migration:
-    container_name: talenthub-migration
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: migration
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - DOTNET_ENVIRONMENT=Development
-    env_file:
-      - .env
-    depends_on:
-      - db
-    working_dir: /app
-    command: ["dotnet", "ef", "database", "update"]
-    volumes:
-      - .:/app
-      - data-protection-keys:/root/.aspnet/DataProtection-Keys
-
 volumes:
-  data-protection-keys:
   sqlserverdata:
