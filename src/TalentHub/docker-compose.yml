@@ -30,6 +30,25 @@ services:
     volumes:
       - sqlserverdata:/var/opt/mssql
 
+  migration:
+    container_name: talenthub-migration
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: migration
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DOTNET_ENVIRONMENT=Development
+    env_file:
+      - .env
+    depends_on:
+      - db
+    working_dir: /app
+    command: ["dotnet", "ef", "database", "update"]
+    volumes:
+      - .:/app
+      - data-protection-keys:/root/.aspnet/DataProtection-Keys
+
 volumes:
   data-protection-keys:
   sqlserverdata:
