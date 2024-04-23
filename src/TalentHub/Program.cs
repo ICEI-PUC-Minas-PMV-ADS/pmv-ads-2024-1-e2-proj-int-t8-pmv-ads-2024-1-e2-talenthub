@@ -1,7 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using TalentHub.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<TalentHubContext>(options =>
+    options.UseSqlServer(Environment.GetEnvironmentVariable("CONNECTION_STRING")));
 
 var app = builder.Build();
 

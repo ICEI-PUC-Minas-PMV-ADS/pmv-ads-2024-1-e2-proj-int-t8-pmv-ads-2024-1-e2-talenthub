@@ -10,9 +10,22 @@ namespace TalentHub.Data
     public DbSet<Avaliacao> Avaliacoes { get; set; }
     public DbSet<Anotacao> Anotacoes { get; set; }
 
+    public TalentHubContext(DbContextOptions<TalentHubContext> options)
+           : base(options)
+    {
+    }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-      optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=TalentHub;Trusted_Connection=True;");
+      if (!optionsBuilder.IsConfigured)
+      {
+        IConfiguration config = new ConfigurationBuilder()
+            .AddEnvironmentVariables()
+            .Build();
+
+        var connectionString = config["CONNECTION_STRING"];
+        optionsBuilder.UseSqlServer(connectionString);
+      }
     }
   }
 }
