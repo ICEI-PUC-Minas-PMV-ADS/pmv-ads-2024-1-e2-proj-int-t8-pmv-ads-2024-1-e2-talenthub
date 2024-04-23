@@ -1,0 +1,37 @@
+﻿@model IEnumerable<TalentHub.Models.Projeto>
+
+@{
+    ViewData["Title"] = "Lista de Projetos";
+}
+
+<h2>Projetos</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Criar novo projeto</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome do Projeto</th>
+            <th>URL do Repositório</th>
+            <th>URL da Aplicação</th>
+            <th>Integrantes</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.NomeProjeto)</td>
+            <td>@Html.DisplayFor(modelItem => item.UrlRepositorio)</td>
+            <td>@Html.DisplayFor(modelItem => item.UrlAplicacao)</td>
+            <td>@Html.DisplayFor(modelItem => item.Integrantes)</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdProjeto">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.IdProjeto">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdProjeto">Deletar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
