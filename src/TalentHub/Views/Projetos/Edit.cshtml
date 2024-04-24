@@ -6,25 +6,25 @@
 
 <h2>Editar Projeto</h2>
 
-<form asp-action="Edit" style="margin-bottom: 20px;">
+<form asp-action="Edit" class="mb-3">
     <input type="hidden" asp-for="IdProjeto" />
-    <div class="form-group" style="margin-bottom: 15px;">
+    <div class="form-group mb-3">
         <label asp-for="NomeProjeto" class="control-label">Nome do Projeto</label>
         <input asp-for="NomeProjeto" class="form-control" placeholder="Insira o nome do projeto" />
     </div>
-    <div class="form-group" style="margin-bottom: 15px;">
+    <div class="form-group mb-3">
         <label asp-for="UrlRepositorio" class="control-label">URL do Repositório</label>
         <input asp-for="UrlRepositorio" class="form-control" placeholder="https://exemplo.com/repositorio" />
     </div>
-    <div class="form-group" style="margin-bottom: 15px;">
+    <div class="form-group mb-3">
         <label asp-for="UrlAplicacao" class="control-label">URL da Aplicação</label>
         <input asp-for="UrlAplicacao" class="form-control" placeholder="https://exemplo.com/aplicacao" />
     </div>
-    <div class="form-group" style="margin-bottom: 15px;">
+    <div class="form-group mb-3">
         <label asp-for="Integrantes" class="control-label">Integrantes</label>
         <input asp-for="Integrantes" class="form-control" placeholder="Nome dos integrantes separados por vírgula" />
     </div>
-    <div class="form-group" style="margin-bottom: 20px;">
+    <div class="form-group mb-3" style="margin-bottom: 20px;">
         <input type="submit" value="Salvar" class="btn btn-primary" />
     </div>
 </form>
