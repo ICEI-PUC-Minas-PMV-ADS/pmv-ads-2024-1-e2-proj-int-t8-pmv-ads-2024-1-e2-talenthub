@@ -4,11 +4,8 @@
     ViewData["Title"] = "Deletar Projeto";
 }
 
-<h2>Deletar Projeto</h2>
-
 <h3>Tem certeza que deseja deletar este projeto?</h3>
 <div>
-    <h4>Projeto</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -19,7 +16,7 @@
         </dd>
     </dl>
 
-    <form asp-action="Delete" asp-controller="Projetos" asp-route-id="@Model.IdProjeto" method="post">
+    <form asp-action="Delete" asp-controller="Projetos" asp-route-id="@Model.IdProjeto" method="post" class="my-3">
         <input type="hidden" name="__RequestVerificationToken" value="@ViewData["__RequestVerificationToken"]" />
         <input type="hidden" asp-for="IdProjeto" />
         <input type="submit" value="Deletar" class="btn btn-danger" /> |
