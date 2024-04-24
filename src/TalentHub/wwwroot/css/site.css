@@ -1,3 +1,10 @@
+/* create color vars */
+:root {
+  --dark-blue: #334686;
+  --dark-gray: #2d303e;
+  --darker-gray: #1f232c;
+}
+
 html {
   font-size: 14px;
 }
@@ -24,4 +31,16 @@ html {
 body {
   margin-bottom: 60px;
   background-color: #f6f7f8;
+}
+
+.text-dark-blue {
+  color: var(--dark-blue) !important;
+}
+
+.bg-dark-gray {
+  background-color: var(--dark-gray) !important;
+}
+
+.bg-darker-gray {
+  background-color: var(--darker-gray) !important;
 }

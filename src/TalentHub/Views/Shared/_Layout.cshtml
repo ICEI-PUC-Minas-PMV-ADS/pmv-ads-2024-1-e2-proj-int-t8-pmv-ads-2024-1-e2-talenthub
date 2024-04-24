@@ -10,12 +10,12 @@
 </head>
 <body>
     <div class="container bg-white">
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <header class="p-4">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white box-shadow mb-3">
             <div class="container-fluid">
 
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    <img src="~/images/logo@400x100-bold-dark.png" alt="Logo da Aplicação" width="100">
+                    <img src="~/images/logo@400x100-bold-dark.png" alt="Logo da Aplicação" width="130">
                 </a>
                 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -23,13 +23,13 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav flex-grow-1 d-flex justify-content-end">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Projetos" asp-action="Index">Projetos</a>
+                            <a class="nav-link text-dark-blue fw-bold" asp-area="" asp-controller="Projetos" asp-action="Index">Projetos</a>
                         </li>
-                        @* <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li> *@
+                        <li class="nav-item">
+                            <a class="nav-link text-dark-blue fw-bold" asp-area="" asp-controller="Login" asp-action="Login">Login</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -41,11 +41,44 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    @* <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2024 - TalentHub - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
+    </footer> *@
+
+    <footer class="footer bg-dark-gray text-white pt-4 pb-2">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-md-9 mb-3 mb-md-0">
+                    <img src="~/images/logo@400x100-bold-light.png" alt="Logotipo TalentHub" width="210">
+                    <p class="my-2">Descubra. Conecte. Cresça.</p>
+                </div>
+
+                <div class="col-md-3  d-flex justify-content-around">
+                    <img src="~/images/puc@550x450-light.png" alt="PUC Minas" height="70">
+                    <img src="~/images/azure@100x100-light.png" alt="Microsoft Azure" height="70">
+                    <img src="~/images/github@100x100-light.png" alt="GitHub" height="70">
+                </div>
+
+            </div>
+
+            <div class="row mt-3 bg-darker-gray  align-items-center">
+                <div class="col-md-4 d-flex justify-content-start">
+                    <img src="~/images/cs@50x50-light.png" alt="C#" width="40" class="opacity-25">
+                    <img src="~/images/html5@50x50-light.png" alt="HTML5" width="40" class="opacity-25">
+                    <img src="~/images/js@50x50-light.png" alt="JavaScript" width="40" class="opacity-25">
+                    <img src="~/images/css3@50x50-light.png" alt="CSS3" width="40" class="opacity-25">
+                </div>
+                <div class="col-12 text-end">
+                    &copy; 2024 TalentHub
+                </div>
+            </div>
+        </div>
     </footer>
+
+
+
     </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
