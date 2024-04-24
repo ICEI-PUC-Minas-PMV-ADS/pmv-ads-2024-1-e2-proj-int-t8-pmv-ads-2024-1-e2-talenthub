@@ -12,7 +12,7 @@ builder.Configuration.AddJsonFile("appsettings.json", optional: true, reloadOnCh
                      .AddEnvironmentVariables()
                      .AddUserSecrets<Program>();
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
@@ -38,6 +38,10 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
+}
+else
+{
+    app.UseDeveloperExceptionPage();
 }
 
 app.UseHttpsRedirection();
