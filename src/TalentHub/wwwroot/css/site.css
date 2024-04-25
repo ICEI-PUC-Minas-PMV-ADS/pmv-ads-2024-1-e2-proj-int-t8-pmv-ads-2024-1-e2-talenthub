@@ -1,4 +1,3 @@
-/* create color vars */
 :root {
   --dark-blue: #334686;
   --dark-gray: #2d303e;
@@ -43,4 +42,10 @@ body {
 
 .bg-darker-gray {
   background-color: var(--darker-gray) !important;
+}
+
+.top-bar {
+  background-color: #367cff;
+  border-radius: 14px;
+  height: 14rem;
 }

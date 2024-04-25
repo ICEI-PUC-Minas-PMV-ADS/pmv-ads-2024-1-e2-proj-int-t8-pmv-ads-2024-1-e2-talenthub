@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using TalentHub.Models; // Substitua pelo namespace correto do seu modelo
+using TalentHub.Models;
 using System.Linq;
 using TalentHub.Data;
 

@@ -12,7 +12,6 @@ Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo de
 
 - André Oliveira Santana
 - Bruno Henrique Figueiredo Guanabarino Penna Lopes
-- Gabriel Marconato Venturini
 - Jozimar Aparecido de Jesus Santos
 - Rodolfo Iannazzo Querino da Silva
 - Thiago Pires Alves de Castro
