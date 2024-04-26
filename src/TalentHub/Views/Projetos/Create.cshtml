@@ -1,0 +1,38 @@
+﻿@model TalentHub.Models.Projeto
+
+@{
+    ViewData["Title"] = "Criar Projeto";
+}
+
+<h2>Criar Projeto</h2>
+
+<form asp-action="Create" method="post" class="my-4">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group mb-3">
+        <label asp-for="NomeProjeto" class="control-label">Nome do Projeto</label>
+        <input asp-for="NomeProjeto" class="form-control" placeholder="Insira o nome do projeto" />
+        <span asp-validation-for="NomeProjeto" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="UrlRepositorio" class="control-label">URL do Repositório</label>
+        <input asp-for="UrlRepositorio" class="form-control" placeholder="https://exemplo.com/repositorio" />
+        <span asp-validation-for="UrlRepositorio" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="UrlAplicacao" class="control-label">URL da Aplicação</label>
+        <input asp-for="UrlAplicacao" class="form-control" placeholder="https://exemplo.com/aplicacao" />
+        <span asp-validation-for="UrlAplicacao" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="Integrantes" class="control-label">Integrantes</label>
+        <input asp-for="Integrantes" class="form-control" placeholder="Nome dos integrantes separados por vírgula" />
+        <span asp-validation-for="Integrantes" class="text-danger"></span>
+    </div>
+    <div class="form-group" style="margin-bottom: 20px;">
+        <button type="submit" class="btn btn-primary">Criar</button>
+    </div>
+</form>
+
+<div style="margin-top: 10px;">
+    <a asp-action="Index">Voltar para a lista</a>
+</div>

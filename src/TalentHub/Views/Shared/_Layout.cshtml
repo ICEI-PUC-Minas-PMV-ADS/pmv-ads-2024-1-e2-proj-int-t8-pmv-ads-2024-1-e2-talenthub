@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TalentHub</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css?t=@DateTime.Now" asp-append-version="true" />
+    <link rel="stylesheet" href="~/TalentHub.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="container bg-white">
+    <header class="py-4 px-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white box-shadow mb-3">
+            <div class="container-fluid">
+
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/images/logo@400x100-bold-dark.png" alt="Logo da Aplicação" width="130">
+                </a>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1 d-flex justify-content-end">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark-blue fw-bold" asp-area="" asp-controller="Projetos" asp-action="Index">Projetos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark-blue fw-bold" asp-area="" asp-controller="Auth" asp-action="Index">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <main role="main" class="pb-3 px-4">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer row bg-dark-gray text-white pt-4">
+    <div class="container">
+        <div class="row pb-5">
+            <div class="col-sm-12 col-md-4 text-center text-md-start">
+                <img src="~/images/logo@400x100-light.png" alt="Logotipo TalentHub" class="img-fluid" width="220">
+                <p class="my-2 ms-2">Descubra. Conecte. Cresça.</p>
+            </div>
+            <div class="col-sm-12 col-md-8 d-flex justify-content-center justify-content-md-end align-items-center gap-2">
+                <img src="~/images/puc@550x450-light.png" alt="PUC Minas" class="img-fluid" width="85">
+                <img src="~/images/azure@100x100-light.png" alt="Microsoft Azure" class="img-fluid me-2" width="55">
+                <img src="~/images/github@100x100-light.png" alt="GitHub" class="img-fluid" width="70">
+            </div>
+        </div>
+        <div class="row mt-5 py-3 bg-darker-gray align-items-center">
+            <div class="col-md-6 d-flex justify-content-center justify-content-md-start gap-2">
+                <img src="~/images/cs@50x50-light.png" alt="C#" class="img-fluid opacity-50" width="32">
+                <img src="~/images/html5@50x50-light.png" alt="HTML5" class="img-fluid opacity-50" width="32">
+                <img src="~/images/js@50x50-light.png" alt="JavaScript" class="img-fluid opacity-50" width="32">
+                <img src="~/images/css3@50x50-light.png" alt="CSS3" class="img-fluid opacity-50" width="32">
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+                &copy; 2024 TalentHub
+            </div>
+        </div>
+    </footer>
+
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    
+</body>
+</html>

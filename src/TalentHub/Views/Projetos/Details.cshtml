@@ -1,0 +1,42 @@
+﻿@model TalentHub.Models.Projeto
+
+@{
+    ViewData["Title"] = "Detalhes do Projeto";
+}
+
+<h2>Detalhes do Projeto</h2>
+
+<div class="my-4">
+    <h4>Projeto</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Nome do Projeto
+        </dt>
+        <dd class="col-sm-10">
+            @Model.NomeProjeto
+        </dd>
+        <dt class="col-sm-2">
+            URL do Repositório
+        </dt>
+        <dd class="col-sm-10">
+            @Model.UrlRepositorio
+        </dd>
+        <dt class="col-sm-2">
+            URL da Aplicação
+        </dt>
+        <dd class="col-sm-10">
+            @Model.UrlAplicacao
+        </dd>
+        <dt class="col-sm-2">
+            Integrantes
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Integrantes
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.IdProjeto">Editar</a> |
+    <a asp-action="Index">Voltar para a lista</a>
+</div>

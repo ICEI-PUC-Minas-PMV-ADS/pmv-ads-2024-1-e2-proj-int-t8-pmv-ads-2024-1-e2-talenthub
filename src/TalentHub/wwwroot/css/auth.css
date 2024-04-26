@@ -1,0 +1,42 @@
+.auth-content {
+  height: 60vh;
+}
+
+.top-bar {
+  background-color: #367cff;
+  border-radius: 14px;
+  height: 14rem;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -6rem;
+}
+
+.login-card {
+  background-color: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4px 6px rgba(2, 61, 255, 0.1);
+  text-align: center;
+  width: 90%;
+  max-width: 500px;
+  padding: 2rem;
+  position: relative;
+  top: -50px;
+}
+
+.google-login-btn {
+  background-color: #367cff;
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-top: 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  gap: 10px;
+  outline: none;
+}
