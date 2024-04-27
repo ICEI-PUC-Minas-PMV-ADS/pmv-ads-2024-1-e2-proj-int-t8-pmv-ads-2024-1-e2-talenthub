@@ -59,7 +59,9 @@ jobs:
         run: dotnet build src/TalentHub/TalentHub.csproj --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish src/TalentHub/TalentHub.csproj -c Release -o ${{ github.workspace }}/myapp
+        run: |
+          dotnet publish src/TalentHub/TalentHub.csproj -c Release -o ${{ github.workspace }}/myapp
+          ls -la ${{ github.workspace }}/myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
@@ -79,12 +81,15 @@ jobs:
         with:
           name: .net-app
 
-      - name: List files in the deployment directory
-        run: ls -la ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+      - name: Verify artifact contents
+        run: |
+          mkdir myapp
+          mv .net-app/* myapp/
+          ls -la myapp/
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+          package: myapp
