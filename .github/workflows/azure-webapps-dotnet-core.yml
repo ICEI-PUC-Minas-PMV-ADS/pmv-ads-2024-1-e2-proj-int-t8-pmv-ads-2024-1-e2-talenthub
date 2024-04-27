@@ -21,7 +21,7 @@ name: Build and deploy ASP.Net Core app to an Azure Web App
 
 env:
   AZURE_WEBAPP_NAME: puctalenthub
-  AZURE_WEBAPP_PACKAGE_PATH: "./myapp"
+  AZURE_WEBAPP_PACKAGE_PATH: "./.net-app"
   DOTNET_SDK_URL: "https://download.visualstudio.microsoft.com/download/pr/0a1b3cbd-b4af-4d0d-9ed7-0054f0e200b4/4bcc533c66379caaa91770236667aacb/dotnet-sdk-8.0.204-linux-x64.tar.gz"
 
 on:
