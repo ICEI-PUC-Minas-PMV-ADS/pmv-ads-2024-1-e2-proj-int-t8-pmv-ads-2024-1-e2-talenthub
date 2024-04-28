@@ -10,9 +10,9 @@ using Azure.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var keyVaultName = "puctalenthub";
-var keyVaultUri = $"https://{keyVaultName}.vault.azure.net/";
-builder.Configuration.AddAzureKeyVault(new Uri(keyVaultUri), new DefaultAzureCredential());
+var keyVaultEndpoint = new Uri("https://puctalenthub.vault.azure.net/");
+var credential = new DefaultAzureCredential();
+builder.Configuration.AddAzureKeyVault(keyVaultEndpoint, credential);
 
 builder.Configuration.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                      .AddEnvironmentVariables();
