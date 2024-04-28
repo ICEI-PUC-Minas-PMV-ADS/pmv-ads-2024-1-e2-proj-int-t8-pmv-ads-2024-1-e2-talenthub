@@ -62,7 +62,7 @@ jobs:
 
     - name: Verify artifact download
       run: |
-        ls -la -v1 ${{ github.workspace }}  # Removed /myapp from path
+        ls -la -v1 ${{ github.workspace }}
         if [ $? -ne 0 ]; then
           echo "Error: Artifact .net-app not found or corrupted."
           exit 1
