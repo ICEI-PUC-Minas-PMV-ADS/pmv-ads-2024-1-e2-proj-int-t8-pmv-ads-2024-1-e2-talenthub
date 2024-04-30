@@ -2,12 +2,6 @@
   height: 60vh;
 }
 
-.top-bar {
-  background-color: #367cff;
-  border-radius: 14px;
-  height: 14rem;
-}
-
 .login-container {
   display: flex;
   justify-content: center;

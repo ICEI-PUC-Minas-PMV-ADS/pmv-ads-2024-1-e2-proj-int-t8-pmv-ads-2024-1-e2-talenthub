@@ -3,21 +3,23 @@
 }
 
 <div class="home-content">
-    <div class="top-bar"></div>
+    <div class="top-bar d-flex align-items-center">
+        <div class="w-100 text-center fs-1 fw-bold text-white mb-5">367 projetos cadastrados</div>
+    </div>
 
     <div class="home-container">
         <div class="search-card py-4 px-4">
-            <div class="input-group">
+            <div class="input-group d-flex align-items-center">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">
-                        <img src="~/images/lupa@1x.png" alt="Buscar" height="40" />
+                    <span>
+                        <img src="~/images/magnifier@100x100.png" alt="Buscar" height="50" />
                     </span>
                 </div>
-                <input type="text" class="form-control" placeholder="Busque por um projeto"
+                <input type="text" class="form-control input-group-text" placeholder="Busque por um projeto"
                     aria-label="Busque por um projeto" aria-describedby="basic-addon1">
                 <div class="input-group-append">
-                    <button class="btn btn-primary" type="button">
-                        <img src="~/images/search@1x.png" alt="Buscar" height="24" /> Buscar
+                    <button class="search-btn d-flex justify-content-between align-items-center" type="button">
+                        <img src="~/images/paper-plane@100x100.png" alt="Buscar" height="34" class="me-3" /> <div class="text-center fs-5 me-5">Buscar</div>
                     </button>
                 </div>
             </div>
