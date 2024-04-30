@@ -1,53 +1,303 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Página inicial";
 }
 
-<div class="home-content">
-    <div class="top-bar"></div>
+<div class="home-content mb-5">
+    <div class="top-bar d-flex align-items-center">
+        <div class="w-100 text-center fs-1 fw-bold text-white mb-5">367 projetos cadastrados</div>
+    </div>
 
-    <div class="home-container">
+    <div class="search-container">
         <div class="search-card py-4 px-4">
-            <div class="input-group">
+            <div class="input-group d-flex align-items-center">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">
-                        <img src="~/images/lupa@1x.png" alt="Buscar" height="40" />
+                    <span>
+                        <img src="~/images/magnifier@100x100.png" alt="Buscar" height="50" />
                     </span>
                 </div>
-                <input type="text" class="form-control" placeholder="Busque por um projeto"
+                <input type="text" class="form-control input-group-text" placeholder="Busque por um projeto"
                     aria-label="Busque por um projeto" aria-describedby="basic-addon1">
                 <div class="input-group-append">
-                    <button class="btn btn-primary" type="button">
-                        <img src="~/images/search@1x.png" alt="Buscar" height="24" /> Buscar
+                    <button class="search-btn d-flex justify-content-between align-items-center" type="button">
+                        <img src="~/images/paper-plane@100x100.png" alt="Buscar" height="34" class="me-3" /> <div class="text-center fs-5 me-5">Buscar</div>
                     </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="best-container mt-5">
-        <div class="container mt-5">
-            <h2 class="text-center mb-4" style="color: #004085;">Melhor Avaliados</h2>
-            <div class="list-group">
-                <div class="list-group-item">
-                    <div class="row align-items-start">
-                        <div class="col-auto">
-                            <img src="~/images/project-icon.png" alt="Ícone do Projeto" class="img-fluid">
+    <div class="container home-container mt-5">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="w-75">
+                <h5 class="mb-4 fw-bold text-dark-blue">Refine sua busca</h5>
+                <div class="mb-3 list">
+                    <h6 class="fw-bold text-dark-blue mb-3">Categorias</h6>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label">
+                            Saúde
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label">
+                            Tecnologia
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label">
+                            Finanças
+                        </label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label">
+                            Projetos sociais
+                        </label>
+                    </div>
+                    <a class="text-decoration-none" href="">+ mostrar mais</a>
+                </div>
+                
+                <div class="mb-3 pt-3">
+                    <h6 class="fw-bold text-dark-blue mb-3">Palavras-chaves</h6>
+                    <input type="text" name="palavras-chaves" id="palavras-chaves" placeholder="Ex: Consultas, Carros" class="form-control border-primary p-2">
+                </div>
+
+                <div class="mb-3 pt-3">
+                    <div class="row">
+                        <h6 class="fw-bold text-dark-blue mb-3">Ano e período (Eixo)</h6>
+                        <div class="col">
+                            <select name="ano" id="ano" class="form-control form-select border-primary p-2">
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                            </select>
                         </div>
                         <div class="col">
-                            <h5 class="mb-1">Título do Projeto</h5>
-                            <p class="mb-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut efficitur nibh. Aliquam ligula ante, ornare a magna molestie, vestibulum condimentum turpis. Vestibulum at pellentesque nulla.</p>
-                        </div>
-                        <div class="col-auto text-nowrap">
-                            <span class="rating-number me-2">4.5</span>
-                            <div class="rating-stars d-inline-block"></div>
+                            <select name="eixo" id="eixo" class="form-control form-select border-primary p-2">
+                                <option value="1">1°</option>
+                                <option value="2">2°</option>
+                            </select>
                         </div>
                     </div>
                 </div>
+
+                <div class="mb-3 pt-3">
+                    <h6 class="fw-bold text-dark-blue mb-3">Avaliação</h6>
+                    <div class="rating-filter">
+                        @for(int i = 1; i <= 4; i++){
+                            <label class="rating-label">
+                                <input type="radio" name="rating" value="@i" class="rating-input">
+                                <div class="rating-stars">
+                                    @for(int j = 1; j <= i; j++){
+                                        <i class="fas fa-star text-warning"></i>
+                                    }
+                                    @for(int k = i; k < 5; k++){
+                                        <i class="far fa-star text-secondary"></i>
+                                    }
+                                </div>
+                            </label>
+                        }
+                    </div>
+                </div>
+
+                <div class="mb-3 pt-3">
+                    <button class="btn btn-outline-primary w-100">Filtrar</button>
+                </div>
             </div>
         </div>
+
+        <div class="col-md-9">
+            <h3 class="text-start mb-4 fw-bold text-dark-blue">Melhor Avaliados</h3>
+            <div class="list-group mb-5">
+                
+                <div class="list-group-item d-flex justify-content-between align-items-center border-0">
+                    <div class="d-flex align-items-start">
+                        
+                        <div class="me-3 text-center">
+                            <div class="icon-wrapper bg-danger">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <label class="fs-7 text-danger">Saúde</label>
+                        </div>
+
+                        <div class="">
+                            <h5 class="mb-1 text-dark-blue">Lorem ipsum dolor sit</h5>
+                            <p class="mb-1 mt-2 text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut efficitur nibh. Aliquam ligula ante, ornare a magna molestie, vestibulum condimentum turpis. Vestibulum at pellentesque nulla.</p>
+                        </div>
+
+                        <div class="d-inline-flex align-items-center position-absolute end-0">
+                            <span class="rating-number me-2">4.9</span>
+                            <div class="rating-stars d-inline-block">
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star-half-alt text-warning"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <hr />
+
+                <div class="list-group-item d-flex justify-content-between align-items-center border-0">
+                    <div class="d-flex align-items-start">
+                        <div class="me-3 text-center">
+                            <div class="icon-wrapper bg-warning">
+                                <i class="fas fa-microchip"></i>
+                            </div>
+                            <label class="fs-7 text-warning">Tecnologia</label>
+                        </div>
+                        <div>
+                            <h5 class="mb-1 text-dark-blue">Donec lobortis</h5>
+                            <p class="mb-1 mt-2 text-muted">Nullam fringilla augue a lacus faucibus imperdiet. Duis ultrices finibus laoreet. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.</p>
+                        </div>
+                        <div class="d-inline-flex align-items-center position-absolute end-0">
+                            <span class="rating-number me-2">4.7</span>
+                            <div class="rating-stars d-inline-block">
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star-half-alt text-warning"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="list-group-item d-flex justify-content-between align-items-center border-0">
+                    <div class="d-flex align-items-start">
+                        <div class="me-3 text-center">
+                            <div class="icon-wrapper bg-info">
+                                <i class="fas fa-theater-masks"></i>
+                            </div>
+                            <label class="fs-7 text-info">Lazer</label>
+                        </div>
+                        <div>
+                            <h5 class="mb-1 text-dark-blue">Phasellus justo</h5>
+                            <p class="mb-1 mt-2 text-muted">Morbi finibus elit porta felis ullamcorper, vitae mollis mauris imperdiet. Vivamus vel velit nec mi semper vehicula at vel nisl. Nullam commodo diam et augue pharetra iaculis.</p>
+                        </div>
+                        <div class="d-inline-flex align-items-center position-absolute end-0">
+                            <span class="rating-number me-2">4.6</span>
+                            <div class="rating-stars d-inline-block">
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="far fa-star text-warning"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="list-group-item d-flex justify-content-between align-items-center border-0">
+                    <div class="d-flex align-items-start">
+                        <div class="me-3 text-center">
+                            <div class="icon-wrapper bg-primary">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <label class="fs-7 text-primary">Educação</label>
+                        </div>
+                        <div>
+                            <h5 class="mb-1 text-dark-blue">Curriculum vitae euismod</h5>
+                            <p class="mb-1 mt-2 text-muted">Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas lectus erat, vehicula vitae sapien at, congue aliquam risus.</p>
+                        </div>
+                        <div class="d-inline-flex align-items-center position-absolute end-0">
+                            <span class="rating-number me-2">4.3</span>
+                            <div class="rating-stars d-inline-block">
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="far fa-star text-warning"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="list-group-item d-flex justify-content-between align-items-center border-0">
+                    <div class="d-flex align-items-start">
+                        <div class="me-3 text-center">
+                            <div class="icon-wrapper bg-success">
+                                <i class="fas fa-plane"></i>
+                            </div>
+                            <label class="fs-7 text-success">Turismo</label>
+                        </div>
+                        <div>
+                            <h5 class="mb-1 text-dark-blue">Nulla volutpat aliquam velit</h5>
+                            <p class="mb-1 mt-2 text-muted">Mauris imperdiet vitae mauris id vestibulum. Integer imperdiet nibh at nulla dapibus rutrum. In a vulputate mauris.</p>
+                        </div>
+                        <div class="d-inline-flex align-items-center position-absolute end-0">
+                            <span class="rating-number me-2">4.8</span>
+                            <div class="rating-stars d-inline-block">
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <h3 class="text-start mb-4 fw-bold text-dark-blue">Mais acessados</h3>
+
+            <div class="list-group mb-5">
+
+                <div class="list-group-item d-flex justify-content-between align-items-center border-0">
+                    <div class="d-flex align-items-start">
+                        <div class="me-3 text-center">
+                            <div class="icon-wrapper bg-danger">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <label class="fs-7 text-danger">Saúde</label>
+                        </div>
+                        <div>
+                            <h5 class="mb-1 text-dark-blue">Lorem ipsum dolor sit</h5>
+                            <p class="mb-1 mt-2 text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut efficitur nibh. Aliquam ligula ante, ornare a magna molestie, vestibulum condimentum turpis.</p>
+                        </div>
+                        <div class="ms-auto text-right">
+                            <span class="badge text-muted fw-light">435 acessos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="list-group-item d-flex justify-content-between align-items-center border-0">
+                    <div class="d-flex align-items-start">
+                        <div class="me-3 text-center">
+                            <div class="icon-wrapper bg-warning">
+                                <i class="fas fa-microchip"></i>
+                            </div>
+                            <label class="fs-7 text-warning">Tecnologia</label>
+                        </div>
+                        <div>
+                            <h5 class="mb-1 text-dark-blue">Donec lobortis</h5>
+                            <p class="mb-1 mt-2 text-muted">Nullam fringilla augue a lacus faucibus imperdiet. Duis ultrices finibus laoreet. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.</p>
+                        </div>
+                        <div class="ms-auto text-right">
+                            <span class="badge text-muted fw-light">358 acessos</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </div>
-
-
 </div>
 
 <link rel="stylesheet" href="~/css/home.css?t=@DateTime.Now" asp-append-version="true" />

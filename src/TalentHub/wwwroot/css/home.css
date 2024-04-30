@@ -1,97 +1,77 @@
-.top-bar {
-    background-color: #367cff;
-    border-radius: 14px;
-    height: 14rem;
-}
-
 .search-card {
-    background-color: #fff;
-    border-radius: 14px;
-    box-shadow: 0 4px 6px rgba(2, 61, 255, 0.1);
-    width: 95%;  
-    max-width: 800px;  
-    padding: 1rem;  
-    position: relative;
-    top: 50px;
-    box-shadow: 2px 2px 2px 2px #367cff;
+  background-color: #fff;
+  border-radius: 14px;
+  box-shadow: 4px 10px 15px rgba(72, 181, 244, 0.3);
+  width: 80%;
+  padding: 1rem;
+  position: relative;
+  top: 50px;
 }
 
-.home-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: -6rem;
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -7rem;
+}
+
+.input-group-prepend {
+  margin: 0 10px 0 10px;
 }
 
 .input-group-text {
-    border: none;
-    background: transparent;
-    margin-right: 10px; 
+  border: none;
+  background: transparent;
+  margin: 0 20px 0 0;
+  text-align: start;
 }
 
-.input-group .form-control {
-    border-radius: 14px;
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;  
+.search-btn {
+  background-color: #367cff;
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  gap: 10px;
+  outline: none;
 }
 
-.btn-primary {
-    border-radius: 10px;
-    padding: 10px 25px;
-    margin-left: 15px;  
+.home-container {
+  padding-top: 40px;
 }
 
-.input-group-prepend, .input-group-append {
-    display: flex;
-    align-items: center;
+.list {
+  list-style-type: none;
+  padding: 10px;
+  line-height: 24px;
 }
 
-.input-group button img {
-    margin-right: 15px;
-}
-
-
-.rating-stars {
-    display: inline-flex;
-}
-
-.rating-star {
-    color: gold;
-    margin-right: 2px;
-}
-
-.rating-star.gray {
-    color: lightgray;
-}
-
-
-
-
-.list-group-item {
-    padding: 10px;  
-    width: auto;  
-    max-width: 700px; 
-    margin: 0 auto;  
-    border: none;  
-}
-
-h2 {
-    margin-left: 0;  
-    font-size: 1.5rem; 
-    color: #004085;  
-    position: relative;
+.rating-filter .rating-label {
+  display: flex;
+  cursor: pointer;
+  gap: 8px;
+  line-height: 26px;
 }
 
 .rating-stars {
-    display: inline-flex;
+  color: #ffc107;
 }
 
-.rating-star {
-    color: gold;
-    margin-right: 2px;
+.icon-wrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.8rem;
+  color: white;
 }
 
-.rating-star.gray {
-    color: lightgray;
+.rating-number {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #9a9a9a;
 }
