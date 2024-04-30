@@ -2,7 +2,7 @@
     ViewData["Title"] = "Página inicial";
 }
 
-<div class="home-content">
+<div class="home-content mb-5">
     <div class="top-bar d-flex align-items-center">
         <div class="w-100 text-center fs-1 fw-bold text-white mb-5">367 projetos cadastrados</div>
     </div>
@@ -250,13 +250,54 @@
                 </div>
 
             </div>
+
+
+            <h3 class="text-start mb-4 fw-bold text-dark-blue">Mais acessados</h3>
+
+            <div class="list-group mb-5">
+
+                <div class="list-group-item d-flex justify-content-between align-items-center border-0">
+                    <div class="d-flex align-items-start">
+                        <div class="me-3 text-center">
+                            <div class="icon-wrapper bg-danger">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <label class="fs-7 text-danger">Saúde</label>
+                        </div>
+                        <div>
+                            <h5 class="mb-1 text-dark-blue">Lorem ipsum dolor sit</h5>
+                            <p class="mb-1 mt-2 text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut efficitur nibh. Aliquam ligula ante, ornare a magna molestie, vestibulum condimentum turpis.</p>
+                        </div>
+                        <div class="ms-auto text-right">
+                            <span class="badge text-muted fw-light">435 acessos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="list-group-item d-flex justify-content-between align-items-center border-0">
+                    <div class="d-flex align-items-start">
+                        <div class="me-3 text-center">
+                            <div class="icon-wrapper bg-warning">
+                                <i class="fas fa-microchip"></i>
+                            </div>
+                            <label class="fs-7 text-warning">Tecnologia</label>
+                        </div>
+                        <div>
+                            <h5 class="mb-1 text-dark-blue">Donec lobortis</h5>
+                            <p class="mb-1 mt-2 text-muted">Nullam fringilla augue a lacus faucibus imperdiet. Duis ultrices finibus laoreet. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.</p>
+                        </div>
+                        <div class="ms-auto text-right">
+                            <span class="badge text-muted fw-light">358 acessos</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
     </div>
-</div>
-
-
-
 </div>
 
 <link rel="stylesheet" href="~/css/home.css?t=@DateTime.Now" asp-append-version="true" />
