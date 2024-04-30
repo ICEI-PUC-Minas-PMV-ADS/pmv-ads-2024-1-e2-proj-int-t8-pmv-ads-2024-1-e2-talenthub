@@ -28,7 +28,6 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
   background-color: #f6f7f8;
 }
 
@@ -48,4 +47,12 @@ body {
   background-color: #367cff;
   border-radius: 14px;
   height: 14rem;
+}
+
+.main-content {
+  flex: 1;
+}
+
+footer {
+  flex-shrink: 0;
 }
