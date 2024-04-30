@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Página inicial";
 }
 
 <div class="home-content">
@@ -7,7 +7,7 @@
         <div class="w-100 text-center fs-1 fw-bold text-white mb-5">367 projetos cadastrados</div>
     </div>
 
-    <div class="home-container">
+    <div class="search-container">
         <div class="search-card py-4 px-4">
             <div class="input-group d-flex align-items-center">
                 <div class="input-group-prepend">
@@ -26,28 +26,68 @@
         </div>
     </div>
 
-    <div class="best-container mt-5">
-        <div class="container mt-5">
+    <div class="container home-container mt-5">
+    <div class="row">
+        <div class="col-md-3">
+            <h5 class="mb-4 fw-bold text-dark-blue">Refine sua busca</h5>
+            <div class="mb-3 list">
+                <h6 class="fw-bold text-dark-blue mb-3">Categorias</h6>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="">
+                    <label class="form-check-label">
+                        Saúde
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="">
+                    <label class="form-check-label">
+                        Tecnologia
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="">
+                    <label class="form-check-label">
+                        Finanças
+                    </label>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" value="">
+                    <label class="form-check-label">
+                        Projetos sociais
+                    </label>
+                </div>
+                <a class="text-decoration-none" href="">+ mostrar mais</a>
+            </div>
+            
+            <div class="mb-3">
+                <h6 class="fw-bold text-dark-blue mb-3">Palavras-chaves</h6>
+                
+            </div>
+        </div>
+
+        <div class="col-md-9">
             <h2 class="text-center mb-4" style="color: #004085;">Melhor Avaliados</h2>
-            <div class="list-group">
+            <div class="list-group mb-5">
                 <div class="list-group-item">
-                    <div class="row align-items-start">
-                        <div class="col-auto">
-                            <img src="~/images/project-icon.png" alt="Ícone do Projeto" class="img-fluid">
-                        </div>
-                        <div class="col">
+                    <div class="d-flex justify-content-between">
+                        <div class="p-2 col-8">
                             <h5 class="mb-1">Título do Projeto</h5>
-                            <p class="mb-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut efficitur nibh. Aliquam ligula ante, ornare a magna molestie, vestibulum condimentum turpis. Vestibulum at pellentesque nulla.</p>
+                            <p class="mb-1">Descrição breve do projeto...</p>
                         </div>
-                        <div class="col-auto text-nowrap">
+                        <div class="p-2 col-4 text-right">
                             <span class="rating-number me-2">4.5</span>
                             <div class="rating-stars d-inline-block"></div>
                         </div>
                     </div>
                 </div>
             </div>
+            <h2 class="text-center mb-4" style="color: #004085;">Mais Acessados</h2>
+            <div class="list-group">
+            </div>
         </div>
     </div>
+</div>
+
 
 
 </div>

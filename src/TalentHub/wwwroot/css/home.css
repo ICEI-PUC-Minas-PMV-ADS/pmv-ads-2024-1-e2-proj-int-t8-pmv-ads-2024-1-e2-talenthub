@@ -8,7 +8,7 @@
   top: 50px;
 }
 
-.home-container {
+.search-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,4 +36,14 @@
   cursor: pointer;
   gap: 10px;
   outline: none;
+}
+
+.home-container {
+  padding-top: 40px;
+}
+
+.list {
+  list-style-type: none;
+  padding: 10px;
+  line-height: 24px;
 }
