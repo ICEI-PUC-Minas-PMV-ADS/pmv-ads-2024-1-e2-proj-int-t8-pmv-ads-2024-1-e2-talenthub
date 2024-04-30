@@ -2,7 +2,52 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="home-content">
+    <div class="top-bar"></div>
+
+    <div class="home-container">
+        <div class="search-card py-4 px-4">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">
+                        <img src="~/images/lupa@1x.png" alt="Buscar" height="40" />
+                    </span>
+                </div>
+                <input type="text" class="form-control" placeholder="Busque por um projeto"
+                    aria-label="Busque por um projeto" aria-describedby="basic-addon1">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button">
+                        <img src="~/images/search@1x.png" alt="Buscar" height="24" /> Buscar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="best-container mt-5">
+        <div class="container mt-5">
+            <h2 class="text-center mb-4" style="color: #004085;">Melhor Avaliados</h2>
+            <div class="list-group">
+                <div class="list-group-item">
+                    <div class="row align-items-start">
+                        <div class="col-auto">
+                            <img src="~/images/project-icon.png" alt="Ícone do Projeto" class="img-fluid">
+                        </div>
+                        <div class="col">
+                            <h5 class="mb-1">Título do Projeto</h5>
+                            <p class="mb-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut efficitur nibh. Aliquam ligula ante, ornare a magna molestie, vestibulum condimentum turpis. Vestibulum at pellentesque nulla.</p>
+                        </div>
+                        <div class="col-auto text-nowrap">
+                            <span class="rating-number me-2">4.5</span>
+                            <div class="rating-stars d-inline-block"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </div>
+
+<link rel="stylesheet" href="~/css/home.css?t=@DateTime.Now" asp-append-version="true" />
