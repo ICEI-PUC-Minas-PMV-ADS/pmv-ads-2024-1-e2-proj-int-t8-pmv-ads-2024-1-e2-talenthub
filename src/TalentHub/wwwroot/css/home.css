@@ -58,3 +58,20 @@
 .rating-stars {
   color: #ffc107;
 }
+
+.icon-wrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.8rem;
+  color: white;
+}
+
+.rating-number {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #9a9a9a;
+}
