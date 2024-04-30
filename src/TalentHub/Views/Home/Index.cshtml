@@ -59,30 +59,48 @@
                 <a class="text-decoration-none" href="">+ mostrar mais</a>
             </div>
             
-            <div class="mb-3 pt-2">
+            <div class="mb-3 pt-3">
                 <h6 class="fw-bold text-dark-blue mb-3">Palavras-chaves</h6>
                 <input type="text" name="palavras-chaves" id="palavras-chaves" placeholder="Ex: Consultas, Carros" class="form-control border-primary p-2">
             </div>
 
-            <div class="mb-3 pt-2">
+            <div class="mb-3 pt-3">
                 <div class="row">
                     <h6 class="fw-bold text-dark-blue mb-3">Ano e período (Eixo)</h6>
                     <div class="col">
-                        <select name="ano" id="ano" class="form-control border-primary p-2">
+                        <select name="ano" id="ano" class="form-control form-select border-primary p-2">
                             <option value="2024">2024</option>
                             <option value="2023">2023</option>
                         </select>
                     </div>
                     <div class="col">
-                        <select name="eixo" id="eixo" class="form-control border-primary p-2">
+                        <select name="eixo" id="eixo" class="form-control form-select border-primary p-2">
                             <option value="1">1°</option>
                             <option value="2">2°</option>
                         </select>
                     </div>
                 </div>
-                
-                
             </div>
+
+            <div class="mb-3 pt-3">
+                <h6 class="fw-bold text-dark-blue mb-3">Avaliação</h6>
+                <div class="rating-filter">
+                    @for(int i = 1; i <= 4; i++){
+                        <label class="rating-label">
+                            <input type="radio" name="rating" value="@i" class="rating-input">
+                            <div class="rating-stars">
+                                @for(int j = 1; j <= i; j++){
+                                    <i class="fas fa-star text-warning"></i>
+                                }
+                                @for(int k = i; k < 5; k++){
+                                    <i class="far fa-star text-secondary"></i>
+                                }
+                            </div>
+                        </label>
+                    }
+                </div>
+            </div>
+
         </div>
 
         <div class="col-md-10">

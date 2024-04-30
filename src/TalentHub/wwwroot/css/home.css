@@ -47,3 +47,14 @@
   padding: 10px;
   line-height: 24px;
 }
+
+.rating-filter .rating-label {
+  display: flex;
+  cursor: pointer;
+  gap: 8px;
+  line-height: 26px;
+}
+
+.rating-stars {
+  color: #ffc107;
+}
