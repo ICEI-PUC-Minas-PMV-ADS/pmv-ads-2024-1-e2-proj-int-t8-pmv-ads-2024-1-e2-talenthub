@@ -44,17 +44,6 @@
   line-height: 24px;
 }
 
-.rating-filter .rating-label {
-  display: flex;
-  cursor: pointer;
-  gap: 8px;
-  line-height: 26px;
-}
-
-.rating-stars {
-  color: #ffc107;
-}
-
 .icon-wrapper {
   width: 80px;
   height: 80px;
@@ -66,8 +55,7 @@
   color: white;
 }
 
-.rating-number {
+.added-at {
   font-size: 0.8rem;
-  font-weight: 400;
-  color: #9a9a9a;
+  color: #a0a0a0;
 }

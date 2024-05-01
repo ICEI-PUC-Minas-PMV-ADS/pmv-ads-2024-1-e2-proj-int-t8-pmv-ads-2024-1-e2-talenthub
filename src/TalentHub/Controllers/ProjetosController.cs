@@ -21,6 +21,13 @@ public class ProjetosController : Controller
     return View(projetos);
   }
 
+  // GET: Projetos/Manage
+  public async Task<IActionResult> Manage()
+  {
+    var projetos = await _context.Projetos.ToListAsync();
+    return View(projetos);
+  }
+
   // GET: Projetos/Details/5
   public async Task<IActionResult> Details(int? id)
   {
