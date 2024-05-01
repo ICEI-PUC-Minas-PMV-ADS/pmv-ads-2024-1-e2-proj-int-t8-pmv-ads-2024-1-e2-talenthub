@@ -1,0 +1,109 @@
+﻿@{
+    ViewData["Title"] = "Gerenciar projetos";
+}
+
+<div class="home-content mb-5">
+    <div class="top-bar d-flex align-items-center">
+        <div class="w-100 text-center fs-1 fw-bold text-white mb-5">Gerenciar projetos</div>
+    </div>
+
+    <div class="search-container">
+        <div class="search-card py-4 px-4">
+            <div class="input-group d-flex align-items-center">
+                <div class="input-group-prepend">
+                    <span>
+                        <img src="~/images/magnifier@100x100.png" alt="Buscar" height="50" />
+                    </span>
+                </div>
+                <input type="text" class="form-control input-group-text" placeholder="Busque por um projeto"
+                    aria-label="Busque por um projeto" aria-describedby="basic-addon1">
+                <div class="input-group-append">
+                    <button class="search-btn d-flex justify-content-between align-items-center" type="button">
+                        <img src="~/images/paper-plane@100x100.png" alt="Buscar" height="34" class="me-3" /> <div class="text-center fs-5 me-5">Buscar</div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container content-container mt-5">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="w-75">
+                <h5 class="mb-4 fw-bold text-dark-blue">Ajuda</h5>
+                
+                <div class="mb-3 pt-3">
+                    <h6 class="fw-bold text-dark-blue mb-3">Buscar repositório</h6>
+                    <p class="text-muted">Cole a URL completa do repositório a ser buscado e clique no botão Buscar repositório para encontrar ou automatizar a criação do projeto.</p>
+                </div>
+
+                <div class="mb-3 pt-3">
+                    <h6 class="fw-bold text-dark-blue mb-3">Criar repositório</h6>
+                    <p class="text-muted">Cole a URL completa do repositório para verificar se o projeto já existe. Caso o projeto não exista, você poderá criá-lo.</p>
+                </div>
+
+                <div class="mb-3 pt-3">
+                    <h6 class="fw-bold text-dark-blue mb-3">Editar ou apagar projetos</h6>
+                    <p class="text-muted">Selecione um projeto cadastrado por você na lista ao lado e você poderá editá-lo ou até apagá-lo.</p>
+                </div>
+
+                
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <h3 class="text-start mb-4 fw-bold text-dark-blue">Projetos cadastrados</h3>
+            <div class="list-group mb-5">
+                
+                <div class="list-group-item d-flex justify-content-between align-items-center border-0">
+                    <div class="d-flex align-items-start">
+                        
+                        <div class="me-3 text-center">
+                            <div class="icon-wrapper bg-danger">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <label class="fs-7 text-danger">Saúde</label>
+                        </div>
+
+                        <div class="">
+                            <h5 class="mb-1 text-dark-blue">Lorem ipsum dolor sit</h5>
+                            <p class="mb-1 mt-2 text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut efficitur nibh. Aliquam ligula ante, ornare a magna molestie, vestibulum condimentum turpis. Vestibulum at pellentesque nulla.</p>
+                        </div>
+
+                        <div class="d-inline-flex align-items-center position-absolute end-0">
+                            <span class="added-at me-2">Adicionado em 28/03/2024</span>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <hr />
+
+                <div class="list-group-item d-flex justify-content-between align-items-center border-0">
+                    <div class="d-flex align-items-start">
+                        <div class="me-3 text-center">
+                            <div class="icon-wrapper bg-warning">
+                                <i class="fas fa-microchip"></i>
+                            </div>
+                            <label class="fs-7 text-warning">Tecnologia</label>
+                        </div>
+                        <div>
+                            <h5 class="mb-1 text-dark-blue">Donec lobortis</h5>
+                            <p class="mb-1 mt-2 text-muted">Nullam fringilla augue a lacus faucibus imperdiet. Duis ultrices finibus laoreet. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.</p>
+                        </div>
+                        <div class="d-inline-flex align-items-center position-absolute end-0">
+                            <span class="added-at me-2">Adicionado em 13/02/2024</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            
+        </div>
+
+    </div>
+</div>
+
+<link rel="stylesheet" href="~/css/projetos.css?t=@DateTime.Now" asp-append-version="true" />
