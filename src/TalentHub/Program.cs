@@ -28,6 +28,7 @@ builder.Services.AddAuthentication(options =>
 {
     googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
     googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+    googleOptions.CallbackPath = new PathString("/Auth/GoogleResponse");
 });
 
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
