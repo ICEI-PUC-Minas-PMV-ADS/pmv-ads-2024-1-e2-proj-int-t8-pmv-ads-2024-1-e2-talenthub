@@ -60,3 +60,19 @@ footer {
 .content-container {
   padding-top: 40px;
 }
+
+.encoded-sans {
+  font-family: "Encode Sans", sans-serif;
+}
+
+.fw-600 {
+  font-weight: 600;
+}
+
+.fs-55 {
+  font-size: 1.1rem;
+}
+
+.list-group-item {
+  padding: 6px 0 6px 0;
+}
