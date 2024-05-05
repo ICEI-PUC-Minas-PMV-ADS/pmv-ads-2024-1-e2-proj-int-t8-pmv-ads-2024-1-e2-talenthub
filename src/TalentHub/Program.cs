@@ -1,29 +1,38 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using TalentHub.Data;
-using Microsoft.Data.SqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Configuration.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                     .AddEnvironmentVariables();
+builder.Services.AddDistributedMemoryCache();
 
-
-if (builder.Environment.IsDevelopment())
+builder.Services.Configure<CookiePolicyOptions>(options =>
 {
-    builder.Configuration.AddUserSecrets<Program>();
-}
+    options.MinimumSameSitePolicy = SameSiteMode.None;
+    options.HttpOnly = HttpOnlyPolicy.Always;
+    options.Secure = CookieSecurePolicy.Always;
+});
+
+builder.Services.AddSession(options =>
+{
+    options.Cookie.HttpOnly = true;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    options.Cookie.IsEssential = true;
+    options.Cookie.SameSite = SameSiteMode.None;
+});
+
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
 })
-.AddCookie()
+.AddCookie(options =>
+{
+
+    options.Cookie.SameSite = SameSiteMode.None;
+})
 .AddGoogle(googleOptions =>
 {
     googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
@@ -31,23 +40,10 @@ builder.Services.AddAuthentication(options =>
     googleOptions.CallbackPath = new PathString("/Auth/GoogleResponse");
 });
 
-builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
-
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-var dbPassword = builder.Configuration["ConnectionStrings:DefaultConnection:Password"];
-if (!string.IsNullOrEmpty(dbPassword))
-{
-    var builderConn = new SqlConnectionStringBuilder(connectionString)
-    {
-        Password = dbPassword
-    };
-    connectionString = builderConn.ConnectionString;
-}
-
 builder.Services.AddDbContext<TalentHubContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("TalentHubConnection")));
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 var app = builder.Build();
 
@@ -64,6 +60,8 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseCookiePolicy();
+app.UseSession();
 app.UseRouting();
 
 app.UseAuthentication();

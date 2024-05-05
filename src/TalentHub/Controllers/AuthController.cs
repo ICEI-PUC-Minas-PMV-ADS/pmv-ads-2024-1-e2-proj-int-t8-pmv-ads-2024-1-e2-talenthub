@@ -6,6 +6,7 @@ using TalentHub.Data;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
 
 public class AuthController : Controller
 {
@@ -26,9 +27,13 @@ public class AuthController : Controller
   [HttpGet("Auth/LoginWithGoogle")]
   public IActionResult LoginWithGoogle()
   {
+    var state = Guid.NewGuid().ToString("N");
+    HttpContext.Session.SetString("authState", state);
+
     var authenticationProperties = new AuthenticationProperties
     {
-      RedirectUri = Url.Action(nameof(GoogleResponse))
+      RedirectUri = Url.Action(nameof(GoogleResponse)),
+      Items = { { "state", state } }
     };
     return Challenge(authenticationProperties, GoogleDefaults.AuthenticationScheme);
   }
@@ -37,12 +42,59 @@ public class AuthController : Controller
   [HttpGet("Auth/GoogleResponse")]
   public async Task<IActionResult> GoogleResponse()
   {
-    var authenticateResult = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+    var expectedState = HttpContext.Session.GetString("authState");
+    var actualState = HttpContext.Request.Query["state"].ToString();
 
+    if (expectedState == null || actualState != expectedState)
+    {
+      return BadRequest("Invalid state parameter");
+    }
+
+    var authenticateResult = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
     if (!authenticateResult.Succeeded)
     {
       return RedirectToAction("Index", "Auth");
     }
+
+    var claimsIdentity = authenticateResult.Principal.Identities.FirstOrDefault();
+    if (claimsIdentity == null)
+    {
+      return RedirectToAction("Index", "Auth");
+    }
+
+    var email = claimsIdentity.FindFirst(ClaimTypes.Email)?.Value;
+    var nome = claimsIdentity.FindFirst(ClaimTypes.Name)?.Value;
+
+    if (email == null)
+    {
+      return RedirectToAction("Index", "Auth");
+    }
+
+    var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.Email == email);
+    if (usuario == null)
+    {
+      usuario = new Usuario
+      {
+        NomeUsuario = nome,
+        Email = email,
+        Projetos = new List<Projeto>(),
+        Avaliacoes = new List<Avaliacao>(),
+        Anotacoes = new List<Anotacao>()
+      };
+      _context.Usuarios.Add(usuario);
+      await _context.SaveChangesAsync();
+    }
+
+    var claims = new List<Claim>
+        {
+            new Claim(ClaimTypes.Name, nome),
+            new Claim(ClaimTypes.Email, email),
+            new Claim("IdUsuario", usuario.IdUsuario.ToString())
+        };
+
+    await HttpContext.SignInAsync(
+        CookieAuthenticationDefaults.AuthenticationScheme,
+        new ClaimsPrincipal(new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme)));
 
     return Redirect("/");
   }
