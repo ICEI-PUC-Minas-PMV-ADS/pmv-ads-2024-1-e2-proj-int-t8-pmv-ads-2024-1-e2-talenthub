@@ -82,3 +82,26 @@
   margin-left: auto;
   margin-right: auto; 
 }
+
+.menu-text {
+  text-align: center;
+}
+
+.project-details {
+  padding-left: 15px;
+  margin-left: -20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-top: 80px; 
+}
+
+.project-info h5 {
+  font-weight: 600;
+  color: #333;
+  margin-top: 20px;
+}
+
+.project-info p {
+  margin-bottom: 10px;
+}
