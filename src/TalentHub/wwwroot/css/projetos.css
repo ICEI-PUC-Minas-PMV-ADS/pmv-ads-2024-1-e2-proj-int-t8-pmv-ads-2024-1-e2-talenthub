@@ -66,9 +66,9 @@
 
 .menu-item {
   font-size: 14px;
-  color: #007bff; 
+  color: #007bff;
   cursor: pointer;
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
 }
 
 .menu-item i {
@@ -78,9 +78,9 @@
 
 .menu-item hr {
   margin-top: 10px;
-  width: 40%; 
+  width: 40%;
   margin-left: auto;
-  margin-right: auto; 
+  margin-right: auto;
 }
 
 .menu-text {
@@ -92,8 +92,7 @@
   margin-left: -20px;
   background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  margin-top: 80px; 
+  margin-top: 80px;
 }
 
 .project-info h5 {

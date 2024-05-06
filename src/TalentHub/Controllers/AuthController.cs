@@ -33,22 +33,12 @@ public class AuthController : Controller
     var authenticationProperties = new AuthenticationProperties
     {
       RedirectUri = Url.Action(nameof(GoogleResponse)),
-      Items = { { "state", state } }
     };
     return Challenge(authenticationProperties, GoogleDefaults.AuthenticationScheme);
   }
 
-  // GET: Auth/GoogleResponse
-  [HttpGet("Auth/GoogleResponse")]
   public async Task<IActionResult> GoogleResponse()
   {
-    var expectedState = HttpContext.Session.GetString("authState");
-    var actualState = HttpContext.Request.Query["state"].ToString();
-
-    if (expectedState == null || actualState != expectedState)
-    {
-      return BadRequest("Invalid state parameter");
-    }
 
     var authenticateResult = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
     if (!authenticateResult.Succeeded)
@@ -97,5 +87,12 @@ public class AuthController : Controller
         new ClaimsPrincipal(new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme)));
 
     return Redirect("/");
+  }
+
+  [HttpPost]
+  public async Task<IActionResult> Logout()
+  {
+    await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+    return RedirectToAction("Index", "Home");
   }
 }

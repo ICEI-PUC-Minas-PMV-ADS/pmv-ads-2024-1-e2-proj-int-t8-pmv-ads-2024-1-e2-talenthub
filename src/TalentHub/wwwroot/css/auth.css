@@ -33,4 +33,10 @@
   cursor: pointer;
   gap: 10px;
   outline: none;
+  text-decoration: none;
+}
+
+.google-login-btn:hover {
+  color: white;
+  background-color: #2b73fa;
 }
