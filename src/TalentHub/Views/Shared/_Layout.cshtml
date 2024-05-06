@@ -22,17 +22,30 @@
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-              <ul class="navbar-nav flex-grow-1 d-flex justify-content-end">
-                <li class="nav-item">
-                  <a class="nav-link text-dark-blue fw-bold" asp-area="" asp-controller="Poc" asp-action="Index">Prova de conceito</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-dark-blue fw-bold" asp-area="" asp-controller="Projetos" asp-action="Manage">Gerenciar projetos</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-dark-blue fw-bold" asp-area="" asp-controller="Auth" asp-action="Index">Login</a>
-                </li>
-              </ul>
+                <ul class="navbar-nav flex-grow-1 d-flex justify-content-end">
+                  <li class="nav-item">
+                      <a class="nav-link text-dark-blue fw-bold" asp-area="" asp-controller="Poc" asp-action="Index">Prova de conceito</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link text-dark-blue fw-bold" asp-area="" asp-controller="Projetos" asp-action="Manage">Gerenciar projetos</a>
+                  </li>
+                  @if (User.Identity.IsAuthenticated)
+                  {
+                      <li class="nav-item">
+                          <span>
+                            <form asp-action="Logout" asp-controller="Auth" method="post">
+                              <button type="submit" class="btn btn-link nav-link text-dark-blue fw-bold">Logout com  @User.Identity.Name</button>
+                            </form>
+                          </span>
+                      </li>
+                  }
+                  else
+                  {
+                      <li class="nav-item">
+                          <a class="nav-link text-dark-blue fw-bold" asp-area="" asp-controller="Auth" asp-action="Index">Login</a>
+                      </li>
+                  }
+                </ul>
             </div>
           </div>
         </nav>
