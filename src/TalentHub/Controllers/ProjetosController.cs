@@ -28,7 +28,7 @@ public class ProjetosController : Controller
     return View(projetos);
   }
 
-  // GET: Projetos/Details/5
+  // GET: Projetos/Details/1
   public async Task<IActionResult> Details(int? id)
   {
     if (id == null)
