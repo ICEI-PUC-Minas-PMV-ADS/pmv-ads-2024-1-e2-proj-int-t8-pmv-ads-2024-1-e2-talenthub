@@ -38,11 +38,10 @@ builder.Services.AddAuthentication(options =>
     options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
 })
 .AddCookie()
-.AddGoogle(googleOptions =>
+.AddGoogle(GoogleDefaults.AuthenticationScheme, googleOptions =>
 {
     googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
     googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
-    googleOptions.CallbackPath = new PathString("/Auth/GoogleResponse");
 });
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -81,8 +80,11 @@ app.UseRouting();
 
 app.UseCookiePolicy();
 app.UseSession();
+
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapControllers();
 
 app.MapControllerRoute(
     name: "default",
