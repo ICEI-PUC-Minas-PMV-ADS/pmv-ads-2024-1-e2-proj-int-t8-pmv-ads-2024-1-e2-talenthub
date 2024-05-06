@@ -1,10 +1,19 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
-using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.EntityFrameworkCore;
 using TalentHub.Data;
+using Microsoft.Data.SqlClient;
+using Microsoft.AspNetCore.CookiePolicy;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Configuration.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                     .AddEnvironmentVariables();
+
+if (builder.Environment.IsDevelopment())
+{
+    builder.Configuration.AddUserSecrets<Program>();
+}
 
 builder.Services.AddDistributedMemoryCache();
 
@@ -28,11 +37,7 @@ builder.Services.AddAuthentication(options =>
     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
 })
-.AddCookie(options =>
-{
-
-    options.Cookie.SameSite = SameSiteMode.None;
-})
+.AddCookie()
 .AddGoogle(googleOptions =>
 {
     googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
@@ -40,8 +45,20 @@ builder.Services.AddAuthentication(options =>
     googleOptions.CallbackPath = new PathString("/Auth/GoogleResponse");
 });
 
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var dbPassword = builder.Configuration["ConnectionStrings:DefaultConnection:Password"];
+
+if (!string.IsNullOrEmpty(dbPassword))
+{
+    var builderConn = new SqlConnectionStringBuilder(connectionString)
+    {
+        Password = dbPassword
+    };
+    connectionString = builderConn.ConnectionString;
+}
+
 builder.Services.AddDbContext<TalentHubContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("TalentHubConnection")));
+    options.UseSqlServer(connectionString));
 
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
@@ -60,10 +77,10 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseCookiePolicy();
-app.UseSession();
 app.UseRouting();
 
+app.UseCookiePolicy();
+app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
 
