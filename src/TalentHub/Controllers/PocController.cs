@@ -19,8 +19,8 @@ public class PocController : Controller
     return View(projetos);
   }
 
-  // GET: Poc/Details/5
-  public async Task<IActionResult> Details(int? id)
+  // GET: Poc/Detalhes/5
+  public async Task<IActionResult> Detalhes(int? id)
   {
     if (id == null)
     {
@@ -37,16 +37,16 @@ public class PocController : Controller
     return View(projeto);
   }
 
-  // GET: Poc/Create
-  public IActionResult Create()
+  // GET: Poc/Criar
+  public IActionResult Criar()
   {
     return View();
   }
 
-  // POST: Poc/Create
+  // POST: Poc/Criar
   [HttpPost]
   [ValidateAntiForgeryToken]
-  public async Task<IActionResult> Create([Bind("NomeProjeto,UrlRepositorio,UrlAplicacao,Integrantes")] Projeto projeto)
+  public async Task<IActionResult> Criar([Bind("NomeProjeto,UrlRepositorio,UrlAplicacao,Integrantes")] Projeto projeto)
   {
     if (!ModelState.IsValid)
     {
@@ -78,8 +78,8 @@ public class PocController : Controller
     return View(projeto);
   }
 
-  // GET: Poc/Edit/5
-  public async Task<IActionResult> Edit(int? id)
+  // GET: Poc/Editar/5
+  public async Task<IActionResult> Editar(int? id)
   {
     if (id == null)
     {
@@ -95,10 +95,10 @@ public class PocController : Controller
   }
 
 
-  // POST: Poc/Edit/5
+  // POST: Poc/Editar/5
   [HttpPost]
   [ValidateAntiForgeryToken]
-  public async Task<IActionResult> Edit(int id, [Bind("IdProjeto,NomeProjeto,UrlRepositorio,UrlAplicacao,Integrantes")] Projeto projeto)
+  public async Task<IActionResult> Editar(int id, [Bind("IdProjeto,NomeProjeto,UrlRepositorio,UrlAplicacao,Integrantes")] Projeto projeto)
   {
     if (id != projeto.IdProjeto)
     {
@@ -128,8 +128,8 @@ public class PocController : Controller
     return View(projeto);
   }
 
-  // GET: Poc/Delete/5
-  public async Task<IActionResult> Delete(int? id)
+  // GET: Poc/Apagar/5
+  public async Task<IActionResult> Apagar(int? id)
   {
     if (id == null)
     {
@@ -146,10 +146,10 @@ public class PocController : Controller
     return View(projeto);
   }
 
-  // POST: Poc/Delete/5
-  [HttpPost, ActionName("Delete")]
+  // POST: Poc/Apagar/5
+  [HttpPost, ActionName("Apagar")]
   [ValidateAntiForgeryToken]
-  public async Task<IActionResult> DeleteConfirmed(int id)
+  public async Task<IActionResult> ApagarConfirmacao(int id)
   {
     var projeto = await _context.Projetos.FindAsync(id);
     if (projeto != null)

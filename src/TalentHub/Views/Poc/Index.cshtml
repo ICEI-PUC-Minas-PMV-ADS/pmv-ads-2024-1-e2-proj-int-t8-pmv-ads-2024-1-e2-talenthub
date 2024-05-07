@@ -7,7 +7,7 @@
 <h2>Projetos</h2>
 
 <div class="text-end">
-    <a asp-action="Create" class="btn btn-primary">Criar novo projeto</a>
+    <a asp-action="Criar" class="btn btn-primary">Criar novo projeto</a>
 </div>
     
 
@@ -29,9 +29,9 @@
             <td>@Html.DisplayFor(modelItem => item.UrlAplicacao)</td>
             <td>@Html.DisplayFor(modelItem => item.Integrantes)</td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdProjeto">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.IdProjeto">Detalhes</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdProjeto">Deletar</a>
+                <a asp-action="Editar" asp-route-id="@item.IdProjeto">Editar</a> |
+                <a asp-action="Detalhes" asp-route-id="@item.IdProjeto">Detalhes</a> |
+                <a asp-action="Apagar" asp-route-id="@item.IdProjeto">Apagar</a>
             </td>
         </tr>
 }

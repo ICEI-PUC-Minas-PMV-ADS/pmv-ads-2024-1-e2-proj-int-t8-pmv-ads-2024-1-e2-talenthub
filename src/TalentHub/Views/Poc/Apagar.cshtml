@@ -1,10 +1,10 @@
 ﻿@model TalentHub.Models.Projeto
 
 @{
-    ViewData["Title"] = "Deletar Projeto";
+    ViewData["Title"] = "Apagar projeto";
 }
 
-<h3>Tem certeza que deseja deletar este projeto?</h3>
+<h3>Tem certeza que deseja apagar este projeto?</h3>
 <div>
     <hr />
     <dl class="row">
@@ -16,10 +16,10 @@
         </dd>
     </dl>
 
-    <form asp-action="Delete" asp-controller="Projetos" asp-route-id="@Model.IdProjeto" method="post" class="my-3">
+    <form asp-action="Apagar" asp-controller="Projetos" asp-route-id="@Model.IdProjeto" method="post" class="my-3">
         <input type="hidden" name="__RequestVerificationToken" value="@ViewData["__RequestVerificationToken"]" />
         <input type="hidden" asp-for="IdProjeto" />
-        <input type="submit" value="Deletar" class="btn btn-danger" /> |
+        <input type="submit" value="Apagar" class="btn btn-danger" /> |
         <a asp-action="Index">Cancelar</a>
     </form>
 </div>

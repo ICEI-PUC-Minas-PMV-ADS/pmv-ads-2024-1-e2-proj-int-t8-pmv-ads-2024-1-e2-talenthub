@@ -21,15 +21,15 @@ public class ProjetosController : Controller
     return View(projetos);
   }
 
-  // GET: Projetos/Manage
-  public async Task<IActionResult> Manage()
+  // GET: Projetos/Gerenciar
+  public async Task<IActionResult> Gerenciar()
   {
     var projetos = await _context.Projetos.ToListAsync();
     return View(projetos);
   }
 
-  // GET: Projetos/Details/1
-  public async Task<IActionResult> Details(int? id)
+  // GET: Projetos/Detalhes/1
+  public async Task<IActionResult> Detalhes(int? id)
   {
     if (id == null)
     {
@@ -46,16 +46,16 @@ public class ProjetosController : Controller
     return View(projeto);
   }
 
-  // GET: Projetos/Create
-  public IActionResult Create()
+  // GET: Projetos/Criar
+  public IActionResult Criar()
   {
     return View();
   }
 
-  // POST: Projetos/Create
+  // POST: Projetos/Criar
   [HttpPost]
   [ValidateAntiForgeryToken]
-  public async Task<IActionResult> Create([Bind("NomeProjeto,UrlRepositorio,UrlAplicacao,Integrantes")] Projeto projeto)
+  public async Task<IActionResult> Criar([Bind("NomeProjeto,UrlRepositorio,UrlAplicacao,Integrantes")] Projeto projeto)
   {
     if (!ModelState.IsValid)
     {
@@ -87,8 +87,8 @@ public class ProjetosController : Controller
     return View(projeto);
   }
 
-  // GET: Projetos/Edit/5
-  public async Task<IActionResult> Edit(int? id)
+  // GET: Projetos/Editar/5
+  public async Task<IActionResult> Editar(int? id)
   {
     if (id == null)
     {
@@ -107,7 +107,7 @@ public class ProjetosController : Controller
   // POST: Projetos/Edit/5
   [HttpPost]
   [ValidateAntiForgeryToken]
-  public async Task<IActionResult> Edit(int id, [Bind("IdProjeto,NomeProjeto,UrlRepositorio,UrlAplicacao,Integrantes")] Projeto projeto)
+  public async Task<IActionResult> Editar(int id, [Bind("IdProjeto,NomeProjeto,UrlRepositorio,UrlAplicacao,Integrantes")] Projeto projeto)
   {
     if (id != projeto.IdProjeto)
     {
@@ -137,8 +137,8 @@ public class ProjetosController : Controller
     return View(projeto);
   }
 
-  // GET: Projetos/Delete/5
-  public async Task<IActionResult> Delete(int? id)
+  // GET: Projetos/Apagar/5
+  public async Task<IActionResult> Apagar(int? id)
   {
     if (id == null)
     {
@@ -155,10 +155,10 @@ public class ProjetosController : Controller
     return View(projeto);
   }
 
-  // POST: Projetos/Delete/5
-  [HttpPost, ActionName("Delete")]
+  // POST: Projetos/Apagar/5
+  [HttpPost, ActionName("Apagar")]
   [ValidateAntiForgeryToken]
-  public async Task<IActionResult> DeleteConfirmed(int id)
+  public async Task<IActionResult> ApagarConfirmacao(int id)
   {
     var projeto = await _context.Projetos.FindAsync(id);
     if (projeto != null)
@@ -179,7 +179,7 @@ public class ProjetosController : Controller
       return NotFound();
     }
 
-    return RedirectToAction(nameof(Details), new { id = id });
+    return RedirectToAction(nameof(Detalhes), new { id = id });
   }
 
   [HttpPost]
@@ -192,15 +192,26 @@ public class ProjetosController : Controller
       return NotFound();
     }
 
-    return RedirectToAction(nameof(Details), new { id = id });
+    return RedirectToAction(nameof(Detalhes), new { id = id });
   }
 
-  // GET: Projetos/SearchResults
-  public async Task<IActionResult> SearchResults()
+  // GET: Projetos/ResultadosBusca
+  public async Task<IActionResult> ResultadosBusca()
   {
     var projetos = await _context.Projetos.ToListAsync();
     return View(projetos);
   }
+
+
+  // POST: Projetos/Busca
+  [HttpPost]
+  public async Task<IActionResult> Busca(string searchTerm)
+  {
+    ViewData["SearchTerm"] = searchTerm;
+    var projetos = await _context.Projetos.ToListAsync();
+    return View("ResultadosBusca", projetos);
+  }
+
 
 
 }
