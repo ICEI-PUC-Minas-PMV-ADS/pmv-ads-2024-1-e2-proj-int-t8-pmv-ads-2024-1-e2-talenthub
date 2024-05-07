@@ -195,6 +195,12 @@ public class ProjetosController : Controller
     return RedirectToAction(nameof(Details), new { id = id });
   }
 
+  // GET: Projetos/SearchResults
+  public async Task<IActionResult> SearchResults()
+  {
+    var projetos = await _context.Projetos.ToListAsync();
+    return View(projetos);
+  }
 
 
 }
