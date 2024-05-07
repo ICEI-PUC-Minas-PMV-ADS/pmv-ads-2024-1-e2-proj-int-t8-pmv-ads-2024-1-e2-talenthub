@@ -169,4 +169,32 @@ public class ProjetosController : Controller
     return RedirectToAction(nameof(Index));
   }
 
+  [HttpPost]
+  [ValidateAntiForgeryToken]
+  public async Task<IActionResult> AvaliarProjeto(int id, int rating, string comments)
+  {
+    var projeto = await _context.Projetos.FindAsync(id);
+    if (projeto == null)
+    {
+      return NotFound();
+    }
+
+    return RedirectToAction(nameof(Details), new { id = id });
+  }
+
+  [HttpPost]
+  [ValidateAntiForgeryToken]
+  public async Task<IActionResult> SalvarAnotacao(int id, string annotation)
+  {
+    var projeto = await _context.Projetos.FindAsync(id);
+    if (projeto == null)
+    {
+      return NotFound();
+    }
+
+    return RedirectToAction(nameof(Details), new { id = id });
+  }
+
+
+
 }

@@ -34,25 +34,26 @@
     <div class="row">
         <div class="col-md-3 mt-5 pt-5">
             <div class="menu-text">
-                <div class="menu-item">
+                <div class="menu-item" data-bs-toggle="modal" data-bs-target="#rateProjectModal">
                     <i class="fas fa-star text-primary"></i>
                     <div class="text-primary mt-3">Avaliar Projeto</div>
                     <hr>
                 </div>
-                <div class="menu-item">
+                <div class="menu-item" data-bs-toggle="modal" data-bs-target="#noteModal">
                     <i class="fas fa-pencil-alt text-primary"></i>
                     <div class="text-primary mt-3">Fazer anotação</div>
                     <hr>
                 </div>
-                <div class="menu-item">
-                    <i class="fab fa-github text-primary"></i>
-                    <div class="text-primary mt-3">Repositório</div>
+                <div class="menu-item"  data-bs-toggle="modal" data-bs-target="#contactModal">
+                    <i class="fas fa-address-book text-primary"></i>
+                    <div class="text-primary mt-3">Entrar em contato</div>
                     <hr>
                 </div>
                 <div class="menu-item">
-                    <i class="fas fa-address-book text-primary"></i>
-                    <div class="text-primary mt-3">Contato</div>
-                    <hr>
+                    <a href="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e2-proj-int-t8-pmv-ads-2024-1-e2-talenthub" target="_blank" class="text-primary d-block text-decoration-none">
+                        <i class="fab fa-github"></i>
+                        <div class="mt-3">Repositório</div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -75,12 +76,12 @@
                         <div class="mb-4">
                             <small class="rating-number">500 visualizações</small>
                             <div class="rating-stars d-flex align-items-center mt-2">
-                                <span class="me-2 text-warning">4.5</span>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star-half-alt text-warning"></i>
+                                <span class="review-average me-2">4.5</span>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
                             </div>
                         </div>
                     </div>
@@ -114,10 +115,134 @@
                     <h5>Palavras-chave</h5>
                     <p>Palavra1, Palavra2, Palavra3</p>
                 </div>
+                
+                <div class="border-bottom mt-5"></div>
+
+                <h5 class="mt-5">Avaliações e comentários</h5>
+                <div class="reviews-section">
+                    <div class="review-item">
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span class="review-average ms-2">4.5</span>
+                        </div>
+                        <div class="review-text">
+                            <p>"Muito bem organizado e informativo. O projeto superou minhas expectativas em vários aspectos, especialmente na clareza da apresentação."</p>
+                            <small class="text-muted">- João Silva, 02/05/2024</small>
+                        </div>
+                    </div>
+                    <div class="review-item">
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="review-average ms-2">5.0</span>
+                        </div>
+                        <div class="review-text">
+                            <p>"O projeto foi inovador e trouxe uma nova perspectiva sobre o tema tratado. Recomendo fortemente para quem estiver interessado no assunto."</p>
+                            <small class="text-muted">- Maria Oliveira, 10/05/2024</small>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 
 </div>
+
+<div class="modal fade" id="rateProjectModal" tabindex="-1" role="dialog" aria-labelledby="rateProjectModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form asp-action="AvaliarProjeto" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="rateProjectModalLabel">Avaliar Projeto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" value="@Model.IdProjeto" />
+                    <div class="form-group">
+                        <label for="rating" class="mb-1">Nota</label>
+                        <select class="form-control" id="rating" name="rating" required>
+                            <option value="">Selecione uma nota</option>
+                            <option value="1">1 - Muito Ruim</option>
+                            <option value="2">2 - Ruim</option>
+                            <option value="3">3 - Regular</option>
+                            <option value="4">4 - Bom</option>
+                            <option value="5">5 - Excelente</option>
+                        </select>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="comments" class="mb-1">Comentários</label>
+                        <textarea class="form-control" id="comments" name="comments" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Enviar Avaliação</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="noteModal" tabindex="-1" role="dialog" aria-labelledby="noteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <form asp-action="SalvarAnotacao" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="noteModalLabel">Fazer Anotação</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" value="@Model.IdProjeto" />
+                    <div class="form-group">
+                        <label for="annotation" class="mb-1">Anotação</label>
+                        <textarea class="form-control" id="annotation" name="annotation" rows="6" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar Anotação</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="contactModalLabel">Informações de Contato</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Contato dos Integrantes:</strong></p>
+                <div class="p-3 bg-light border rounded">
+                    João Silva - Email: joao.silva@gmail.com<br>
+                    Maria Oliveira - Celular: (11) 99999-8888<br>
+                    Carlos Pereira - Email: carlos.p@gmail.com, Telefone: (21) 7777-6666
+                </div>
+                <p class="mt-3">Use as informações acima para entrar em contato com os integrantes do projeto.</p>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 
 <link rel="stylesheet" href="~/css/projetos.css?t=@DateTime.Now" asp-append-version="true" />
