@@ -77,8 +77,8 @@
 }
 
 .menu-item hr {
-  margin-top: 10px;
-  width: 40%;
+  margin-top: 16px;
+  width: 50%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -103,4 +103,31 @@
 
 .project-info p {
   margin-bottom: 10px;
+}
+
+.reviews-section {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.review-item {
+  margin-bottom: 20px;
+}
+
+.fa-star,
+.fa-star-half-alt,
+.review-average {
+  color: #ff9d00;
+}
+
+.review-text p {
+  margin-bottom: 0.5rem;
+}
+
+.review-text small {
+  display: block;
+  color: #6c757d;
 }
