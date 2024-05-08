@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TalentHub.Models;
 using TalentHub.Data;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 public class PocController : Controller
 {
@@ -40,13 +41,24 @@ public class PocController : Controller
   // GET: Poc/Criar
   public IActionResult Criar()
   {
+     var categoriaOptions = Enum.GetValues(typeof(CategoriaEnum))
+        .Cast<CategoriaEnum>()
+        .Select(e => new SelectListItem
+        {
+            Value = e.ToString(),
+            Text = e.ToString()
+        })
+        .ToList();
+        
+    ViewBag.CategoriaOptions = categoriaOptions;
+    
     return View();
   }
 
   // POST: Poc/Criar
   [HttpPost]
   [ValidateAntiForgeryToken]
-  public async Task<IActionResult> Criar([Bind("NomeProjeto,UrlRepositorio,UrlAplicacao,Integrantes")] Projeto projeto)
+  public async Task<IActionResult> Criar([Bind("NomeProjeto,DescricaoProjeto,Ano,Periodo,Categoria,PalavraChave,UrlRepositorio,UrlAplicacao,Integrantes")] Projeto projeto)
   {
     if (!ModelState.IsValid)
     {

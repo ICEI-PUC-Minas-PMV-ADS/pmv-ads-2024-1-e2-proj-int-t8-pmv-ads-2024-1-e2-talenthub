@@ -14,6 +14,39 @@
         <span asp-validation-for="NomeProjeto" class="text-danger"></span>
     </div>
     <div class="form-group mb-3">
+        <label asp-for="DescricaoProjeto" class="control-label">Descrição do Projeto</label>
+        <textarea asp-for="DescricaoProjeto" class="form-control" placeholder="Insira a descrição do projeto"></textarea>
+        <span asp-validation-for="DescricaoProjeto" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-3">
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="Ano" class="control-label">Ano</label>
+                <input asp-for="Ano" class="form-control" placeholder="Ano" maxlength="4" />
+                <span asp-validation-for="Ano" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label asp-for="Periodo" class="control-label">Período</label>
+                <input asp-for="Periodo" class="form-control" placeholder="Período" maxlength="1" />
+                <span asp-validation-for="Periodo" class="text-danger"></span>
+            </div>
+            <div class="col-4">
+                <label asp-for="Categoria" class="control-label">Categoria</label>
+                <select asp-for="Categoria" asp-items="@(ViewBag.CategoriaOptions)" class="form-control"></select>
+                <span asp-validation-for="Categoria" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group mb-3">
+        <div class="row">
+            <div class="col-12">
+                <label asp-for="PalavraChave" class="control-label">Palavras chave</label>
+                <textarea asp-for="PalavraChave" class="form-control" placeholder="Insira as palavras chave para o projeto"></textarea>
+                <span asp-validation-for="PalavraChave" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group mb-3">
         <label asp-for="UrlRepositorio" class="control-label">URL do Repositório</label>
         <input asp-for="UrlRepositorio" class="form-control" placeholder="https://exemplo.com/repositorio" />
         <span asp-validation-for="UrlRepositorio" class="text-danger"></span>
