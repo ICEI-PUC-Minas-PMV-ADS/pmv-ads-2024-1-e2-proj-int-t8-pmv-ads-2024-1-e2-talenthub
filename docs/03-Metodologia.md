@@ -101,3 +101,28 @@ Para esta sprint, estamos focando em atividades essenciais para o desenvolviment
 | Jozimar    | Diagrama de Classes                                                                                     |
 | Rodolfo    | Modelo Entidade Relacionamento (Projeto Conceitual)<br>Projeto da Base de Dados                         |
 | Thiago     | Diagrama de Fluxo<br>Wireframes interativos<br>Projeto do Github exportado como .zip com os entregáveis |
+
+**Sprint 3:**
+
+Na terceira sprint, estamos focando em atividades de produção de todas as páginas da aplicação bem como suas Controllers. O roteamento também está contemplado na Sprint e algumas telas já trazem dados do banco de dados. Desenvolvemos a Prova de Conceito, utilizando a entidade Projeto, que é a entidade principal do nosso projeto. Também priorizamos finalizar autenticação na aplicação utilizando o Google SSO (Single Sign-On) e a criação de uma pipeline de Build e Deploy, construindo uma ponte entre o repositório GitHub e o ambiente em nuvem Microsoft Azure.
+
+| Integrante | Atividade                                                                                              |
+| ---------- | ------------------------------------------------------------------------------------------------------ |
+| Thiago     | Criar esqueleto do projeto                                                                             |
+| Thiago     | Criar instâncias do App Service no Microsoft Azure para hospedagem da aplicação web                    |
+| Thiago     | Configurar aplicação rodando no Microsoft Azure para apontar para o banco de dados SQL Server no Azure |
+| Thiago     | Criar instância do SQL Server no Microsoft Azure                                                       |
+| Thiago     | Criar instância do Azure Key Vault no Microsoft Azure                                                  |
+| Thiago     | Criar aplicação no Google para utilizar SSO                                                            |
+| Thiago     | Criar pipeline CI/CD                                                                                   |
+| Bruno      | Criar esqueleto da tela Home                                                                           |
+| Thiago     | Criar esqueleto da tela de Login                                                                       |
+| Thiago     | Vincular backend à tela de Login                                                                       |
+| Rodolfo    | Criar esqueleto da tela de Criação de projeto                                                          |
+| Thiago     | Criar tela de Resultados de busca de projetos                                                          |
+| Bruno      | Criar esqueleto da tela de Detalhes do projeto                                                         |
+| Thiago     | Criar esqueleto da tela de Gerenciar projetos                                                          |
+| Rodolfo    | Adicionar as propriedades faltantes nas entidades                                                      |
+| Thiago     | Criar prova de conceito de um CRUD de alguma entidade do nosso projeto                                 |
+| Jozimar    | Execução de testes de software na aplicação                                                            |
+| Jozimar    | Execução de testes de usabilidade na aplicação                                                         |
