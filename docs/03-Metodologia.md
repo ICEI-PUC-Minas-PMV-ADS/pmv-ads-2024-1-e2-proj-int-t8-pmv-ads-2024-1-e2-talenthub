@@ -72,8 +72,8 @@ etiquetas:
 | E1           | Documentação de contexto<br>Especificação do projeto                                                                                                                                                                                                                                                |
 | E2           | Diagrama de classes<br>Diagrama de Fluxo (fluxograma)<br>Wireframe interativo<br>Modelo Entidade Relacionamento (Projeto Conceitual)<br>Projeto da Base de Dados<br>Planos de Teste de Software e de Usabilidade<br>Documentação da Metodologia<br>Projeto do Github com Backlog e Plano de Sprints |
 | E3           | Template Padrão da Aplicação<br>Funcionalidades Críticas<br>Registro de Testes de Software<br>Registro de Testes de Usabilidade                                                                                                                                                                     |
-| E4           | Template Padrão da Aplicação<br>Funcionalidades restantes<br>Registro de Testes de Software<br>Registro de Testes de Usabilidade                                                                                                                                                                    |
-| E5           | Relatórios de Teste de Software<br>Registro de Testes de Usabilidade                                                                                                                                                                                                                                |
+| E4           | Template Padrão da Aplicação<br>Funcionalidades restantes                                                                                                                                                                                                                                           |
+| E5           | Vincular dados às páginas<br>Relatórios de Teste de Software<br>Registro de Testes de Usabilidade                                                                                                                                                                                                   |
 
 ## Planos de sprints
 
@@ -118,11 +118,25 @@ Na terceira sprint, estamos focando em atividades de produção de todas as pág
 | Bruno      | Criar esqueleto da tela Home                                                                           |
 | Thiago     | Criar esqueleto da tela de Login                                                                       |
 | Thiago     | Vincular backend à tela de Login                                                                       |
-| Rodolfo    | Criar esqueleto da tela de Criação de projeto                                                          |
+| Rodolfo    | Adicionar as propriedades faltantes nas entidades                                                      |
+| Jozimar    | Criar esqueleto da tela de Criação de projeto                                                          |
 | Thiago     | Criar tela de Resultados de busca de projetos                                                          |
 | Bruno      | Criar esqueleto da tela de Detalhes do projeto                                                         |
 | Thiago     | Criar esqueleto da tela de Gerenciar projetos                                                          |
-| Rodolfo    | Adicionar as propriedades faltantes nas entidades                                                      |
 | Thiago     | Criar prova de conceito de um CRUD de alguma entidade do nosso projeto                                 |
-| Jozimar    | Execução de testes de software na aplicação                                                            |
-| Jozimar    | Execução de testes de usabilidade na aplicação                                                         |
+| Bruno      | Criar tela com Política de privacidade para publicar Login Google SSO                                  |
+| Thiago     | Criar tela com Termo de uso para publicar Login Google SSO                                             |
+
+**Sprint 4:**
+
+Na quarta sprint, o foco é na integração do backend e do banco de dados nas páginas já desenvolvidas, permitindo interação dinâmica com os dados. Além disso, haverá a implementação da funcionalidade de captação de dados de repositórios via API do GitHub, essencial para a página de criação de projetos.
+
+| Integrante | Atividade                                                                                   |
+| ---------- | ------------------------------------------------------------------------------------------- |
+| Bruno      | Vincular backend e banco de dados à página Home                                             |
+| Jozimar    | Vincular backend e banco de dados à página de Gestão de projetos                            |
+| Rodolfo    | Vincular backend e banco de dados à página de Criação de projeto                            |
+| Thiago     | Vincular backend e banco de dados à página de Detalhes do projeto                           |
+| Rodolfo    | Implementar funcionalidade de Avaliação de projetos                                         |
+| Bruno      | Implementar funcionalidade de Anotação em projetos                                          |
+| Thiago     | Desenvolver integração com a API do GitHub para captação de dados do repositório do projeto |
