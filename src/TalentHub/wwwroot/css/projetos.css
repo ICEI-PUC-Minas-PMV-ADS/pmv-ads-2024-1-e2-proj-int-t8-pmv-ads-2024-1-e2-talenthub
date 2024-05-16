@@ -38,6 +38,28 @@
   outline: none;
 }
 
+.search-btn:hover {
+  background-color: #2f6ce5;
+  color: white;
+}
+
+.rounded-blue-btn {
+  background-color: #367cff;
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  gap: 10px;
+  outline: none;
+}
+
+.rounded-blue-btn:hover {
+  background-color: #2f6ce5;
+  color: white;
+}
+
 .list {
   list-style-type: none;
   padding: 10px;
@@ -155,6 +177,10 @@
 
 .financas .icon-wrapper {
   background-color: #5bc0de;
+}
+
+.icon-wrapper i {
+  color: white;
 }
 
 .projetossociais {

@@ -217,37 +217,79 @@ public class ProjetosController : Controller
   // POST: Projetos/BuscarRepositorio
   [HttpPost]
   [ValidateAntiForgeryToken]
-  public async Task<IActionResult> BuscarRepositorio(string repoUrl)
+  public async Task<IActionResult> BuscarRepositorio(string searchTerm)
   {
-    var existingProject = await _context.Projetos.FirstOrDefaultAsync(p => p.UrlRepositorio.ToLower() == repoUrl.ToLower() || p.NomeProjeto.ToLower() == repoUrl.ToLower());
-    if (existingProject != null)
+    if (string.IsNullOrWhiteSpace(searchTerm))
     {
-      ViewBag.Projeto = existingProject;
+      ModelState.AddModelError("", "Por favor, insira um termo de busca.");
       return View("ResultadosBusca");
+    }
+
+    var projetos = await _context.Projetos
+        .Where(p => p.UrlRepositorio.ToLower().Contains(searchTerm.ToLower()) || p.NomeProjeto.ToLower().Contains(searchTerm.ToLower()))
+        .ToListAsync();
+
+    if (projetos.Any())
+    {
+      ViewBag.Projetos = projetos;
     }
     else
     {
-      var repoInfo = ParseGitHubUrl(repoUrl);
-      if (repoInfo.HasValue)
-      {
-        var (Owner, Repo) = repoInfo.Value;
-        var fileContent = await _gitHubService.GetFileContent(Owner, Repo, "docs/01-Documentação de Contexto.md");
-        if (fileContent == null)
-        {
-          ModelState.AddModelError("", "Não foi possível encontrar o arquivo no GitHub.");
-          return View("ResultadosBusca");
-        }
-
-        ViewBag.RepoUrl = repoUrl;
-        return View("ResultadosBusca");
-      }
-      else
-      {
-        ModelState.AddModelError("", "URL do repositório inválida.");
-        return View("ResultadosBusca");
-      }
+      ModelState.AddModelError("", "Nenhum projeto encontrado para o termo informado.");
     }
+
+    return View("ResultadosBusca");
   }
+
+  // POST: Projetos/BuscarProjeto
+  [HttpPost]
+  [ValidateAntiForgeryToken]
+  public async Task<IActionResult> BuscarProjeto(string searchTerm)
+  {
+    if (string.IsNullOrWhiteSpace(searchTerm))
+    {
+      ModelState.AddModelError("", "Por favor, insira um termo de busca.");
+      return View("ResultadosBusca");
+    }
+
+    var projetos = await _context.Projetos
+        .Where(p => p.NomeProjeto.ToLower().Contains(searchTerm.ToLower()) || p.DescricaoProjeto.ToLower().Contains(searchTerm.ToLower()))
+        .ToListAsync();
+
+    if (projetos.Any())
+    {
+      ViewBag.Projetos = projetos;
+    }
+    else
+    {
+      ModelState.AddModelError("", "Nenhum projeto encontrado para o termo informado.");
+    }
+
+    return View("ResultadosBusca");
+  }
+
+
+  // {
+  //     var repoInfo = ParseGitHubUrl(repoUrl);
+  //     if (repoInfo.HasValue)
+  //     {
+  //       var (Owner, Repo) = repoInfo.Value;
+  //       var fileContent = await _gitHubService.GetFileContent(Owner, Repo, "docs/01-Documentação de Contexto.md");
+  //       if (fileContent == null)
+  //       {
+  //         ModelState.AddModelError("", "Não foi possível encontrar o arquivo no GitHub.");
+  //         return View("ResultadosBusca");
+  //       }
+
+  //       ViewBag.RepoUrl = repoUrl;
+  //       return View("ResultadosBusca");
+  //     }
+  //     else
+  //     {
+  //       ModelState.AddModelError("", "URL do repositório inválida.");
+  //       return View("ResultadosBusca");
+  //     }
+  //   }
 
   private (string Owner, string Repo)? ParseGitHubUrl(string url)
   {

@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Resultados da busca";
+    var projetos = ViewBag.Projetos as List<TalentHub.Models.Projeto>;
 }
 
 <div class="home-content mb-5">
@@ -18,7 +19,7 @@
                             <img src="~/images/github@100x100.png" alt="Buscar" height="50" />
                         </span>
                     </div>
-                    <input type="text" class="form-control input-group-text encoded-sans fw-600 fs-55" name="repoUrl" placeholder="Cadastre um projeto buscando pela url do repositório GitHub"
+                    <input type="text" class="form-control input-group-text encoded-sans fw-600 fs-55" name="searchTerm" placeholder="Cadastre um projeto buscando pela url do repositório GitHub ou pelo nome"
                         aria-label="Busque por um projeto">
                     <div class="input-group-append">
                         <button class="search-btn d-flex justify-content-between align-items-center" type="submit">
@@ -54,66 +55,70 @@
             </div>
 
             <div class="col-md-9">
-                @if (ViewBag.Projeto != null) {
-                    <h3 class="text-start mb-4 fw-bold text-dark-blue">Projetos encontrados</h3>
-                }
+                @if (projetos != null) {<h3 class="text-start mb-4 fw-bold text-dark-blue">Projetos encontrados</h3>}
                 <div class="list-group mb-5">
-                    @if (ViewBag.Projeto != null)
+                    @if (projetos != null && projetos.Any())
                     {
-                        var categoria = ViewBag.Projeto.Categoria.ToString().ToLower();
-                        <div class="list-group-item d-flex justify-content-between align-items-center border-0 @categoria">
-                            <div class="d-flex align-items-start">
-                                <div class="me-3 text-center">
-                                    <div class="icon-wrapper">
-                                        <i class="@CategoryHelper.GetIconForCategory(categoria)"></i>
+                        @foreach (var projeto in projetos)
+                        {
+                            var categoria = projeto.Categoria.ToString().ToLower();
+                            <div class="list-group-item d-flex justify-content-between align-items-center border-0 @categoria">
+                                <div class="d-flex align-items-start">
+                                    <div class="me-3 text-center">
+                                        <div class="icon-wrapper">
+                                            <i class="@TalentHub.Helpers.CategoryHelper.GetIconForCategory(categoria)"></i>
+                                        </div>
+                                        <label class="fs-7 @categoria">@projeto.Categoria</label>
                                     </div>
-                                    <label class="fs-7 @categoria">@ViewBag.Projeto.Categoria</label>
-                                </div>
 
-                                <div class="">
-                                    <h5 class="mb-1 text-dark-blue encoded-sans">@ViewBag.Projeto.NomeProjeto</h5>
-                                    <p class="mb-1 mt-2 text-muted">
-                                        @{
-                                            var descricao = ViewBag.Projeto.DescricaoProjeto as string;
-                                            string descricaoResumida = "";
-                                            if (!string.IsNullOrEmpty(descricao))
-                                            {
-                                                if (descricao.Length > 170)
+                                    <div class="">
+                                        <h5 class="mb-1 text-dark-blue encoded-sans">@projeto.NomeProjeto</h5>
+                                        <p class="mb-1 mt-2 text-muted">
+                                            @{
+                                                var descricao = projeto.DescricaoProjeto;
+                                                string descricaoResumida = "";
+                                                if (!string.IsNullOrEmpty(descricao))
                                                 {
-                                                    descricaoResumida = descricao.Substring(0, 170) + "...";
+                                                    if (descricao.Length > 170)
+                                                    {
+                                                        descricaoResumida = descricao.Substring(0, 170) + "...";
+                                                    }
+                                                    else
+                                                    {
+                                                        descricaoResumida = descricao;
+                                                    }
                                                 }
-                                                else
-                                                {
-                                                    descricaoResumida = descricao;
-                                                }
+                                                @descricaoResumida
                                             }
-                                            @descricaoResumida
-                                        }
-                                    </p>
-                                </div>
+                                        </p>
+                                    </div>
 
-                                <div class="d-inline-flex align-items-center position-absolute end-0">
-                                    <span class="added-at me-2">Adicionado em @{
-                                        var dataCriacao = ViewBag.Projeto.DataCriacao as DateTime?;
-                                        if (dataCriacao.HasValue)
-                                        {
-                                            @dataCriacao.Value.ToString("dd/MM/yyyy")
-                                        }
-                                    }</span>
+                                    <div class="d-inline-flex align-items-center position-absolute end-0">
+                                        <span class="added-at me-2">Adicionado em @{
+                                            var dataCriacao = projeto.DataCriacao as DateTime?;
+                                            if (dataCriacao.HasValue)
+                                            {
+                                                @dataCriacao.Value.ToString("dd/MM/yyyy")
+                                            }
+                                        }</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        }
                     }
                     else
                     {
-                        <h4 class="text-dark-blue fw-bold my-3">Nenhum projeto encontrado para o repositório informado</h4>
-                        <div class="d-flex mt-3">
-                            <a href="@Url.Action("Criar", "Projetos", new { repoUrl = ViewBag.RepoUrl })" class="btn btn-lg p-3 rounded-3 btn-primary">
-                                <i class="fa-solid fa-circle-plus me-2"></i>
-                                Criar novo projeto
-                            </a>
-                        </div>
-                        
+                        <h4 class="text-dark-blue fw-bold my-3">Nenhum projeto encontrado para os termos informados</h4>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="d-flex mt-3">
+                                <a href="@Url.Action("Criar", "Projetos", new { repoUrl = ViewBag.RepoUrl })" class="btn rounded-blue-btn">
+                                    <i class="fa-solid fa-circle-plus me-2"></i>
+                                    Criar novo projeto
+                                </a>
+                            </div>
+                        }
                     }
                 </div>
             </div>

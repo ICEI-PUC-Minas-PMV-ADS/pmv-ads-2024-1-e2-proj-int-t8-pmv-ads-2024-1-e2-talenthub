@@ -1,15 +1,19 @@
-﻿@{
+﻿@using TalentHub.Helpers
+
+@{
     ViewData["Title"] = "Página inicial";
+    var projetosMelhorAvaliados = ViewBag.ProjetosMelhorAvaliados as List<TalentHub.Models.Projeto>;
+    var projetosMaisAcessados = ViewBag.ProjetosMaisAcessados as List<TalentHub.Models.Projeto>;
 }
 
 <div class="home-content mb-5">
     <div class="top-bar d-flex align-items-center">
-        <div class="w-100 text-center fs-1 fw-bold text-white mb-5">367 projetos cadastrados</div>
+        <div class="w-100 text-center fs-1 fw-bold text-white mb-5">@ViewBag.ProjectCount projetos cadastrados</div>
     </div>
 
     <div class="search-container">
         <div class="search-card py-4 px-4">
-            <form method="post" asp-controller="Projetos" asp-action="Busca">
+            <form asp-action="BuscarProjeto" method="post">
                 <div class="input-group d-flex align-items-center">
                     <div class="input-group-prepend">
                         <span>
@@ -117,191 +121,118 @@
         <div class="col-md-9">
             <h3 class="text-start mb-4 fw-bold text-dark-blue">Melhor Avaliados</h3>
             <div class="list-group mb-5">
-                <a href="@Url.Action("Detalhes", "Projetos", new { id = 3 })" class="text-decoration-none">
-                    <div class="list-group-item d-flex justify-content-between align-items-center border-0">
-                        <div class="d-flex align-items-start">
-                            
-                            <div class="me-3 text-center">
-                                <div class="icon-wrapper bg-danger">
-                                    <i class="fas fa-heartbeat"></i>
+                @foreach (var projeto in projetosMelhorAvaliados)
+                {
+                    var categoria = projeto.Categoria.ToString().ToLower();
+                    <a href="@Url.Action("Detalhes", "Projetos", new { id = projeto.IdProjeto })" class="text-decoration-none">
+                        <div class="list-group-item d-flex justify-content-between align-items-center border-0 @categoria">
+                            <div class="d-flex align-items-start">
+                                <div class="me-3 text-center">
+                                    <div class="icon-wrapper @categoria">
+                                        <i class="@CategoryHelper.GetIconForCategory(categoria)"></i>
+                                    </div>
+                                    <label class="fs-7 @categoria">@projeto.Categoria</label>
                                 </div>
-                                <label class="fs-7 text-danger">Saúde</label>
-                            </div>
 
-                            <div class="">
-                                <h5 class="mb-1 text-dark-blue encoded-sans">Lorem ipsum dolor sit</h5>
-                                <p class="mb-1 mt-2 text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut efficitur nibh. Aliquam ligula ante, ornare a magna molestie, vestibulum condimentum turpis. Vestibulum at pellentesque nulla.</p>
-                            </div>
+                                <div class="">
+                                    <h5 class="mb-1 text-dark-blue encoded-sans">@projeto.NomeProjeto</h5>
+                                    <p class="mb-1 mt-2 text-muted">
+                                        @{
+                                            var descricao = projeto.DescricaoProjeto;
+                                            string descricaoResumida = "";
+                                            if (!string.IsNullOrEmpty(descricao))
+                                            {
+                                                if (descricao.Length > 170)
+                                                {
+                                                    descricaoResumida = descricao.Substring(0, 170) + "...";
+                                                }
+                                                else
+                                                {
+                                                    descricaoResumida = descricao;
+                                                }
+                                            }
+                                            @descricaoResumida
+                                        }
+                                    </p>
+                                </div>
 
-                            <div class="d-inline-flex align-items-center position-absolute end-0">
-                                <span class="rating-number me-2">4.9</span>
-                                <div class="rating-stars d-inline-block">
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star-half-alt text-warning"></i>
+                                <div class="d-inline-flex align-items-center position-absolute end-0">
+                                    <span class="rating-number me-2">@projeto.NotaMedia.ToString("0.0")</span>
+                                    <div class="rating-stars d-inline-block">
+                                        @for (int i = 1; i <= 5; i++)
+                                        {
+                                            if (i <= Math.Floor(projeto.NotaMedia))
+                                            {
+                                                <i class="fas fa-star text-warning"></i>
+                                            }
+                                            else if (i == Math.Ceiling(projeto.NotaMedia) && projeto.NotaMedia % 1 != 0)
+                                            {
+                                                <i class="fas fa-star-half-alt text-warning"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="far fa-star text-warning"></i>
+                                            }
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        
-                    </div>
-                </a>
+                    </a>
 
-                <div class="border-bottom my-4"></div>
-
-                <div class="list-group-item d-flex justify-content-between align-items-center border-0">
-                    <div class="d-flex align-items-start">
-                        <div class="me-3 text-center">
-                            <div class="icon-wrapper bg-warning">
-                                <i class="fas fa-microchip"></i>
-                            </div>
-                            <label class="fs-7 text-warning">Tecnologia</label>
-                        </div>
-                        <div>
-                            <h5 class="mb-1 text-dark-blue encoded-sans">Donec lobortis</h5>
-                            <p class="mb-1 mt-2 text-muted">Nullam fringilla augue a lacus faucibus imperdiet. Duis ultrices finibus laoreet. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.</p>
-                        </div>
-                        <div class="d-inline-flex align-items-center position-absolute end-0">
-                            <span class="rating-number me-2">4.7</span>
-                            <div class="rating-stars d-inline-block">
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star-half-alt text-warning"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="border-bottom my-4"></div>
-
-                <div class="list-group-item d-flex justify-content-between align-items-center border-0">
-                    <div class="d-flex align-items-start">
-                        <div class="me-3 text-center">
-                            <div class="icon-wrapper bg-info">
-                                <i class="fas fa-theater-masks"></i>
-                            </div>
-                            <label class="fs-7 text-info">Lazer</label>
-                        </div>
-                        <div>
-                            <h5 class="mb-1 text-dark-blue encoded-sans">Phasellus justo</h5>
-                            <p class="mb-1 mt-2 text-muted">Morbi finibus elit porta felis ullamcorper, vitae mollis mauris imperdiet. Vivamus vel velit nec mi semper vehicula at vel nisl. Nullam commodo diam et augue pharetra iaculis.</p>
-                        </div>
-                        <div class="d-inline-flex align-items-center position-absolute end-0">
-                            <span class="rating-number me-2">4.6</span>
-                            <div class="rating-stars d-inline-block">
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="far fa-star text-warning"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="border-bottom my-4"></div>
-
-                <div class="list-group-item d-flex justify-content-between align-items-center border-0">
-                    <div class="d-flex align-items-start">
-                        <div class="me-3 text-center">
-                            <div class="icon-wrapper bg-primary">
-                                <i class="fas fa-book-open"></i>
-                            </div>
-                            <label class="fs-7 text-primary">Educação</label>
-                        </div>
-                        <div>
-                            <h5 class="mb-1 text-dark-blue encoded-sans">Curriculum vitae euismod</h5>
-                            <p class="mb-1 mt-2 text-muted">Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas lectus erat, vehicula vitae sapien at, congue aliquam risus.</p>
-                        </div>
-                        <div class="d-inline-flex align-items-center position-absolute end-0">
-                            <span class="rating-number me-2">4.3</span>
-                            <div class="rating-stars d-inline-block">
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="far fa-star text-warning"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="border-bottom my-4"></div>
-
-                <div class="list-group-item d-flex justify-content-between align-items-center border-0">
-                    <div class="d-flex align-items-start">
-                        <div class="me-3 text-center">
-                            <div class="icon-wrapper bg-success">
-                                <i class="fas fa-plane"></i>
-                            </div>
-                            <label class="fs-7 text-success">Turismo</label>
-                        </div>
-                        <div>
-                            <h5 class="mb-1 text-dark-blue encoded-sans">Nulla volutpat aliquam velit</h5>
-                            <p class="mb-1 mt-2 text-muted">Mauris imperdiet vitae mauris id vestibulum. Integer imperdiet nibh at nulla dapibus rutrum. In a vulputate mauris.</p>
-                        </div>
-                        <div class="d-inline-flex align-items-center position-absolute end-0">
-                            <span class="rating-number me-2">4.8</span>
-                            <div class="rating-stars d-inline-block">
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                    <div class="border-bottom my-4"></div>
+                }
             </div>
 
 
             <h3 class="text-start mb-4 fw-bold text-dark-blue">Mais acessados</h3>
 
             <div class="list-group mb-5">
-                <a href="@Url.Action("Detalhes", "Projetos", new { id = 3 })" class="text-decoration-none">
-                    <div class="list-group-item d-flex justify-content-between align-items-center border-0">
-                        <div class="d-flex align-items-start">
-                            <div class="me-3 text-center">
-                                <div class="icon-wrapper bg-danger">
-                                    <i class="fas fa-heartbeat"></i>
+                    @foreach (var projeto in projetosMaisAcessados)
+                    {
+                        var categoria = projeto.Categoria.ToString().ToLower();
+                        <a href="@Url.Action("Detalhes", "Projetos", new { id = projeto.IdProjeto })" class="text-decoration-none">
+                            <div class="list-group-item d-flex justify-content-between align-items-center border-0 @categoria">
+                                <div class="d-flex align-items-start">
+                                    <div class="me-3 text-center">
+                                        <div class="icon-wrapper @categoria">
+                                            <i class="@CategoryHelper.GetIconForCategory(categoria)"></i>
+                                        </div>
+                                        <label class="fs-7 @categoria">@projeto.Categoria</label>
+                                    </div>
+
+                                    <div class="">
+                                        <h5 class="mb-1 text-dark-blue encoded-sans">@projeto.NomeProjeto</h5>
+                                        <p class="mb-1 mt-2 text-muted">
+                                            @{
+                                                var descricao = projeto.DescricaoProjeto;
+                                                string descricaoResumida = "";
+                                                if (!string.IsNullOrEmpty(descricao))
+                                                {
+                                                    if (descricao.Length > 170)
+                                                    {
+                                                        descricaoResumida = descricao.Substring(0, 170) + "...";
+                                                    }
+                                                    else
+                                                    {
+                                                        descricaoResumida = descricao;
+                                                    }
+                                                }
+                                                @descricaoResumida
+                                            }
+                                        </p>
+                                    </div>
+
+                                    <div class="ms-auto text-right">
+                                        <span class="badge text-muted fw-light">@projeto.QtdVisualizacoes acessos</span>
+                                    </div>
                                 </div>
-                                <label class="fs-7 text-danger">Saúde</label>
                             </div>
-                            <div>
-                                <h5 class="mb-1 text-dark-blue encoded-sans">Lorem ipsum dolor sit</h5>
-                                <p class="mb-1 mt-2 text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut efficitur nibh. Aliquam ligula ante, ornare a magna molestie, vestibulum condimentum turpis.</p>
-                            </div>
-                            <div class="ms-auto text-right">
-                                <span class="badge text-muted fw-light">435 acessos</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
+                        </a>
 
-                <div class="border-bottom my-4"></div>
-
-                <div class="list-group-item d-flex justify-content-between align-items-center border-0">
-                    <div class="d-flex align-items-start">
-                        <div class="me-3 text-center">
-                            <div class="icon-wrapper bg-warning">
-                                <i class="fas fa-microchip"></i>
-                            </div>
-                            <label class="fs-7 text-warning">Tecnologia</label>
-                        </div>
-                        <div>
-                            <h5 class="mb-1 text-dark-blue encoded-sans">Donec lobortis</h5>
-                            <p class="mb-1 mt-2 text-muted">Nullam fringilla augue a lacus faucibus imperdiet. Duis ultrices finibus laoreet. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.</p>
-                        </div>
-                        <div class="ms-auto text-right">
-                            <span class="badge text-muted fw-light">358 acessos</span>
-                        </div>
-                    </div>
+                        <div class="border-bottom my-4"></div>
+                    }
                 </div>
-
             </div>
         </div>
 
@@ -309,3 +240,4 @@
 </div>
 
 <link rel="stylesheet" href="~/css/home.css?t=@DateTime.Now" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/projetos.css?t=@DateTime.Now" asp-append-version="true" />
