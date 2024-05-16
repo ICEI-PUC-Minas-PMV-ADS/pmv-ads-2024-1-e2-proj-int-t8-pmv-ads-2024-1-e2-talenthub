@@ -1,17 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TalentHub.Models;
-using System.Linq;
 using TalentHub.Data;
+using System.Text.RegularExpressions;
 
 public class ProjetosController : Controller
 {
   private readonly TalentHubContext _context;
+  private readonly GitHubService _gitHubService;
 
-  public ProjetosController(TalentHubContext context)
+
+  public ProjetosController(TalentHubContext context, GitHubService gitHubService)
   {
     _context = context;
+    _gitHubService = gitHubService;
   }
 
   // GET: Projetos
@@ -212,6 +214,50 @@ public class ProjetosController : Controller
     return View("ResultadosBusca", projetos);
   }
 
+  // POST: Projetos/BuscarRepositorio
+  [HttpPost]
+  [ValidateAntiForgeryToken]
+  public async Task<IActionResult> BuscarRepositorio(string repoUrl)
+  {
+    var existingProject = await _context.Projetos.FirstOrDefaultAsync(p => p.UrlRepositorio == repoUrl);
+    if (existingProject != null)
+    {
+      ViewBag.Projeto = existingProject;
+      return View("ResultadosBusca");
+    }
+    else
+    {
+      var repoInfo = ParseGitHubUrl(repoUrl);
+      if (repoInfo.HasValue)
+      {
+        var (Owner, Repo) = repoInfo.Value;
+        var fileContent = await _gitHubService.GetFileContent(Owner, Repo, "docs/01-Documentação de Contexto.md");
+        if (fileContent == null)
+        {
+          ModelState.AddModelError("", "Não foi possível encontrar o arquivo no GitHub.");
+          return View("ResultadosBusca");
+        }
+
+        ViewBag.RepoUrl = repoUrl;
+        return View("ResultadosBusca");
+      }
+      else
+      {
+        ModelState.AddModelError("", "URL do repositório inválida.");
+        return View("ResultadosBusca");
+      }
+    }
+  }
+
+  private (string Owner, string Repo)? ParseGitHubUrl(string url)
+  {
+    var match = Regex.Match(url, @"https:\/\/github\.com\/(?<owner>[^\/]+)\/(?<repo>[^\/]+)");
+    if (match.Success)
+    {
+      return (match.Groups["owner"].Value, match.Groups["repo"].Value);
+    }
+    return null;
+  }
 
 
 }

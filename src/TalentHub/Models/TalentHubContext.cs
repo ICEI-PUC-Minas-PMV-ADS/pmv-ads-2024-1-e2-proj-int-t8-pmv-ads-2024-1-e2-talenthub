@@ -27,5 +27,13 @@ namespace TalentHub.Data
         optionsBuilder.UseSqlServer(connectionString);
       }
     }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+      base.OnModelCreating(modelBuilder);
+      modelBuilder.Entity<Projeto>()
+          .Property(p => p.DataCriacao)
+          .HasDefaultValueSql("GETDATE()");
+    }
   }
 }
