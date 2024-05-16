@@ -29,7 +29,7 @@
                   <li class="nav-item">
                       <a class="nav-link text-dark-blue fw-bold" asp-area="" asp-controller="Projetos" asp-action="Gerenciar">Gerenciar projetos</a>
                   </li>
-                  @if (User.Identity.IsAuthenticated)
+                  @if (User?.Identity?.IsAuthenticated == true)
                   {
                       <li class="nav-item">
                           <span>

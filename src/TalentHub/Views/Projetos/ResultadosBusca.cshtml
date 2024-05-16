@@ -1,5 +1,8 @@
-﻿@{
-    ViewData["Title"] = "Gerenciar projetos";
+﻿@using TalentHub.Helpers
+
+@{
+    ViewData["Title"] = "Resultados da busca";
+    var projetos = ViewBag.Projetos as List<TalentHub.Models.Projeto>;
 }
 
 <div class="home-content mb-5">
@@ -9,84 +12,117 @@
 
     <div class="search-container">
         <div class="search-card py-4 px-4">
-            <div class="input-group d-flex align-items-center">
-                <div class="input-group-prepend">
-                    <span>
-                        <img src="~/images/github@100x100.png" alt="Buscar" height="50" />
-                    </span>
+            <form asp-action="BuscarRepositorio" method="post">
+                <div class="input-group d-flex align-items-center">
+                    <div class="input-group-prepend">
+                        <span>
+                            <img src="~/images/github@100x100.png" alt="Buscar" height="50" />
+                        </span>
+                    </div>
+                    <input type="text" class="form-control input-group-text encoded-sans fw-600 fs-55" name="searchTerm" placeholder="Cadastre um projeto buscando pela url do repositório GitHub ou pelo nome"
+                        aria-label="Busque por um projeto">
+                    <div class="input-group-append">
+                        <button class="search-btn d-flex justify-content-between align-items-center" type="submit">
+                            <img src="~/images/git@100x100.png" alt="Buscar" height="34" class="me-1" /> <div class="text-center me-3 encoded-sans fw-600 fs-55">Buscar repositório</div>
+                        </button>
+                    </div>
                 </div>
-                <input type="text" class="form-control input-group-text encoded-sans fw-600 fs-55" placeholder="Cadastre um projeto buscando pela url do repositório GitHub"
-                    aria-label="Busque por um projeto" aria-describedby="basic-addon1">
-                <div class="input-group-append">
-                    <button class="search-btn d-flex justify-content-between align-items-center" type="button">
-                        <img src="~/images/git@100x100.png" alt="Buscar" height="34" class="me-1" /> <div class="text-center me-3 encoded-sans fw-600 fs-55">Buscar repositório</div>
-                    </button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 
     <div class="container content-container mt-5">
-    <div class="row">
-        <div class="col-md-3">
-            <div class="w-75">
-                <h5 class="mb-4 fw-bold text-dark-blue">Ajuda</h5>
-                
-                <div class="mb-3 pt-3">
-                    <h6 class="fw-bold text-dark-blue mb-3">Buscar repositório</h6>
-                    <p class="text-muted">Cole a URL completa do repositório a ser buscado e clique no botão Buscar repositório para encontrar ou automatizar a criação do projeto.</p>
-                </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="w-75">
+                    <h5 class="mb-4 fw-bold text-dark-blue">Ajuda</h5>
 
-                <div class="mb-3 pt-3">
-                    <h6 class="fw-bold text-dark-blue mb-3">Criar repositório</h6>
-                    <p class="text-muted">Cole a URL completa do repositório para verificar se o projeto já existe. Caso o projeto não exista, você poderá criá-lo.</p>
-                </div>
-
-                <div class="mb-3 pt-3">
-                    <h6 class="fw-bold text-dark-blue mb-3">Editar ou apagar projetos</h6>
-                    <p class="text-muted">Selecione um projeto cadastrado por você na lista ao lado e você poderá editá-lo ou até apagá-lo.</p>
-                </div>
-
-                
-            </div>
-        </div>
-
-        <div class="col-md-9">
-            <h3 class="text-start mb-4 fw-bold text-dark-blue">Projetos encontrados</h3>
-            <div class="list-group mb-5">
-                
-                <div class="list-group-item d-flex justify-content-between align-items-center border-0">
-                    <div class="d-flex align-items-start">
-                        
-                        <div class="me-3 text-center">
-                            <div class="icon-wrapper bg-danger">
-                                <i class="fas fa-heartbeat"></i>
-                            </div>
-                            <label class="fs-7 text-danger">Saúde</label>
-                        </div>
-
-                        <div class="">
-                            <h5 class="mb-1 text-dark-blue encoded-sans">Lorem ipsum dolor sit</h5>
-                            <p class="mb-1 mt-2 text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut efficitur nibh. Aliquam ligula ante, ornare a magna molestie, vestibulum condimentum turpis. Vestibulum at pellentesque nulla.</p>
-                        </div>
-
-                        <div class="d-inline-flex align-items-center position-absolute end-0">
-                            <span class="added-at me-2">Adicionado em 28/03/2024</span>
-                        </div>
+                    <div class="mb-3 pt-3">
+                        <h6 class="fw-bold text-dark-blue mb-3">Buscar repositório</h6>
+                        <p class="text-muted">Cole a URL completa do repositório a ser buscado e clique no botão Buscar repositório para encontrar ou automatizar a criação do projeto.</p>
                     </div>
-                    
-                </div>
 
-                @if (false)
-                {
-                    <h4 class="text-dark-blue fw-bold my-3">Nenhum projeto encontrado para o repositório informado</h4>
-                }                   
+                    <div class="mb-3 pt-3">
+                        <h6 class="fw-bold text-dark-blue mb-3">Criar repositório</h6>
+                        <p class="text-muted">Cole a URL completa do repositório para verificar se o projeto já existe. Caso o projeto não exista, você poderá criá-lo.</p>
+                    </div>
+
+                    <div class="mb-3 pt-3">
+                        <h6 class="fw-bold text-dark-blue mb-3">Editar ou apagar projetos</h6>
+                        <p class="text-muted">Selecione um projeto cadastrado por você na lista ao lado e você poderá editá-lo ou até apagá-lo.</p>
+                    </div>
+                </div>
             </div>
 
-            <!-- BOTAO --> 
-            
-        </div>
+            <div class="col-md-9">
+                @if (projetos != null) {<h3 class="text-start mb-4 fw-bold text-dark-blue">Projetos encontrados</h3>}
+                <div class="list-group mb-5">
+                    @if (projetos != null && projetos.Any())
+                    {
+                        @foreach (var projeto in projetos)
+                        {
+                            var categoria = projeto.Categoria.ToString().ToLower();
+                            <div class="list-group-item d-flex justify-content-between align-items-center border-0 @categoria">
+                                <div class="d-flex align-items-start">
+                                    <div class="me-3 text-center">
+                                        <div class="icon-wrapper">
+                                            <i class="@TalentHub.Helpers.CategoryHelper.GetIconForCategory(categoria)"></i>
+                                        </div>
+                                        <label class="fs-7 @categoria">@projeto.Categoria</label>
+                                    </div>
 
+                                    <div class="">
+                                        <h5 class="mb-1 text-dark-blue encoded-sans">@projeto.NomeProjeto</h5>
+                                        <p class="mb-1 mt-2 text-muted">
+                                            @{
+                                                var descricao = projeto.DescricaoProjeto;
+                                                string descricaoResumida = "";
+                                                if (!string.IsNullOrEmpty(descricao))
+                                                {
+                                                    if (descricao.Length > 170)
+                                                    {
+                                                        descricaoResumida = descricao.Substring(0, 170) + "...";
+                                                    }
+                                                    else
+                                                    {
+                                                        descricaoResumida = descricao;
+                                                    }
+                                                }
+                                                @descricaoResumida
+                                            }
+                                        </p>
+                                    </div>
+
+                                    <div class="d-inline-flex align-items-center position-absolute end-0">
+                                        <span class="added-at me-2">Adicionado em @{
+                                            var dataCriacao = projeto.DataCriacao as DateTime?;
+                                            if (dataCriacao.HasValue)
+                                            {
+                                                @dataCriacao.Value.ToString("dd/MM/yyyy")
+                                            }
+                                        }</span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <h4 class="text-dark-blue fw-bold my-3">Nenhum projeto encontrado para os termos informados</h4>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="d-flex mt-3">
+                                <a href="@Url.Action("Criar", "Projetos", new { repoUrl = ViewBag.RepoUrl })" class="btn rounded-blue-btn">
+                                    <i class="fa-solid fa-circle-plus me-2"></i>
+                                    Criar novo projeto
+                                </a>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

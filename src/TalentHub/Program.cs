@@ -60,6 +60,7 @@ builder.Services.AddDbContext<TalentHubContext>(options =>
     options.UseSqlServer(connectionString));
 
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+builder.Services.AddHttpClient<GitHubService>();
 
 var app = builder.Build();
 

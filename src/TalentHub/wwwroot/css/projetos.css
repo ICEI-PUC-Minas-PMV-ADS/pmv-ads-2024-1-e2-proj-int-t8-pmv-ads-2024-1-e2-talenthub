@@ -38,6 +38,28 @@
   outline: none;
 }
 
+.search-btn:hover {
+  background-color: #2f6ce5;
+  color: white;
+}
+
+.rounded-blue-btn {
+  background-color: #367cff;
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  gap: 10px;
+  outline: none;
+}
+
+.rounded-blue-btn:hover {
+  background-color: #2f6ce5;
+  color: white;
+}
+
 .list {
   list-style-type: none;
   padding: 10px;
@@ -130,4 +152,65 @@
 .review-text small {
   display: block;
   color: #6c757d;
+}
+
+/* Cores e ícones para categorias */
+.saude {
+  color: #ff6f61;
+}
+
+.saude .icon-wrapper {
+  background-color: #ff6f61;
+}
+
+.tecnologia {
+  color: #fca020;
+}
+
+.tecnologia .icon-wrapper {
+  background-color: #fca020;
+}
+
+.financas {
+  color: #5bc0de;
+}
+
+.financas .icon-wrapper {
+  background-color: #5bc0de;
+}
+
+.icon-wrapper i {
+  color: white;
+}
+
+.projetossociais {
+  color: #5cb85c;
+}
+
+.projetossociais .icon-wrapper {
+  background-color: #5cb85c;
+}
+
+.turismo {
+  color: #d9534f;
+}
+
+.turismo .icon-wrapper {
+  background-color: #d9534f;
+}
+
+.lazer {
+  color: #428bca;
+}
+
+.lazer .icon-wrapper {
+  background-color: #428bca;
+}
+
+.outros {
+  color: #777;
+}
+
+.outros .icon-wrapper {
+  background-color: #777;
 }

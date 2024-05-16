@@ -1,9 +1,9 @@
-﻿@model TalentHub.Models.Projeto
+﻿@using TalentHub.Helpers
+@model TalentHub.Models.Projeto
 
 @{
     ViewData["Title"] = "Detalhes do Projeto";
 }
-
 
 <div class="details-content mb-5">
     <div class="top-bar d-flex align-items-center">
@@ -12,22 +12,23 @@
 
     <div class="search-container">
         <div class="search-card py-4 px-4">
-            <div class="input-group d-flex align-items-center">
-                <div class="input-group-prepend">
-                    <span>
-                        <img src="~/images/magnifier@100x100.png" alt="Buscar" height="50" />
-                    </span>
+            <form asp-controller="Projetos" asp-action="BuscarProjeto" method="post">
+                <div class="input-group d-flex align-items-center">
+                    <div class="input-group-prepend">
+                        <span>
+                            <img src="~/images/magnifier@100x100.png" alt="Buscar" height="50" />
+                        </span>
+                    </div>
+                    <input type="text" class="form-control input-group-text encoded-sans fw-600 fs-55" name="searchTerm"
+                        placeholder="Busque por um projeto" aria-label="Busque por um projeto" aria-describedby="basic-addon1">
+                    <div class="input-group-append">
+                        <button class="search-btn d-flex justify-content-between align-items-center" type="submit">
+                            <img src="~/images/paper-plane@100x100.png" alt="Buscar" height="34" class="me-3" />
+                            <div class="text-center fs-5 me-5 encoded-sans fw-600">Buscar</div>
+                        </button>
+                    </div>
                 </div>
-                <input type="text" class="form-control input-group-text encoded-sans fw-600 fs-55"
-                    placeholder="Busque por um projeto" aria-label="Busque por um projeto"
-                    aria-describedby="basic-addon1">
-                <div class="input-group-append">
-                    <button class="search-btn d-flex justify-content-between align-items-center" type="button">
-                        <img src="~/images/paper-plane@100x100.png" alt="Buscar" height="34" class="me-3" />
-                        <div class="text-center fs-5 me-5 encoded-sans fw-600">Buscar</div>
-                    </button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 
@@ -44,13 +45,13 @@
                     <div class="text-primary mt-3">Fazer anotação</div>
                     <hr>
                 </div>
-                <div class="menu-item"  data-bs-toggle="modal" data-bs-target="#contactModal">
+                <div class="menu-item" data-bs-toggle="modal" data-bs-target="#contactModal">
                     <i class="fas fa-address-book text-primary"></i>
                     <div class="text-primary mt-3">Entrar em contato</div>
                     <hr>
                 </div>
                 <div class="menu-item">
-                    <a href="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e2-proj-int-t8-pmv-ads-2024-1-e2-talenthub" target="_blank" class="text-primary d-block text-decoration-none">
+                    <a href="@Model.UrlRepositorio" target="_blank" class="text-primary d-block text-decoration-none">
                         <i class="fab fa-github"></i>
                         <div class="mt-3">Repositório</div>
                     </a>
@@ -63,97 +64,91 @@
                 <div class="d-flex mb-5">
                     <div class="d-flex w-100 justify-content-between align-items-center">
                         <div class="d-flex align-items-center">
-                            <div class="d-grid text-center">
-                                <div class="icon-wrapper bg-danger">
-                                    <i class="fas fa-heartbeat text-white"></i>
+                            <div class="d-grid text-center @Model.Categoria.ToString().ToLower()">
+                                <div class="icon-wrapper @Model.Categoria.ToString().ToLower()">
+                                    <i class="@TalentHub.Helpers.CategoryHelper.GetIconForCategory(Model.Categoria.ToString().ToLower()) text-white"></i>
                                 </div>
-                                <label class="fs-7 text-danger">Saúde</label>
+                                <label class="fs-7 @Model.Categoria.ToString().ToLower()">@Model.Categoria</label>
                             </div>
                             
-                            <h1 class="h3 ms-3 mb-4 encoded-sans">Lorem ipsum dolor sit amet</h1>
+                            <h1 class="h3 ms-3 mb-4 encoded-sans">@Model.NomeProjeto</h1>
                         </div>
 
                         <div class="mb-4">
-                            <small class="rating-number">500 visualizações</small>
+                            <small class="rating-number">@Model.QtdVisualizacoes visualizações</small>
                             <div class="rating-stars d-flex align-items-center mt-2">
-                                <span class="review-average me-2">4.5</span>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
+                                <span class="review-average me-2">@Model.NotaMedia.ToString("0.0")</span>
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    if (i <= Math.Floor(Model.NotaMedia))
+                                    {
+                                        <i class="fas fa-star"></i>
+                                    }
+                                    else if (i == Math.Ceiling(Model.NotaMedia) && Model.NotaMedia % 1 != 0)
+                                    {
+                                        <i class="fas fa-star-half-alt"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="far fa-star"></i>
+                                    }
+                                }
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="project-info">
                     <h5 class="mb-3">Detalhes do Projeto</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis nisi interdum massa malesuada
-                        efficitur. Maecenas eu lacinia tortor. Nullam auctor tristique convallis. Sed convallis placerat
-                        nisl, quis iaculis elit lacinia in. Class aptent taciti sociosqu ad litora torquent per conubia
-                        nostra, per inceptos himenaeos. Nulla quis mollis leo, vel porttitor tellus. Vivamus a vehicula
-                        mi, et vulputate diam. Pellentesque non metus quis ex ullamcorper egestas. Praesent dui ante,
-                        efficitur at vestibulum sit amet, ornare egestas nibh.
-
-                        Sed viverra commodo justo id cursus. Etiam mattis quam eget venenatis dignissim. Nam nec finibus
-                        mi, non ullamcorper sapien. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-                        posuere cubilia curae; Nam tellus augue, ornare vulputate nisl ac, congue pretium nibh.
-                        Suspendisse purus tortor, porttitor at lorem tempor, tempor gravida ipsum. Sed ut aliquet
-                        sapien, eu posuere urna. Aenean molestie quam porttitor quam posuere, eget finibus massa
-                        ultrices. Donec tincidunt, mi ut molestie scelerisque, massa mi condimentum felis, vitae
-                        pharetra risus odio vulputate sem. Praesent egestas congue pharetra. In a iaculis nibh.</p>
+                    <p>@Model.DescricaoProjeto</p>
 
                     <h5>Integrantes do Projeto</h5>
-                    <p>Fulano, Ciclano, Beltrano</p>
+                    <p>@Model.Integrantes</p>
 
                     <h5>Ano e Período/Eixo</h5>
-                    <p>2024/2</p>
+                    <p>@Model.Ano/@Model.Periodo</p>
 
                     <h5>URL da aplicação</h5>
-                    <p><a href="https://puctalenthub.azurewebsites.net" target="_blank">https://puctalenthub.azurewebsites.net</a></p>
+                    <p><a href="@Model.UrlAplicacao" target="_blank">@Model.UrlAplicacao</a></p>
                     
                     <h5>Palavras-chave</h5>
-                    <p>Palavra1, Palavra2, Palavra3</p>
+                    <p>@Model.PalavraChave</p>
                 </div>
                 
                 <div class="border-bottom mt-5"></div>
 
                 <h5 class="mt-5">Avaliações e comentários</h5>
                 <div class="reviews-section">
-                    <div class="review-item">
-                        <div class="review-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <span class="review-average ms-2">4.5</span>
+                    @foreach (var avaliacao in Model.Avaliacoes)
+                    {
+                        <div class="review-item">
+                            <div class="review-rating">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    if (i <= avaliacao.Nota)
+                                    {
+                                        <i class="fas fa-star"></i>
+                                    }
+                                    else if (i == avaliacao.Nota + 1 && avaliacao.Nota % 1 != 0)
+                                    {
+                                        <i class="fas fa-star-half-alt"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="far fa-star"></i>
+                                    }
+                                }
+                                <span class="review-average ms-2">@avaliacao.Nota.ToString("0.0")</span>
+                            </div>
+                            <div class="review-text">
+                                <p>@avaliacao.Comentario</p>
+                                @* <small class="text-muted">- @avaliacao.UsuarioNome, @avaliacao.DataAvaliacao.ToString("dd/MM/yyyy")</small> *@
+                            </div>
                         </div>
-                        <div class="review-text">
-                            <p>"Muito bem organizado e informativo. O projeto superou minhas expectativas em vários aspectos, especialmente na clareza da apresentação."</p>
-                            <small class="text-muted">- João Silva, 02/05/2024</small>
-                        </div>
-                    </div>
-                    <div class="review-item">
-                        <div class="review-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span class="review-average ms-2">5.0</span>
-                        </div>
-                        <div class="review-text">
-                            <p>"O projeto foi inovador e trouxe uma nova perspectiva sobre o tema tratado. Recomendo fortemente para quem estiver interessado no assunto."</p>
-                            <small class="text-muted">- Maria Oliveira, 10/05/2024</small>
-                        </div>
-                    </div>
+                    }
                 </div>
-
             </div>
         </div>
     </div>
-
 </div>
 
 <div class="modal fade" id="rateProjectModal" tabindex="-1" role="dialog" aria-labelledby="rateProjectModalLabel" aria-hidden="true">
@@ -227,22 +222,18 @@
             <div class="modal-body">
                 <p><strong>Contato dos Integrantes:</strong></p>
                 <div class="p-3 bg-light border rounded">
-                    João Silva - Email: joao.silva@gmail.com<br>
-                    Maria Oliveira - Celular: (11) 99999-8888<br>
-                    Carlos Pereira - Email: carlos.p@gmail.com, Telefone: (21) 7777-6666
+                    @foreach (var integrante in Model.Integrantes.Split(','))
+                    {
+                        <p>@integrante</p>
+                    }
                 </div>
                 <p class="mt-3">Use as informações acima para entrar em contato com os integrantes do projeto.</p>
             </div>
-
-
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
 </div>
-
-
-
 
 <link rel="stylesheet" href="~/css/projetos.css?t=@DateTime.Now" asp-append-version="true" />
