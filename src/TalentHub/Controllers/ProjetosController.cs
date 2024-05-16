@@ -219,7 +219,7 @@ public class ProjetosController : Controller
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> BuscarRepositorio(string repoUrl)
   {
-    var existingProject = await _context.Projetos.FirstOrDefaultAsync(p => p.UrlRepositorio == repoUrl);
+    var existingProject = await _context.Projetos.FirstOrDefaultAsync(p => p.UrlRepositorio.ToLower() == repoUrl.ToLower() || p.NomeProjeto.ToLower() == repoUrl.ToLower());
     if (existingProject != null)
     {
       ViewBag.Projeto = existingProject;
