@@ -2,13 +2,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TalentHub.Models;
 using TalentHub.Data;
+using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 public class ProjetosController : Controller
 {
   private readonly TalentHubContext _context;
   private readonly GitHubService _gitHubService;
-
 
   public ProjetosController(TalentHubContext context, GitHubService gitHubService)
   {
@@ -38,8 +39,7 @@ public class ProjetosController : Controller
       return NotFound();
     }
 
-    var projeto = await _context.Projetos
-        .FirstOrDefaultAsync(m => m.IdProjeto == id);
+    var projeto = await _context.Projetos.FirstOrDefaultAsync(m => m.IdProjeto == id);
     if (projeto == null)
     {
       return NotFound();
@@ -105,7 +105,6 @@ public class ProjetosController : Controller
     return View(projeto);
   }
 
-
   // POST: Projetos/Edit/5
   [HttpPost]
   [ValidateAntiForgeryToken]
@@ -147,8 +146,7 @@ public class ProjetosController : Controller
       return NotFound();
     }
 
-    var projeto = await _context.Projetos
-        .FirstOrDefaultAsync(m => m.IdProjeto == id);
+    var projeto = await _context.Projetos.FirstOrDefaultAsync(m => m.IdProjeto == id);
     if (projeto == null)
     {
       return NotFound();
@@ -198,98 +196,70 @@ public class ProjetosController : Controller
   }
 
   // GET: Projetos/ResultadosBusca
-  public async Task<IActionResult> ResultadosBusca()
-  {
-    var projetos = await _context.Projetos.ToListAsync();
-    return View(projetos);
-  }
-
-
-  // POST: Projetos/Busca
-  [HttpPost]
-  public async Task<IActionResult> Busca(string searchTerm)
-  {
-    ViewData["SearchTerm"] = searchTerm;
-    var projetos = await _context.Projetos.ToListAsync();
-    return View("ResultadosBusca", projetos);
-  }
-
-  // POST: Projetos/BuscarRepositorio
-  [HttpPost]
-  [ValidateAntiForgeryToken]
-  public async Task<IActionResult> BuscarRepositorio(string searchTerm)
+  public async Task<IActionResult> ResultadosBusca(string searchTerm)
   {
     if (string.IsNullOrWhiteSpace(searchTerm))
     {
-      ModelState.AddModelError("", "Por favor, insira um termo de busca.");
-      return View("ResultadosBusca");
+      return View(new List<Projeto>());
     }
 
     var projetos = await _context.Projetos
-        .Where(p => p.UrlRepositorio.ToLower().Contains(searchTerm.ToLower()) || p.NomeProjeto.ToLower().Contains(searchTerm.ToLower()))
+        .Where(p => p.NomeProjeto.ToLower().Contains(searchTerm.ToLower()) ||
+                    p.DescricaoProjeto.ToLower().Contains(searchTerm.ToLower()))
         .ToListAsync();
 
-    if (projetos.Any())
-    {
-      ViewBag.Projetos = projetos;
-    }
-    else
-    {
-      ModelState.AddModelError("", "Nenhum projeto encontrado para o termo informado.");
-    }
-
-    return View("ResultadosBusca");
+    return View(projetos);
   }
 
-  // POST: Projetos/BuscarProjeto
-  [HttpPost]
-  [ValidateAntiForgeryToken]
+  // GET: Projetos/BuscarProjeto
   public async Task<IActionResult> BuscarProjeto(string searchTerm)
   {
     if (string.IsNullOrWhiteSpace(searchTerm))
     {
       ModelState.AddModelError("", "Por favor, insira um termo de busca.");
-      return View("ResultadosBusca");
+      return View("ResultadosBusca", new List<Projeto>());
     }
 
     var projetos = await _context.Projetos
-        .Where(p => p.NomeProjeto.ToLower().Contains(searchTerm.ToLower()) || p.DescricaoProjeto.ToLower().Contains(searchTerm.ToLower()))
+        .Where(p => p.NomeProjeto.ToLower().Contains(searchTerm.ToLower()) ||
+                    p.DescricaoProjeto.ToLower().Contains(searchTerm.ToLower()))
         .ToListAsync();
 
     if (projetos.Any())
     {
-      ViewBag.Projetos = projetos;
+      return View("ResultadosBusca", projetos);
     }
     else
     {
       ModelState.AddModelError("", "Nenhum projeto encontrado para o termo informado.");
+      return View("ResultadosBusca", new List<Projeto>());
     }
-
-    return View("ResultadosBusca");
   }
 
+  /*
+  public async Task<IActionResult> BuscarRepositorio(string repoUrl)
+  {
+      var repoInfo = ParseGitHubUrl(repoUrl);
+      if (repoInfo.HasValue)
+      {
+          var (Owner, Repo) = repoInfo.Value;
+          var fileContent = await _gitHubService.GetFileContent(Owner, Repo, "docs/01-Documentação de Contexto.md");
+          if (fileContent == null)
+          {
+              ModelState.AddModelError("", "Não foi possível encontrar o arquivo no GitHub.");
+              return View("ResultadosBusca");
+          }
 
-  // {
-  //     var repoInfo = ParseGitHubUrl(repoUrl);
-  //     if (repoInfo.HasValue)
-  //     {
-  //       var (Owner, Repo) = repoInfo.Value;
-  //       var fileContent = await _gitHubService.GetFileContent(Owner, Repo, "docs/01-Documentação de Contexto.md");
-  //       if (fileContent == null)
-  //       {
-  //         ModelState.AddModelError("", "Não foi possível encontrar o arquivo no GitHub.");
-  //         return View("ResultadosBusca");
-  //       }
-
-  //       ViewBag.RepoUrl = repoUrl;
-  //       return View("ResultadosBusca");
-  //     }
-  //     else
-  //     {
-  //       ModelState.AddModelError("", "URL do repositório inválida.");
-  //       return View("ResultadosBusca");
-  //     }
-  //   }
+          ViewBag.RepoUrl = repoUrl;
+          return View("ResultadosBusca");
+      }
+      else
+      {
+          ModelState.AddModelError("", "URL do repositório inválida.");
+          return View("ResultadosBusca");
+      }
+  }
+  */
 
   private (string Owner, string Repo)? ParseGitHubUrl(string url)
   {
@@ -300,6 +270,4 @@ public class ProjetosController : Controller
     }
     return null;
   }
-
-
 }
