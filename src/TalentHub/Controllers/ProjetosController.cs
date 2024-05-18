@@ -5,6 +5,7 @@ using TalentHub.Data;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 public class ProjetosController : Controller
 {
@@ -222,7 +223,8 @@ public class ProjetosController : Controller
 
     var projetos = await _context.Projetos
         .Where(p => p.NomeProjeto.ToLower().Contains(searchTerm.ToLower()) ||
-                    p.DescricaoProjeto.ToLower().Contains(searchTerm.ToLower()))
+                    p.DescricaoProjeto.ToLower().Contains(searchTerm.ToLower()) ||
+                    p.PalavraChave.ToLower().Contains(searchTerm.ToLower()))
         .ToListAsync();
 
     if (projetos.Any())
@@ -236,30 +238,57 @@ public class ProjetosController : Controller
     }
   }
 
-  /*
-  public async Task<IActionResult> BuscarRepositorio(string repoUrl)
+  [HttpPost]
+  [ValidateAntiForgeryToken]
+  public async Task<IActionResult> VerificarRepositorio(string repoUrl)
   {
-      var repoInfo = ParseGitHubUrl(repoUrl);
-      if (repoInfo.HasValue)
-      {
-          var (Owner, Repo) = repoInfo.Value;
-          var fileContent = await _gitHubService.GetFileContent(Owner, Repo, "docs/01-Documentação de Contexto.md");
-          if (fileContent == null)
-          {
-              ModelState.AddModelError("", "Não foi possível encontrar o arquivo no GitHub.");
-              return View("ResultadosBusca");
-          }
+    if (string.IsNullOrWhiteSpace(repoUrl))
+    {
+      ModelState.AddModelError("", "Por favor, insira a URL do repositório.");
+      return RedirectToAction(nameof(ResultadosBusca));
+    }
 
-          ViewBag.RepoUrl = repoUrl;
-          return View("ResultadosBusca");
+    var projetoExistente = await _context.Projetos.FirstOrDefaultAsync(p => p.UrlRepositorio == repoUrl);
+    if (projetoExistente != null)
+    {
+      ModelState.AddModelError("", "O projeto já está cadastrado.");
+      return RedirectToAction(nameof(ResultadosBusca));
+    }
+
+    var repoInfo = ParseGitHubUrl(repoUrl);
+    if (repoInfo.HasValue)
+    {
+      var (Owner, Repo) = repoInfo.Value;
+      var repoData = await _gitHubService.GetRepositoryData(Owner, Repo);
+      var contributors = await _gitHubService.GetRepositoryContributors(Owner, Repo);
+      if (repoData != null)
+      {
+        var novoProjeto = new Projeto
+        {
+          NomeProjeto = repoData.Name,
+          Ano = DateTime.Now.Year.ToString(),
+          Periodo = "1",
+          Categoria = CategoriaEnum.Outros,
+          PalavraChave = "",
+          UrlRepositorio = repoUrl,
+          DescricaoProjeto = repoData.Description,
+          Integrantes = string.Join(", ", contributors.Select(c => c.Login)),
+        };
+
+        return View("Criar", novoProjeto);
       }
       else
       {
-          ModelState.AddModelError("", "URL do repositório inválida.");
-          return View("ResultadosBusca");
+        ModelState.AddModelError("", "Não foi possível encontrar o repositório no GitHub.");
+        return RedirectToAction(nameof(ResultadosBusca));
       }
+    }
+    else
+    {
+      ModelState.AddModelError("", "URL do repositório inválida.");
+      return RedirectToAction(nameof(ResultadosBusca));
+    }
   }
-  */
 
   private (string Owner, string Repo)? ParseGitHubUrl(string url)
   {

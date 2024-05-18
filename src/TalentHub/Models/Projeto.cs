@@ -10,30 +10,32 @@ namespace TalentHub.Models
     public int IdProjeto { get; set; }
 
     [Required(ErrorMessage = "O campo Nome do Projeto é obrigatório.")]
-    public string NomeProjeto { get; set; }
+    public required string NomeProjeto { get; set; }
 
     [Required(ErrorMessage = "O campo Descrição é obrigatório.")]
-    public string DescricaoProjeto { get; set; }
+    public required string DescricaoProjeto { get; set; }
 
     [Required(ErrorMessage = "O campo Ano é obrigatório.")]
-    public string Ano { get; set; }
+    public required string Ano { get; set; }
 
     [Required(ErrorMessage = "O campo Período é obrigatório.")]
-    public string Periodo { get; set; }
+    public required string Periodo { get; set; }
 
     [Required(ErrorMessage = "O campo Categoria do Repositório é obrigatório.")]
     public CategoriaEnum Categoria { get; set; }
 
-    public string PalavraChave { get; set; }
+    [Required(ErrorMessage = "O campo Palavra-chave é obrigatório.")]
+    public required string PalavraChave { get; set; }
 
     [Required(ErrorMessage = "O campo URL do Repositório é obrigatório.")]
-    public string UrlRepositorio { get; set; }
+    public required string UrlRepositorio { get; set; }
 
-    [Required(ErrorMessage = "O campo URL da Aplicação é obrigatório.")]
-    public string UrlAplicacao { get; set; }
+    public string? UrlAplicacao { get; set; }
 
     [Required(ErrorMessage = "O campo Integrantes é obrigatório.")]
-    public string Integrantes { get; set; }
+    public required string Integrantes { get; set; }
+
+    public string? InformacoesContato { get; set; }
 
     public int QtdVisualizacoes { get; set; }
 
