@@ -259,27 +259,40 @@ public class ProjetosController : Controller
     if (repoInfo.HasValue)
     {
       var (Owner, Repo) = repoInfo.Value;
-      var repoData = await _gitHubService.GetRepositoryData(Owner, Repo);
-      var contributors = await _gitHubService.GetRepositoryContributors(Owner, Repo);
-      if (repoData != null)
+
+      var readmeContent = await _gitHubService.GetFileContent(Owner, Repo, new[] { "README.md" });
+      if (readmeContent != null)
       {
+        var decodedReadme = _gitHubService.IsBase64String(readmeContent)
+            ? GitHubService.DecodeBase64Content(readmeContent)
+            : readmeContent;
+        var (name, integrantes, ano, periodo) = GitHubService.ExtractDataFromReadme(decodedReadme);
+        var introducao = "";
+
+        string[] paths = new[] { "docs/01-Documentação de Contexto.md", "documentos/01-Documentação de Contexto.md" };
+        var fileContent = await _gitHubService.GetFileContent(Owner, Repo, paths);
+        if (fileContent != null)
+        {
+          introducao = _gitHubService.ExtractIntroduction(fileContent);
+        }
+
         var novoProjeto = new Projeto
         {
-          NomeProjeto = repoData.Name,
-          Ano = DateTime.Now.Year.ToString(),
-          Periodo = "1",
+          NomeProjeto = name,
+          Ano = ano ?? DateTime.Now.Year.ToString(),
+          Periodo = periodo ?? "1",
           Categoria = CategoriaEnum.Outros,
           PalavraChave = "",
           UrlRepositorio = repoUrl,
-          DescricaoProjeto = repoData.Description,
-          Integrantes = string.Join(", ", contributors.Select(c => c.Login)),
+          DescricaoProjeto = introducao,
+          Integrantes = integrantes,
         };
 
         return View("Criar", novoProjeto);
       }
       else
       {
-        ModelState.AddModelError("", "Não foi possível encontrar o repositório no GitHub.");
+        ModelState.AddModelError("", "Não foi possível encontrar o README no GitHub.");
         return RedirectToAction(nameof(ResultadosBusca));
       }
     }
@@ -299,4 +312,5 @@ public class ProjetosController : Controller
     }
     return null;
   }
+
 }
