@@ -1,21 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 public class GitHubService
 {
   private readonly HttpClient _httpClient;
 
-  public GitHubService(HttpClient httpClient)
+  public GitHubService(HttpClient httpClient, string token)
   {
     _httpClient = httpClient;
     _httpClient.DefaultRequestHeaders.UserAgent.TryParseAdd("request");
+    _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("token", token);
   }
 
   public async Task<string> GetFileContent(string owner, string repo, string[] paths)
@@ -65,38 +61,6 @@ public class GitHubService
   {
     var decodedBytes = Convert.FromBase64String(base64Content);
     return Encoding.UTF8.GetString(decodedBytes);
-  }
-
-  public async Task<GitHubRepositoryData> GetRepositoryData(string owner, string repo)
-  {
-    var url = $"https://api.github.com/repos/{owner}/{repo}";
-    var response = await _httpClient.GetAsync(url);
-
-    if (!response.IsSuccessStatusCode)
-    {
-      return null;
-    }
-
-    var content = await response.Content.ReadAsStringAsync();
-    var repoData = JsonConvert.DeserializeObject<GitHubRepositoryData>(content);
-    return repoData;
-  }
-
-  public async Task<List<GitHubContributor>> GetRepositoryContributors(string owner, string repo)
-  {
-    var url = $"https://api.github.com/repos/{owner}/{repo}/contributors";
-    var response = await _httpClient.GetAsync(url);
-
-    if (!response.IsSuccessStatusCode)
-    {
-      return null;
-    }
-
-    var content = await response.Content.ReadAsStringAsync();
-    var contributors = JsonConvert.DeserializeObject<List<GitHubContributor>>(content);
-
-    var humanContributors = contributors.Where(c => !c.Login.Contains("[bot]")).ToList();
-    return humanContributors;
   }
 
   public static (string Name, string Integrantes, string Ano, string Periodo) ExtractDataFromReadme(string readmeContent)

@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using TalentHub.Data;
 using Microsoft.Data.SqlClient;
 using Microsoft.AspNetCore.CookiePolicy;
+using Microsoft.Extensions.Logging;
+using System.Net.Http.Headers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -59,8 +61,38 @@ if (!string.IsNullOrEmpty(dbPassword))
 builder.Services.AddDbContext<TalentHubContext>(options =>
     options.UseSqlServer(connectionString));
 
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+
+builder.Services.AddHttpClient<GitHubService>((serviceProvider, client) =>
+{
+    var gitHubToken = Environment.GetEnvironmentVariable("GITHUB_TOKEN");
+
+    if (string.IsNullOrEmpty(gitHubToken))
+    {
+        var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
+        logger.LogError("Token GitHub não configurado.");
+        throw new InvalidOperationException("Token GitHub não configurado.");
+    }
+
+    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("token", gitHubToken);
+    client.DefaultRequestHeaders.UserAgent.TryParseAdd("request");
+});
+
+builder.Services.AddScoped<GitHubService>(serviceProvider =>
+{
+    var httpClient = serviceProvider.GetRequiredService<HttpClient>();
+    var gitHubToken = Environment.GetEnvironmentVariable("GITHUB_TOKEN");
+
+    if (gitHubToken == null)
+    {
+        throw new InvalidOperationException("Token GitHub não configurado.");
+    }
+
+    return new GitHubService(httpClient, gitHubToken);
+});
+
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
-builder.Services.AddHttpClient<GitHubService>();
 
 var app = builder.Build();
 
