@@ -58,7 +58,7 @@ public class ProjetosController : Controller
   // POST: Projetos/Criar
   [HttpPost]
   [ValidateAntiForgeryToken]
-  public async Task<IActionResult> Criar([Bind("NomeProjeto,UrlRepositorio,UrlAplicacao,Integrantes")] Projeto projeto)
+  public async Task<IActionResult> Criar([Bind("NomeProjeto,UrlRepositorio,UrlAplicacao,Integrantes,Ano,Periodo,PalavraChave,DescricaoProjeto,Categoria,InformacoesContato")] Projeto projeto)
   {
     if (!ModelState.IsValid)
     {

@@ -45,11 +45,15 @@
                     <div class="text-primary mt-3">Fazer anotação</div>
                     <hr>
                 </div>
-                <div class="menu-item" data-bs-toggle="modal" data-bs-target="#contactModal">
-                    <i class="fas fa-address-book text-primary"></i>
-                    <div class="text-primary mt-3">Entrar em contato</div>
-                    <hr>
-                </div>
+
+                @if (Model.InformacoesContato != null)
+                {
+                    <div class="menu-item" data-bs-toggle="modal" data-bs-target="#contactModal">
+                        <i class="fas fa-address-book text-primary"></i>
+                        <div class="text-primary mt-3">Entrar em contato</div>
+                        <hr>
+                    </div>
+                }
                 <div class="menu-item">
                     <a href="@Model.UrlRepositorio" target="_blank" class="text-primary d-block text-decoration-none">
                         <i class="fab fa-github"></i>
@@ -107,45 +111,55 @@
                     <h5>Ano e Período/Eixo</h5>
                     <p>@Model.Ano/@Model.Periodo</p>
 
-                    <h5>URL da aplicação</h5>
-                    <p><a href="@Model.UrlAplicacao" target="_blank">@Model.UrlAplicacao</a></p>
-                    
-                    <h5>Palavras-chave</h5>
-                    <p>@Model.PalavraChave</p>
-                </div>
-                
-                <div class="border-bottom mt-5"></div>
-
-                <h5 class="mt-5">Avaliações e comentários</h5>
-                <div class="reviews-section">
-                    @foreach (var avaliacao in Model.Avaliacoes)
+                    @if (Model.UrlAplicacao != null)
                     {
-                        <div class="review-item">
-                            <div class="review-rating">
-                                @for (int i = 1; i <= 5; i++)
-                                {
-                                    if (i <= avaliacao.Nota)
-                                    {
-                                        <i class="fas fa-star"></i>
-                                    }
-                                    else if (i == avaliacao.Nota + 1 && avaliacao.Nota % 1 != 0)
-                                    {
-                                        <i class="fas fa-star-half-alt"></i>
-                                    }
-                                    else
-                                    {
-                                        <i class="far fa-star"></i>
-                                    }
-                                }
-                                <span class="review-average ms-2">@avaliacao.Nota.ToString("0.0")</span>
-                            </div>
-                            <div class="review-text">
-                                <p>@avaliacao.Comentario</p>
-                                @* <small class="text-muted">- @avaliacao.UsuarioNome, @avaliacao.DataAvaliacao.ToString("dd/MM/yyyy")</small> *@
-                            </div>
-                        </div>
+                        <h5>URL da aplicação</h5>
+                        <p><a href="@Model.UrlAplicacao" target="_blank">@Model.UrlAplicacao</a></p>                        
+                    }
+                    
+                    @if (Model.PalavraChave != null)
+                    {
+                        <h5>Palavras-chave</h5>
+                        <p>@Model.PalavraChave</p>
                     }
                 </div>
+
+                @if(Model.Avaliacoes.Count > 0)
+                {
+                    <div class="border-bottom mt-5"></div>
+
+                    <h5 class="mt-5">Avaliações e comentários</h5>
+                    <div class="reviews-section">
+                        @foreach (var avaliacao in Model.Avaliacoes)
+                        {
+                            <div class="review-item">
+                                <div class="review-rating">
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        if (i <= avaliacao.Nota)
+                                        {
+                                            <i class="fas fa-star"></i>
+                                        }
+                                        else if (i == avaliacao.Nota + 1 && avaliacao.Nota % 1 != 0)
+                                        {
+                                            <i class="fas fa-star-half-alt"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="far fa-star"></i>
+                                        }
+                                    }
+                                    <span class="review-average ms-2">@avaliacao.Nota.ToString("0.0")</span>
+                                </div>
+                                <div class="review-text">
+                                    <p>@avaliacao.Comentario</p>
+                                    @* <small class="text-muted">- @avaliacao.UsuarioNome, @avaliacao.DataAvaliacao.ToString("dd/MM/yyyy")</small> *@
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                
             </div>
         </div>
     </div>

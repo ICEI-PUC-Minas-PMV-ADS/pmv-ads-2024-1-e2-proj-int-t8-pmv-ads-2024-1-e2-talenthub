@@ -19,7 +19,7 @@ namespace TalentHub.Helpers
         case "lazer":
           return "fas fa-football-ball";
         case "outros":
-          return "fas fa-ellipsis-h";
+          return "fa-solid fa-globe";
         default:
           return "fas fa-folder";
       }
