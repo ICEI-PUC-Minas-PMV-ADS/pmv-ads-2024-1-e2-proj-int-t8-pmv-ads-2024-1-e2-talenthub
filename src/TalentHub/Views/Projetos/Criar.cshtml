@@ -1,38 +1,149 @@
 ﻿@model TalentHub.Models.Projeto
 
 @{
-    ViewData["Title"] = "Criar Projeto";
+    ViewData["Title"] = "Criar novo projeto";
+
+    var anos = new List<int>();
+    for (int i = 2015; i <= DateTime.Now.Year; i++)
+    {
+        anos.Add(i);
+    }
 }
 
-<h2>Criar Projeto</h2>
+<div class="home-content mb-5">
+    <div class="top-bar d-flex align-items-center">
+        <div class="w-100 text-center fs-1 fw-bold text-white mb-5">Criar novo projeto</div>
+    </div>
 
-<form asp-action="Criar" method="post" class="my-4">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="form-group mb-3">
-        <label asp-for="NomeProjeto" class="control-label">Nome do Projeto</label>
-        <input asp-for="NomeProjeto" class="form-control" placeholder="Insira o nome do projeto" />
-        <span asp-validation-for="NomeProjeto" class="text-danger"></span>
+    <div class="search-container">
+        <div class="search-card py-4 px-4">
+            <form asp-controller="Projetos" asp-action="BuscarProjeto" method="get">
+                <div class="input-group d-flex align-items-center">
+                    <div class="input-group-prepend">
+                        <span>
+                            <img src="~/images/magnifier@100x100.png" alt="Buscar" height="50" />
+                        </span>
+                    </div>
+                    <input type="text" class="form-control input-group-text encoded-sans fw-600 fs-55" name="searchTerm"
+                        placeholder="Busque por um projeto" aria-label="Busque por um projeto" aria-describedby="basic-addon1">
+                    <div class="input-group-append">
+                        <button class="search-btn d-flex justify-content-between align-items-center" type="submit">
+                            <img src="~/images/paper-plane@100x100.png" alt="Buscar" height="34" class="me-3" />
+                            <div class="text-center fs-5 me-5 encoded-sans fw-600">Buscar</div>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="form-group mb-3">
-        <label asp-for="UrlRepositorio" class="control-label">URL do Repositório</label>
-        <input asp-for="UrlRepositorio" class="form-control" placeholder="https://exemplo.com/repositorio" />
-        <span asp-validation-for="UrlRepositorio" class="text-danger"></span>
-    </div>
-    <div class="form-group mb-3">
-        <label asp-for="UrlAplicacao" class="control-label">URL da Aplicação</label>
-        <input asp-for="UrlAplicacao" class="form-control" placeholder="https://exemplo.com/aplicacao" />
-        <span asp-validation-for="UrlAplicacao" class="text-danger"></span>
-    </div>
-    <div class="form-group mb-3">
-        <label asp-for="Integrantes" class="control-label">Integrantes</label>
-        <input asp-for="Integrantes" class="form-control" placeholder="Nome dos integrantes separados por vírgula" />
-        <span asp-validation-for="Integrantes" class="text-danger"></span>
-    </div>
-    <div class="form-group" style="margin-bottom: 20px;">
-        <button type="submit" class="btn btn-primary">Criar</button>
-    </div>
-</form>
 
-<div style="margin-top: 10px;">
-    <a asp-action="Index">Voltar para a lista</a>
+    <div class="container content-container mt-5">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="text-start mb-4 fw-bold text-dark-blue">Dados do projeto</h3>
+                <p class="text-muted">
+                    O TalentHub automatiza o preenchimento das informações do seu projeto buscando através da API oficial do GitHub. Valide com atenção os campos que foram preenchidos, corrigindo e/ou complementando-os.
+                </p>
+                <form asp-action="Criar" method="post" class="my-4">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <label asp-for="UrlRepositorio" class="control-label fw-bold text-dark-blue mb-2">URL do Repositório</label>
+                            <input asp-for="UrlRepositorio" class="form-control border-1 border-primary p-3" placeholder="https://exemplo.com/repositorio" />
+                            <span asp-validation-for="UrlRepositorio" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <label asp-for="UrlAplicacao" class="control-label fw-bold text-dark-blue mb-2">URL da Aplicação</label>
+                            <input asp-for="UrlAplicacao" class="form-control border-1 border-primary p-3" placeholder="https://exemplo.com/aplicacao" />
+                            <span asp-validation-for="UrlAplicacao" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label asp-for="NomeProjeto" class="control-label fw-bold text-dark-blue mb-2">Nome</label>
+                            <input asp-for="NomeProjeto" class="form-control border-1 border-primary p-3" placeholder="Insira o nome do projeto" />
+                            <span asp-validation-for="NomeProjeto" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Categoria" class="control-label fw-bold text-dark-blue mb-2">Categoria</label>
+                            <select asp-for="Categoria" class="form-control border-1 border-primary p-3">
+                                <option value="Saude">Saúde</option>
+                                <option value="Tecnologia">Tecnologia</option>
+                                <option value="Financas">Finanças</option>
+                                <option value="ProjetosSociais">Projetos Sociais</option>
+                                <option value="Turismo">Turismo</option>
+                                <option value="Lazer">Lazer</option>
+                                <option value="Outros">Outros</option>
+                            </select>
+                            <span asp-validation-for="Categoria" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="DescricaoProjeto" class="control-label fw-bold text-dark-blue mb-2">Descrição do projeto</label>
+                        <textarea asp-for="DescricaoProjeto" class="form-control border-1 border-primary p-3" placeholder="Descreva o projeto" rows="5"></textarea>
+                        <span asp-validation-for="DescricaoProjeto" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="PalavraChave" class="control-label fw-bold text-dark-blue mb-2">Palavras-chave</label>
+                        <input asp-for="PalavraChave" class="form-control border-1 border-primary p-3" placeholder="Ex: Consultas, Carros" />
+                        <span asp-validation-for="PalavraChave" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Integrantes" class="control-label fw-bold text-dark-blue mb-2">Integrantes</label>
+                        <input asp-for="Integrantes" class="form-control border-1 border-primary p-3" placeholder="Nome dos integrantes separados por vírgula" />
+                        <span asp-validation-for="Integrantes" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="InformacoesContato" class="control-label fw-bold text-dark-blue mb-2">Informações de contato</label>
+                        <textarea asp-for="InformacoesContato" class="form-control border-1 border-primary p-3" placeholder="Insira informações de contato como e-mails, telefones, etc." rows="5"></textarea>
+                        <span asp-validation-for="InformacoesContato" class="text-danger"></span>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label asp-for="Ano" class="control-label fw-bold text-dark-blue mb-2">Ano</label>
+                            <select asp-for="Ano" class="form-control border-1 border-primary p-3">
+                                <option value="">-</option>
+                                @foreach (var ano in anos)
+                                {
+                                    <option value="@ano">@ano</option>
+                                }
+                            </select>
+                            <span asp-validation-for="Ano" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Periodo" class="control-label fw-bold text-dark-blue mb-2">Período / Eixo</label>
+                            <select asp-for="Periodo" class="form-control border-1 border-primary p-3">
+                                <option value="">-</option>
+                                <option value="1">1°</option>
+                                <option value="2">2°</option>
+                                <option value="3">3°</option>
+                                <option value="4">4°</option>
+                                <option value="5">5°</option>
+                                <option value="6">6°</option>
+                                <option value="7">7°</option>
+                                <option value="8">8°</option>
+                            </select>
+                            <span asp-validation-for="Periodo" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group d-flex justify-content-end mt-5">
+                        <button type="submit" class="btn rounded-blue-btn">Salvar projeto</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
+
+<link rel="stylesheet" href="~/css/projetos.css?t=@DateTime.Now" asp-append-version="true" />

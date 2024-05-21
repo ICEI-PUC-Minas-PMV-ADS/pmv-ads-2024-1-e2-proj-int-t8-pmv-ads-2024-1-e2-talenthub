@@ -5,6 +5,7 @@ using TalentHub.Data;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 public class ProjetosController : Controller
 {
@@ -57,7 +58,7 @@ public class ProjetosController : Controller
   // POST: Projetos/Criar
   [HttpPost]
   [ValidateAntiForgeryToken]
-  public async Task<IActionResult> Criar([Bind("NomeProjeto,UrlRepositorio,UrlAplicacao,Integrantes")] Projeto projeto)
+  public async Task<IActionResult> Criar([Bind("NomeProjeto,UrlRepositorio,UrlAplicacao,Integrantes,Ano,Periodo,PalavraChave,DescricaoProjeto,Categoria,InformacoesContato")] Projeto projeto)
   {
     if (!ModelState.IsValid)
     {
@@ -222,7 +223,8 @@ public class ProjetosController : Controller
 
     var projetos = await _context.Projetos
         .Where(p => p.NomeProjeto.ToLower().Contains(searchTerm.ToLower()) ||
-                    p.DescricaoProjeto.ToLower().Contains(searchTerm.ToLower()))
+                    p.DescricaoProjeto.ToLower().Contains(searchTerm.ToLower()) ||
+                    p.PalavraChave.ToLower().Contains(searchTerm.ToLower()))
         .ToListAsync();
 
     if (projetos.Any())
@@ -236,30 +238,70 @@ public class ProjetosController : Controller
     }
   }
 
-  /*
-  public async Task<IActionResult> BuscarRepositorio(string repoUrl)
+  [HttpPost]
+  [ValidateAntiForgeryToken]
+  public async Task<IActionResult> VerificarRepositorio(string repoUrl)
   {
-      var repoInfo = ParseGitHubUrl(repoUrl);
-      if (repoInfo.HasValue)
-      {
-          var (Owner, Repo) = repoInfo.Value;
-          var fileContent = await _gitHubService.GetFileContent(Owner, Repo, "docs/01-Documentação de Contexto.md");
-          if (fileContent == null)
-          {
-              ModelState.AddModelError("", "Não foi possível encontrar o arquivo no GitHub.");
-              return View("ResultadosBusca");
-          }
+    if (string.IsNullOrWhiteSpace(repoUrl))
+    {
+      ModelState.AddModelError("", "Por favor, insira a URL do repositório.");
+      return RedirectToAction(nameof(ResultadosBusca));
+    }
 
-          ViewBag.RepoUrl = repoUrl;
-          return View("ResultadosBusca");
+    var projetoExistente = await _context.Projetos.FirstOrDefaultAsync(p => p.UrlRepositorio == repoUrl);
+    if (projetoExistente != null)
+    {
+      ModelState.AddModelError("", "O projeto já está cadastrado.");
+      return RedirectToAction(nameof(ResultadosBusca));
+    }
+
+    var repoInfo = ParseGitHubUrl(repoUrl);
+    if (repoInfo.HasValue)
+    {
+      var (Owner, Repo) = repoInfo.Value;
+
+      var readmeContent = await _gitHubService.GetFileContent(Owner, Repo, new[] { "README.md" });
+      if (readmeContent != null)
+      {
+        var decodedReadme = _gitHubService.IsBase64String(readmeContent)
+            ? GitHubService.DecodeBase64Content(readmeContent)
+            : readmeContent;
+        var (name, integrantes, ano, periodo) = GitHubService.ExtractDataFromReadme(decodedReadme);
+        var introducao = "";
+
+        string[] paths = new[] { "docs/01-Documentação de Contexto.md", "documentos/01-Documentação de Contexto.md" };
+        var fileContent = await _gitHubService.GetFileContent(Owner, Repo, paths);
+        if (fileContent != null)
+        {
+          introducao = _gitHubService.ExtractIntroduction(fileContent);
+        }
+
+        var novoProjeto = new Projeto
+        {
+          NomeProjeto = name,
+          Ano = ano ?? DateTime.Now.Year.ToString(),
+          Periodo = periodo ?? "1",
+          Categoria = CategoriaEnum.Outros,
+          PalavraChave = "",
+          UrlRepositorio = repoUrl,
+          DescricaoProjeto = introducao,
+          Integrantes = integrantes,
+        };
+
+        return View("Criar", novoProjeto);
       }
       else
       {
-          ModelState.AddModelError("", "URL do repositório inválida.");
-          return View("ResultadosBusca");
+        ModelState.AddModelError("", "Não foi possível encontrar o README no GitHub.");
+        return RedirectToAction(nameof(ResultadosBusca));
       }
+    }
+    else
+    {
+      ModelState.AddModelError("", "URL do repositório inválida.");
+      return RedirectToAction(nameof(ResultadosBusca));
+    }
   }
-  */
 
   private (string Owner, string Repo)? ParseGitHubUrl(string url)
   {
@@ -270,4 +312,5 @@ public class ProjetosController : Controller
     }
     return null;
   }
+
 }
