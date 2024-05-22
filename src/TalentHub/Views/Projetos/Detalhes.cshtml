@@ -70,9 +70,9 @@
                         <div class="d-flex align-items-center">
                             <div class="d-grid text-center @Model.Categoria.ToString().ToLower()">
                                 <div class="icon-wrapper @Model.Categoria.ToString().ToLower()">
-                                    <i class="@TalentHub.Helpers.CategoryHelper.GetIconForCategory(Model.Categoria.ToString().ToLower()) text-white"></i>
+                                    <i class="@TalentHub.Helpers.CategoriaHelper.GetIconForCategoria((CategoriaEnum)Enum.Parse(typeof(CategoriaEnum), Model.Categoria.ToString(), true)) text-white"></i>
                                 </div>
-                                <label class="fs-7 @Model.Categoria.ToString().ToLower()">@Model.Categoria</label>
+                                <label class="fs-7 @Model.Categoria.GetDescription()">@Model.Categoria.GetDescription()</label>
                             </div>
                             
                             <h1 class="h3 ms-3 mb-4 encoded-sans">@Model.NomeProjeto</h1>
