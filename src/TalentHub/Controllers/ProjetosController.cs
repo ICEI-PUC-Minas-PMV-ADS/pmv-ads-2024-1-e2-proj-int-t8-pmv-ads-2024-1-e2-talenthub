@@ -239,8 +239,6 @@ public class ProjetosController : Controller
     return View(projetos);
   }
 
-
-
   // GET: Projetos/BuscarProjeto
   public async Task<IActionResult> BuscarProjeto(string searchTerm)
   {
