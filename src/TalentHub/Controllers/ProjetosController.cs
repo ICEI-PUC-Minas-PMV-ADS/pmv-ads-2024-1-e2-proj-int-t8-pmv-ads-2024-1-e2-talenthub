@@ -80,7 +80,7 @@ public class ProjetosController : Controller
     try
     {
       await _context.SaveChangesAsync();
-      return RedirectToAction(nameof(Index));
+      return RedirectToAction(nameof(Detalhes), new { id = projeto.IdProjeto });
     }
     catch (Exception ex)
     {
