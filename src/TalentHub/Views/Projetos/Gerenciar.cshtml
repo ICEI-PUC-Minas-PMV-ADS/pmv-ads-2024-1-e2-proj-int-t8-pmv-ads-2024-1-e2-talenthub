@@ -55,7 +55,19 @@
         </div>
 
         <div class="col-md-9">
-            <h3 class="text-start mb-4 fw-bold text-dark-blue">Projetos cadastrados</h3>
+            <div class="d-flex justify-content-between align-items-center mb-5">
+                <h3 class="text-start fw-bold text-dark-blue">Projetos que cadastrei</h3>
+                @if (User.Identity.IsAuthenticated)
+                    {
+                        <div class="d-flex">
+                            <a href="#" class="btn rounded-blue-btn" data-bs-toggle="modal" data-bs-target="#repoModal">
+                                <i class="fa-solid fa-circle-plus me-2"></i>
+                                Cadastrar projeto
+                            </a>
+                        </div>
+                    }
+            </div>
+            
             <div class="list-group mb-5">
                 
                 <div class="list-group-item d-flex justify-content-between align-items-center border-0">
@@ -106,6 +118,29 @@
             
         </div>
 
+    </div>
+</div>
+
+<div class="modal fade" id="repoModal" tabindex="-1" role="dialog" aria-labelledby="repoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <form asp-controller="Projetos" asp-action="VerificarRepositorio" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="repoModalLabel">Criar novo projeto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="repoUrl" class="mb-1">URL do Repositório GitHub</label>
+                        <input type="text" class="form-control" id="repoUrl" name="repoUrl" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Verificar</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
