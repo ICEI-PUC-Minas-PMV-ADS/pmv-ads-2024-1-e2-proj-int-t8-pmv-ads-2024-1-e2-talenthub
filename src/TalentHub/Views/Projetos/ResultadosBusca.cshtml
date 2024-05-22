@@ -68,9 +68,9 @@
                                     <div class="d-flex align-items-start">
                                         <div class="me-3 text-center">
                                             <div class="icon-wrapper @categoria">
-                                                <i class="@TalentHub.Helpers.CategoryHelper.GetIconForCategory(categoria)"></i>
+                                                <i class="@TalentHub.Helpers.CategoriaHelper.GetIconForCategoria((CategoriaEnum)Enum.Parse(typeof(CategoriaEnum), categoria.ToString(), true))"></i>
                                             </div>
-                                            <label class="fs-7 @categoria">@projeto.Categoria</label>
+                                            <label class="fs-7 @projeto.Categoria.GetDescription()">@projeto.Categoria.GetDescription()</label>
                                         </div>
 
                                         <div class="">

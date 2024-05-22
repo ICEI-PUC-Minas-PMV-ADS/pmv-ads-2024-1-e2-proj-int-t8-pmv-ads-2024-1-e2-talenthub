@@ -69,6 +69,7 @@
                             <input asp-for="NomeProjeto" class="form-control border-1 border-primary p-3" placeholder="Insira o nome do projeto" />
                             <span asp-validation-for="NomeProjeto" class="text-danger"></span>
                         </div>
+
                         <div class="col-md-6">
                             <label asp-for="Categoria" class="control-label fw-bold text-dark-blue mb-2">Categoria</label>
                             <select asp-for="Categoria" class="form-control border-1 border-primary p-3">
@@ -78,6 +79,11 @@
                                 <option value="ProjetosSociais">Projetos Sociais</option>
                                 <option value="Turismo">Turismo</option>
                                 <option value="Lazer">Lazer</option>
+                                <option value="Educacao">Educação</option>
+                                <option value="Esporte">Esporte</option>
+                                <option value="Ciencia">Ciência</option>
+                                <option value="MeioAmbiente">Meio Ambiente</option>
+                                <option value="Comercio">Comércio</option>
                                 <option value="Outros">Outros</option>
                             </select>
                             <span asp-validation-for="Categoria" class="text-danger"></span>

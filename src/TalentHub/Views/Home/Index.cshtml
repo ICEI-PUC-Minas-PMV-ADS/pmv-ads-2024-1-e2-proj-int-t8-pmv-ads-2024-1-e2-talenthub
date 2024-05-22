@@ -139,7 +139,7 @@
         <div class="col-md-9">
             <h3 class="text-start mb-4 fw-bold text-dark-blue">Melhor Avaliados</h3>
             <div class="list-group mb-5">
-                @foreach (var projeto in projetosMelhorAvaliados)
+                @foreach (var projeto in projetosMelhorAvaliados!)
                 {
                     var categoria = projeto.Categoria.ToString().ToLower();
                     <a href="@Url.Action("Detalhes", "Projetos", new { id = projeto.IdProjeto })" class="text-decoration-none">
@@ -147,9 +147,9 @@
                             <div class="d-flex align-items-start">
                                 <div class="me-3 text-center">
                                     <div class="icon-wrapper @categoria">
-                                        <i class="@CategoryHelper.GetIconForCategory(categoria)"></i>
+                                        <i class="@TalentHub.Helpers.CategoriaHelper.GetIconForCategoria((CategoriaEnum)Enum.Parse(typeof(CategoriaEnum), categoria.ToString(), true))"></i>
                                     </div>
-                                    <label class="fs-7 @categoria">@projeto.Categoria</label>
+                                    <label class="fs-7 @projeto.Categoria.GetDescription()">@projeto.Categoria.GetDescription()</label>
                                 </div>
 
                                 <div class="">
@@ -214,9 +214,9 @@
                                 <div class="d-flex align-items-start">
                                     <div class="me-3 text-center">
                                         <div class="icon-wrapper @categoria">
-                                            <i class="@CategoryHelper.GetIconForCategory(categoria)"></i>
+                                            <i class="@TalentHub.Helpers.CategoriaHelper.GetIconForCategoria((CategoriaEnum)Enum.Parse(typeof(CategoriaEnum), categoria.ToString(), true))"></i>
                                         </div>
-                                        <label class="fs-7 @categoria">@projeto.Categoria</label>
+                                        <label class="fs-7 @projeto.Categoria.GetDescription()">@projeto.Categoria.GetDescription()</label>
                                     </div>
 
                                     <div class="">

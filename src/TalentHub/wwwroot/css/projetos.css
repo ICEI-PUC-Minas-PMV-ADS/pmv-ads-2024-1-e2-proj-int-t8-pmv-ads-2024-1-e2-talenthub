@@ -179,10 +179,6 @@
   background-color: #5bc0de;
 }
 
-.icon-wrapper i {
-  color: white;
-}
-
 .projetossociais {
   color: #5cb85c;
 }
@@ -207,10 +203,54 @@
   background-color: #428bca;
 }
 
+.educacao {
+  color: #8e44ad;
+}
+
+.educacao .icon-wrapper {
+  background-color: #8e44ad;
+}
+
+.esporte {
+  color: #27ae60;
+}
+
+.esporte .icon-wrapper {
+  background-color: #27ae60;
+}
+
+.ciencia {
+  color: #2980b9;
+}
+
+.ciencia .icon-wrapper {
+  background-color: #2980b9;
+}
+
+.meioambiente {
+  color: #2ecc71;
+}
+
+.meioambiente .icon-wrapper {
+  background-color: #2ecc71;
+}
+
+.comercio {
+  color: #d10a9f;
+}
+
+.comercio .icon-wrapper {
+  background-color: #d10a9f;
+}
+
 .outros {
   color: #e16d80;
 }
 
 .outros .icon-wrapper {
   background-color: #e16d80;
+}
+
+.icon-wrapper i {
+  color: white;
 }
