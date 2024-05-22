@@ -197,20 +197,49 @@ public class ProjetosController : Controller
   }
 
   // GET: Projetos/ResultadosBusca
-  public async Task<IActionResult> ResultadosBusca(string searchTerm)
+  public async Task<IActionResult> ResultadosBusca(string searchTerm, string[] categorias, string palavrasChave, int? ano, int? periodo, int? rating)
   {
-    if (string.IsNullOrWhiteSpace(searchTerm))
+    var query = _context.Projetos.AsQueryable();
+
+    if (!string.IsNullOrWhiteSpace(searchTerm))
     {
-      return View(new List<Projeto>());
+      query = query.Where(p => p.NomeProjeto.ToLower().Contains(searchTerm.ToLower()) ||
+                               p.DescricaoProjeto.ToLower().Contains(searchTerm.ToLower()) ||
+                               p.PalavraChave.ToLower().Contains(searchTerm.ToLower()));
     }
 
-    var projetos = await _context.Projetos
-        .Where(p => p.NomeProjeto.ToLower().Contains(searchTerm.ToLower()) ||
-                    p.DescricaoProjeto.ToLower().Contains(searchTerm.ToLower()))
-        .ToListAsync();
+    if (categorias != null && categorias.Length > 0)
+    {
+      var categoriasEnum = categorias.Select(c => (CategoriaEnum)Enum.Parse(typeof(CategoriaEnum), c)).ToList();
+      query = query.Where(p => categoriasEnum.Contains(p.Categoria));
+    }
+
+    if (!string.IsNullOrWhiteSpace(palavrasChave))
+    {
+      query = query.Where(p => p.PalavraChave.ToLower().Contains(palavrasChave.ToLower()));
+    }
+
+    if (ano.HasValue)
+    {
+      query = query.Where(p => p.Ano == ano.ToString());
+    }
+
+    if (periodo.HasValue)
+    {
+      query = query.Where(p => p.Periodo == periodo.ToString());
+    }
+
+    if (rating.HasValue)
+    {
+      query = query.Where(p => p.NotaMedia >= rating);
+    }
+
+    var projetos = await query.ToListAsync();
 
     return View(projetos);
   }
+
+
 
   // GET: Projetos/BuscarProjeto
   public async Task<IActionResult> BuscarProjeto(string searchTerm)
