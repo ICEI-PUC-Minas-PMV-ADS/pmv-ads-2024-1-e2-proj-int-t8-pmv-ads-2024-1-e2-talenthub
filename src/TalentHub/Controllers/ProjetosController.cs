@@ -252,7 +252,8 @@ public class ProjetosController : Controller
     var projetos = await _context.Projetos
         .Where(p => p.NomeProjeto.ToLower().Contains(searchTerm.ToLower()) ||
                     p.DescricaoProjeto.ToLower().Contains(searchTerm.ToLower()) ||
-                    p.PalavraChave.ToLower().Contains(searchTerm.ToLower()))
+                    p.PalavraChave.ToLower().Contains(searchTerm.ToLower()) ||
+                    p.UrlRepositorio.ToLower().Contains(searchTerm.ToLower()))
         .ToListAsync();
 
     if (projetos.Any())
