@@ -109,7 +109,7 @@ public class ProjetosController : Controller
   // POST: Projetos/Edit/5
   [HttpPost]
   [ValidateAntiForgeryToken]
-  public async Task<IActionResult> Editar(int id, [Bind("IdProjeto,NomeProjeto,UrlRepositorio,UrlAplicacao,Integrantes")] Projeto projeto)
+  public async Task<IActionResult> Editar(int id, [Bind("IdProjeto,NomeProjeto,DescricaoProjeto,Ano,Periodo,Categoria,PalavraChave,UrlRepositorio,UrlAplicacao,Integrantes")] Projeto projeto)
   {
     if (id != projeto.IdProjeto)
     {
