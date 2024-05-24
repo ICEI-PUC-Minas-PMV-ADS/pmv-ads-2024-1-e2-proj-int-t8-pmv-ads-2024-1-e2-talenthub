@@ -66,7 +66,7 @@ builder.Logging.AddConsole();
 
 builder.Services.AddHttpClient<GitHubService>((serviceProvider, client) =>
 {
-    var gitHubToken = Environment.GetEnvironmentVariable("GITHUB_TOKEN");
+    var gitHubToken = builder.Configuration["GitHub:Token"];
 
     if (string.IsNullOrEmpty(gitHubToken))
     {
@@ -82,7 +82,7 @@ builder.Services.AddHttpClient<GitHubService>((serviceProvider, client) =>
 builder.Services.AddScoped<GitHubService>(serviceProvider =>
 {
     var httpClient = serviceProvider.GetRequiredService<HttpClient>();
-    var gitHubToken = Environment.GetEnvironmentVariable("GITHUB_TOKEN");
+    var gitHubToken = builder.Configuration["GitHub:Token"];
 
     if (gitHubToken == null)
     {
