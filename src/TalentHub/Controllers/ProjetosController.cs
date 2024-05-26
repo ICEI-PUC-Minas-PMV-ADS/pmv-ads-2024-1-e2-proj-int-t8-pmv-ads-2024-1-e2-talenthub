@@ -254,7 +254,7 @@ public class ProjetosController : Controller
   }
 
   // GET: Projetos/ResultadosBusca
-  public async Task<IActionResult> ResultadosBusca(string searchTerm, string[] categorias, string palavrasChave, int? ano, int? periodo, int? rating)
+  public async Task<IActionResult> ResultadosBusca(string searchTerm, string[] categorias, string palavrasChave, int? ano, int? periodo, int? rating, int? pageNumber)
   {
     var query = _context.Projetos.AsQueryable();
 
@@ -292,7 +292,8 @@ public class ProjetosController : Controller
       query = query.Where(p => p.NotaMedia >= rating);
     }
 
-    var projetos = await query.ToListAsync();
+    int pageSize = 10;
+    var projetos = await PaginatedList<Projeto>.CreateAsync(query.AsNoTracking(), pageNumber ?? 1, pageSize);
 
     return View(projetos);
   }
