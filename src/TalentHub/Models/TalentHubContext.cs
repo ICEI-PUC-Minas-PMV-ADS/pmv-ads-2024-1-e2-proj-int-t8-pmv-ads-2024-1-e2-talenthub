@@ -31,9 +31,30 @@ namespace TalentHub.Data
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
       base.OnModelCreating(modelBuilder);
+
       modelBuilder.Entity<Projeto>()
           .Property(p => p.DataCriacao)
           .HasDefaultValueSql("GETDATE()");
+
+      modelBuilder.Entity<Anotacao>()
+          .HasOne(a => a.Projeto)
+          .WithMany(p => p.Anotacoes)
+          .HasForeignKey(a => a.IdProjeto);
+
+      modelBuilder.Entity<Anotacao>()
+          .HasOne(a => a.Usuario)
+          .WithMany(u => u.Anotacoes)
+          .HasForeignKey(a => a.IdUsuario);
+
+      modelBuilder.Entity<Avaliacao>()
+          .HasOne(a => a.Projeto)
+          .WithMany(p => p.Avaliacoes)
+          .HasForeignKey(a => a.IdProjeto);
+
+      modelBuilder.Entity<Avaliacao>()
+          .HasOne(a => a.Usuario)
+          .WithMany(u => u.Avaliacoes)
+          .HasForeignKey(a => a.IdUsuario);
     }
   }
 }

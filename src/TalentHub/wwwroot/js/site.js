@@ -19,4 +19,22 @@ $(document).ready(function () {
       $(".search-btn").prop("disabled", false);
     }
   });
+
+  $("#editNoteModal").on("show.bs.modal", function (event) {
+    var button = $(event.relatedTarget);
+    var noteId = button.data("id");
+    var noteText = button.data("text");
+
+    var modal = $(this);
+    modal.find(".modal-body #noteId").val(noteId);
+    modal.find(".modal-body #noteText").val(noteText);
+  });
+
+  $("#confirmDeleteModal").on("show.bs.modal", function (event) {
+    var button = $(event.relatedTarget);
+    var noteId = button.data("id");
+
+    var modal = $(this);
+    modal.find("#deleteNoteId").val(noteId);
+  });
 });

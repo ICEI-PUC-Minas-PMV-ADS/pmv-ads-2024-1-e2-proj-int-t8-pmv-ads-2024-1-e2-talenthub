@@ -40,11 +40,19 @@ public class ProjetosController : Controller
       return NotFound();
     }
 
-    var projeto = await _context.Projetos.FirstOrDefaultAsync(m => m.IdProjeto == id);
+    var projeto = await _context.Projetos
+                                .Include(p => p.Anotacoes)
+                                .FirstOrDefaultAsync(m => m.IdProjeto == id);
+
     if (projeto == null)
     {
       return NotFound();
     }
+
+    var usuarioId = int.Parse(User.FindFirst("IdUsuario").Value);
+    var anotacao = projeto.Anotacoes.FirstOrDefault(a => a.IdUsuario == usuarioId);
+
+    ViewBag.AnnotacaoExistente = anotacao;
 
     var cookieKey = $"projeto-{id}-visualizado";
     if (!Request.Cookies.ContainsKey(cookieKey))
@@ -60,6 +68,7 @@ public class ProjetosController : Controller
 
     return View(projeto);
   }
+
 
   // GET: Projetos/Criar
   public IActionResult Criar()
@@ -199,13 +208,49 @@ public class ProjetosController : Controller
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> SalvarAnotacao(int id, string annotation)
   {
+    var usuarioId = int.Parse(User.FindFirst("IdUsuario").Value);
+
+    // Verificar se o projeto existe
     var projeto = await _context.Projetos.FindAsync(id);
     if (projeto == null)
     {
       return NotFound();
     }
 
-    return RedirectToAction(nameof(Detalhes), new { id = id });
+    // Procurar uma anotação existente para o projeto e usuário
+    var anotacaoExistente = await _context.Anotacoes
+        .FirstOrDefaultAsync(a => a.IdProjeto == projeto.IdProjeto && a.IdUsuario == usuarioId);
+
+    if (anotacaoExistente != null)
+    {
+      // Atualizar a anotação existente
+      anotacaoExistente.TextoAnotacao = annotation;
+      _context.Anotacoes.Update(anotacaoExistente);
+    }
+    else
+    {
+      // Adicionar nova anotação
+      var anotacao = new Anotacao
+      {
+        IdProjeto = projeto.IdProjeto,
+        IdUsuario = usuarioId,
+        TextoAnotacao = annotation,
+      };
+      _context.Anotacoes.Add(anotacao);
+    }
+
+    try
+    {
+      await _context.SaveChangesAsync();
+    }
+    catch (DbUpdateException ex)
+    {
+      // Adicionar log para o erro de chave estrangeira
+      ModelState.AddModelError("", "Erro ao salvar a anotação: " + ex.InnerException?.Message);
+      return RedirectToAction(nameof(Detalhes), new { id = projeto.IdProjeto });
+    }
+
+    return RedirectToAction(nameof(Detalhes), new { id = projeto.IdProjeto });
   }
 
   // GET: Projetos/ResultadosBusca
