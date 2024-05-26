@@ -1,5 +1,5 @@
 ﻿@using TalentHub.Helpers
-@model IEnumerable<TalentHub.Models.Projeto>
+@model PaginatedList<TalentHub.Models.Projeto>
 
 @{
     ViewData["Title"] = "Resultados da busca";
@@ -109,6 +109,23 @@
                             </a>
 
                             <div class="border-bottom my-4"></div>
+                        }
+                    </div>
+
+                    <div class="pagination d-flex justify-content-center">
+                        @if (Model.HasPreviousPage)
+                        {
+                            <a asp-action="ResultadosBusca" asp-route-pageNumber="@(Model.PageIndex - 1)" class="btn btn-outline-primary">Anterior</a>
+                        }
+
+                        @for (var i = 1; i <= Model.TotalPages; i++)
+                        {
+                            <a asp-action="ResultadosBusca" asp-route-pageNumber="@i" class="btn @(Model.PageIndex == i ? "btn-primary" : "btn-outline-primary")">@i</a>
+                        }
+
+                        @if (Model.HasNextPage)
+                        {
+                            <a asp-action="ResultadosBusca" asp-route-pageNumber="@(Model.PageIndex + 1)" class="btn btn-outline-primary">Próximo</a>
                         }
                     </div>
                 }
