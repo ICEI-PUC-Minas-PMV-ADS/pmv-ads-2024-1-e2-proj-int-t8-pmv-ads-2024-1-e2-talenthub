@@ -167,7 +167,9 @@
                             </div>
 
                             <div class="mb-3 pt-3">
-                                <h6 class="fw-bold text-dark-blue mb-3">Avaliação</h6>
+                                <h6 class="fw-bold text-dark-blue mb-3 d-flex gap-2 align-items-center">Avaliação
+                                    <i class="fa-regular fa-circle-question text-muted fs-5" data-toggle="tooltip" data-placement="top" title="Selecione a quantidade mínima de estrelas que os projetos devem ter"></i>
+                                </h6>
                                 <div class="rating-filter">
                                     @for(int i = 1; i <= 4; i++){
                                         <label class="rating-label">
@@ -185,8 +187,11 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3 pt-3">
-                                <button class="btn btn-outline-primary w-100" type="submit">Filtrar</button>
+                            <div class="mb-3 pt-3 d-flex flex-column gap-2">
+                                <button class="btn btn-outline-primary" type="submit">Filtrar</button>
+                                <button class="btn btn-link link-secondary" type="reset">
+                                    Limpar
+                                </button>
                             </div>
                         </div>
                     </div>

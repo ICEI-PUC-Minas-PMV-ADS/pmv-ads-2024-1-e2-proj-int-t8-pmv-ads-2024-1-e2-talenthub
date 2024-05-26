@@ -46,6 +46,18 @@ public class ProjetosController : Controller
       return NotFound();
     }
 
+    var cookieKey = $"projeto-{id}-visualizado";
+    if (!Request.Cookies.ContainsKey(cookieKey))
+    {
+      Response.Cookies.Append(cookieKey, "true", new CookieOptions
+      {
+        Expires = DateTime.Now.AddYears(1)
+      });
+      projeto.QtdVisualizacoes++;
+      _context.Update(projeto);
+      await _context.SaveChangesAsync();
+    }
+
     return View(projeto);
   }
 

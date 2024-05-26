@@ -76,3 +76,7 @@ footer {
 .list-group-item {
   padding: 6px 0 6px 0;
 }
+
+.search-btn:disabled {
+  opacity: 0.5;
+}
