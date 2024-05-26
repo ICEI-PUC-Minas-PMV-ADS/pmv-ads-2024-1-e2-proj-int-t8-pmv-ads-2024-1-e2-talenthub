@@ -3,6 +3,9 @@
 
 @{
     ViewData["Title"] = "Detalhes do Projeto";
+    var usuarioId = User.FindFirst("IdUsuario")?.Value;
+    var anotacaoExistente = Model.Anotacoes.FirstOrDefault(a => a.IdUsuario.ToString() == usuarioId);
+
 }
 
 <div class="details-content mb-5">
@@ -40,11 +43,26 @@
                     <div class="text-primary mt-3">Avaliar Projeto</div>
                     <hr>
                 </div>
-                <div class="menu-item" data-bs-toggle="modal" data-bs-target="#noteModal">
-                    <i class="fas fa-pencil-alt text-primary"></i>
-                    <div class="text-primary mt-3">Fazer anotação</div>
-                    <hr>
-                </div>
+
+                @if (anotacaoExistente != null)
+                {
+                    <div class="menu-item" data-bs-toggle="modal" data-bs-target="#noteModal">
+                        @* badge indicando que existe anotação feita por mim *@
+                        <i class="fas fa-sticky-note text-primary">
+                            <span class="badge bg-danger rounded-pill position-absolute ms-1" style="font-size: 10px;">1</span>
+                        </i>
+                        <div class="text-primary mt-3">Minha anotação</div>
+                        <hr>
+                    </div>
+                }
+                else
+                {
+                    <div class="menu-item" data-bs-toggle="modal" data-bs-target="#noteModal">
+                        <i class="fas fa-sticky-note text-primary"></i>
+                        <div class="text-primary mt-3">Fazer anotação</div>
+                        <hr>
+                    </div>
+                }
 
                 @if (Model.InformacoesContato != null)
                 {
@@ -124,7 +142,7 @@
                     }
                 </div>
 
-                @if(Model.Avaliacoes.Count > 0)
+                @if (Model.Avaliacoes != null && Model.Avaliacoes.Count > 0)
                 {
                     <div class="border-bottom mt-5"></div>
 
@@ -159,7 +177,6 @@
                         }
                     </div>
                 }
-                
             </div>
         </div>
     </div>
@@ -207,14 +224,13 @@
             <form asp-action="SalvarAnotacao" method="post">
                 <div class="modal-header">
                     <h5 class="modal-title" id="noteModalLabel">Fazer Anotação</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" name="id" value="@Model.IdProjeto" />
                     <div class="form-group">
                         <label for="annotation" class="mb-1">Anotação</label>
-                        <textarea class="form-control" id="annotation" name="annotation" rows="6" required></textarea>
+                        <textarea class="form-control" id="annotation" name="annotation" rows="6" required>@ViewBag.AnnotacaoExistente?.TextoAnotacao</textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
