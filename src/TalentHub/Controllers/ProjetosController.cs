@@ -104,6 +104,7 @@ public class ProjetosController : Controller
     }
     catch (Exception ex)
     {
+      TempData["ErrorMessage"] = "Não foi possível salvar os dados";
       ModelState.AddModelError("", "Não foi possível salvar os dados. Detalhes do erro: " + ex.Message);
     }
 
@@ -116,12 +117,14 @@ public class ProjetosController : Controller
   {
     if (id == null)
     {
+      TempData["ErrorMessage"] = "ID do projeto não informado.";
       return NotFound();
     }
 
     var projeto = await _context.Projetos.FindAsync(id);
     if (projeto == null)
     {
+      TempData["ErrorMessage"] = "Projeto não encontrado.";
       return NotFound();
     }
     return View(projeto);
@@ -130,10 +133,11 @@ public class ProjetosController : Controller
   // POST: Projetos/Edit/5
   [HttpPost]
   [ValidateAntiForgeryToken]
-  public async Task<IActionResult> Editar(int id, [Bind("IdProjeto,NomeProjeto,DescricaoProjeto,Ano,Periodo,Categoria,PalavraChave,UrlRepositorio,UrlAplicacao,Integrantes")] Projeto projeto)
+  public async Task<IActionResult> Editar(int id, [Bind("IdProjeto,NomeProjeto,DescricaoProjeto,Ano,Periodo,Categoria,PalavraChave,UrlRepositorio,UrlAplicacao,Integrantes,InformacoesContato")] Projeto projeto)
   {
     if (id != projeto.IdProjeto)
     {
+      TempData["ErrorMessage"] = "O ID do projeto não corresponde ao projeto enviado.";
       return NotFound();
     }
 
@@ -155,7 +159,9 @@ public class ProjetosController : Controller
           throw;
         }
       }
-      return RedirectToAction(nameof(Index));
+
+      TempData["SuccessMessage"] = "Projeto atualizado com sucesso!";
+      return View(projeto);
     }
     return View(projeto);
   }
@@ -165,12 +171,14 @@ public class ProjetosController : Controller
   {
     if (id == null)
     {
+      TempData["ErrorMessage"] = "ID do projeto não informado.";
       return NotFound();
     }
 
     var projeto = await _context.Projetos.FirstOrDefaultAsync(m => m.IdProjeto == id);
     if (projeto == null)
     {
+      TempData["ErrorMessage"] = "Projeto não encontrado.";
       return NotFound();
     }
 
@@ -187,6 +195,7 @@ public class ProjetosController : Controller
     {
       _context.Projetos.Remove(projeto);
       await _context.SaveChangesAsync();
+      TempData["SuccessMessage"] = "Projeto removido com sucesso!";
     }
     return RedirectToAction(nameof(Index));
   }
@@ -198,9 +207,11 @@ public class ProjetosController : Controller
     var projeto = await _context.Projetos.FindAsync(id);
     if (projeto == null)
     {
+      TempData["ErrorMessage"] = "Projeto não encontrado.";
       return NotFound();
     }
 
+    TempData["SuccessMessage"] = "Avaliação salva com sucesso!";
     return RedirectToAction(nameof(Detalhes), new { id = id });
   }
 
@@ -213,6 +224,7 @@ public class ProjetosController : Controller
     var projeto = await _context.Projetos.FindAsync(id);
     if (projeto == null)
     {
+      TempData["ErrorMessage"] = "Projeto não encontrado.";
       return NotFound();
     }
 
@@ -238,10 +250,12 @@ public class ProjetosController : Controller
     try
     {
       await _context.SaveChangesAsync();
+      TempData["SuccessMessage"] = "Anotação salva com sucesso!";
     }
     catch (DbUpdateException ex)
     {
       ModelState.AddModelError("", "Erro ao salvar a anotação: " + ex.InnerException?.Message);
+      TempData["ErrorMessage"] = "Erro ao salvar a anotação.";
       return RedirectToAction(nameof(Detalhes), new { id = projeto.IdProjeto });
     }
 
@@ -330,12 +344,14 @@ public class ProjetosController : Controller
     if (string.IsNullOrWhiteSpace(repoUrl))
     {
       ModelState.AddModelError("", "Por favor, insira a URL do repositório.");
+      TempData["ErrorMessage"] = "Por favor, insira a URL do repositório.";
       return RedirectToAction(nameof(ResultadosBusca));
     }
 
     var projetoExistente = await _context.Projetos.FirstOrDefaultAsync(p => p.UrlRepositorio == repoUrl);
     if (projetoExistente != null)
     {
+      TempData["ErrorMessage"] = "O projeto já está cadastrado.";
       ModelState.AddModelError("", "O projeto já está cadastrado.");
       return RedirectToAction(nameof(ResultadosBusca));
     }
@@ -393,6 +409,7 @@ public class ProjetosController : Controller
     else
     {
       ModelState.AddModelError("", "URL do repositório inválida.");
+      TempData["ErrorMessage"] = "URL do repositório inválida.";
       return RedirectToAction(nameof(ResultadosBusca));
     }
   }
