@@ -16,6 +16,12 @@ public class PocController : Controller
   // GET: Poc
   public async Task<IActionResult> Index()
   {
+
+    if (!User.Identity.IsAuthenticated)
+    {
+      return RedirectToAction("Index", "Home");
+    }
+
     var projetos = await _context.Projetos.ToListAsync();
     return View(projetos);
   }
@@ -23,6 +29,12 @@ public class PocController : Controller
   // GET: Poc/Detalhes/5
   public async Task<IActionResult> Detalhes(int? id)
   {
+
+    if (!User.Identity.IsAuthenticated)
+    {
+      return RedirectToAction("Index", "Home");
+    }
+
     if (id == null)
     {
       return NotFound();
@@ -41,17 +53,23 @@ public class PocController : Controller
   // GET: Poc/Criar
   public IActionResult Criar()
   {
-     var categoriaOptions = Enum.GetValues(typeof(CategoriaEnum))
-        .Cast<CategoriaEnum>()
-        .Select(e => new SelectListItem
-        {
-            Value = e.ToString(),
-            Text = e.ToString()
-        })
-        .ToList();
-        
+
+    if (!User.Identity.IsAuthenticated)
+    {
+      return RedirectToAction("Index", "Home");
+    }
+
+    var categoriaOptions = Enum.GetValues(typeof(CategoriaEnum))
+       .Cast<CategoriaEnum>()
+       .Select(e => new SelectListItem
+       {
+         Value = e.ToString(),
+         Text = e.ToString()
+       })
+       .ToList();
+
     ViewBag.CategoriaOptions = categoriaOptions;
-    
+
     return View();
   }
 
@@ -60,6 +78,12 @@ public class PocController : Controller
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> Criar([Bind("NomeProjeto,DescricaoProjeto,Ano,Periodo,Categoria,PalavraChave,UrlRepositorio,UrlAplicacao,Integrantes")] Projeto projeto)
   {
+
+    if (!User.Identity.IsAuthenticated)
+    {
+      return RedirectToAction("Index", "Home");
+    }
+
     if (!ModelState.IsValid)
     {
       foreach (var entry in ModelState)
@@ -93,6 +117,12 @@ public class PocController : Controller
   // GET: Poc/Editar/5
   public async Task<IActionResult> Editar(int? id)
   {
+
+    if (!User.Identity.IsAuthenticated)
+    {
+      return RedirectToAction("Index", "Home");
+    }
+
     if (id == null)
     {
       return NotFound();
@@ -103,18 +133,18 @@ public class PocController : Controller
     {
       return NotFound();
     }
-    
+
     var categoriaOptions = Enum.GetValues(typeof(CategoriaEnum))
         .Cast<CategoriaEnum>()
         .Select(e => new SelectListItem
         {
-            Value = e.ToString(),
-            Text = e.ToString()
+          Value = e.ToString(),
+          Text = e.ToString()
         })
         .ToList();
-        
+
     ViewBag.CategoriaOptions = categoriaOptions;
-    
+
     return View(projeto);
   }
 
@@ -124,6 +154,12 @@ public class PocController : Controller
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> Editar(int id, [Bind("IdProjeto,NomeProjeto,DescricaoProjeto,Ano,Periodo,Categoria,PalavraChave,UrlRepositorio,UrlAplicacao,Integrantes")] Projeto projeto)
   {
+
+    if (!User.Identity.IsAuthenticated)
+    {
+      return RedirectToAction("Index", "Home");
+    }
+
     if (id != projeto.IdProjeto)
     {
       return NotFound();
@@ -155,6 +191,12 @@ public class PocController : Controller
   // GET: Poc/Apagar/5
   public async Task<IActionResult> Apagar(int? id)
   {
+
+    if (!User.Identity.IsAuthenticated)
+    {
+      return RedirectToAction("Index", "Home");
+    }
+
     if (id == null)
     {
       return NotFound();
@@ -175,6 +217,12 @@ public class PocController : Controller
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> ApagarConfirmacao(int id)
   {
+
+    if (!User.Identity.IsAuthenticated)
+    {
+      return RedirectToAction("Index", "Home");
+    }
+
     var projeto = await _context.Projetos.FindAsync(id);
     if (projeto != null)
     {

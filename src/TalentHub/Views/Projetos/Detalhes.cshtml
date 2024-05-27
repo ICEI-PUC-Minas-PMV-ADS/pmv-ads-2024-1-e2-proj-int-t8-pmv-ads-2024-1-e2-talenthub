@@ -5,7 +5,6 @@
     ViewData["Title"] = "Detalhes do Projeto";
     var usuarioId = User.FindFirst("IdUsuario")?.Value;
     var anotacaoExistente = Model.Anotacoes.FirstOrDefault(a => a.IdUsuario.ToString() == usuarioId);
-
 }
 
 <div class="details-content mb-5">
@@ -44,26 +43,28 @@
                     <hr>
                 </div>
 
-                @if (anotacaoExistente != null)
-                {
-                    <div class="menu-item" data-bs-toggle="modal" data-bs-target="#noteModal">
-                        @* badge indicando que existe anotação feita por mim *@
-                        <i class="fas fa-sticky-note text-primary">
-                            <span class="badge bg-danger rounded-pill position-absolute ms-1" style="font-size: 10px;">1</span>
-                        </i>
-                        <div class="text-primary mt-3">Minha anotação</div>
-                        <hr>
-                    </div>
+                @if (usuarioId != null) {
+                    @if (anotacaoExistente != null)
+                    {
+                        <div class="menu-item" data-bs-toggle="modal" data-bs-target="#noteModal">
+                            @* badge indicando que existe anotação feita por mim *@
+                            <i class="fas fa-sticky-note text-primary">
+                                <span class="badge bg-danger rounded-pill position-absolute ms-1" style="font-size: 10px;">1</span>
+                            </i>
+                            <div class="text-primary mt-3">Minha anotação</div>
+                            <hr>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="menu-item" data-bs-toggle="modal" data-bs-target="#noteModal">
+                            <i class="fas fa-sticky-note text-primary"></i>
+                            <div class="text-primary mt-3">Fazer anotação</div>
+                            <hr>
+                        </div>
+                    }
                 }
-                else
-                {
-                    <div class="menu-item" data-bs-toggle="modal" data-bs-target="#noteModal">
-                        <i class="fas fa-sticky-note text-primary"></i>
-                        <div class="text-primary mt-3">Fazer anotação</div>
-                        <hr>
-                    </div>
-                }
-
+                
                 @if (Model.InformacoesContato != null)
                 {
                     <div class="menu-item" data-bs-toggle="modal" data-bs-target="#contactModal">
