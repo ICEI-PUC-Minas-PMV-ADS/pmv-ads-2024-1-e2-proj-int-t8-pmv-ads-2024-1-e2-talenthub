@@ -28,6 +28,12 @@ public class ProjetosController : Controller
   // GET: Projetos/Gerenciar
   public async Task<IActionResult> Gerenciar()
   {
+
+    if (!User.Identity.IsAuthenticated)
+    {
+      return RedirectToAction("Index", "Home");
+    }
+
     var projetos = await _context.Projetos.ToListAsync();
     return View(projetos);
   }
@@ -49,10 +55,13 @@ public class ProjetosController : Controller
       return NotFound();
     }
 
-    var usuarioId = int.Parse(User.FindFirst("IdUsuario").Value);
-    var anotacao = projeto.Anotacoes.FirstOrDefault(a => a.IdUsuario == usuarioId);
+    if (User != null && User.Identity.IsAuthenticated)
+    {
+      var usuarioId = int.Parse(User.FindFirst("IdUsuario").Value);
+      var anotacao = projeto.Anotacoes.FirstOrDefault(a => a.IdUsuario == usuarioId);
 
-    ViewBag.AnnotacaoExistente = anotacao;
+      ViewBag.AnnotacaoExistente = anotacao;
+    }
 
     var cookieKey = $"projeto-{id}-visualizado";
     if (!Request.Cookies.ContainsKey(cookieKey))
@@ -72,6 +81,10 @@ public class ProjetosController : Controller
   // GET: Projetos/Criar
   public IActionResult Criar()
   {
+    if (!User.Identity.IsAuthenticated)
+    {
+      return RedirectToAction("Index", "Home");
+    }
     return View();
   }
 
@@ -80,6 +93,12 @@ public class ProjetosController : Controller
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> Criar([Bind("NomeProjeto,UrlRepositorio,UrlAplicacao,Integrantes,Ano,Periodo,PalavraChave,DescricaoProjeto,Categoria,InformacoesContato")] Projeto projeto)
   {
+
+    if (!User.Identity.IsAuthenticated)
+    {
+      return RedirectToAction("Index", "Home");
+    }
+
     if (!ModelState.IsValid)
     {
       foreach (var entry in ModelState)
@@ -115,6 +134,12 @@ public class ProjetosController : Controller
   // GET: Projetos/Editar/5
   public async Task<IActionResult> Editar(int? id)
   {
+
+    if (!User.Identity.IsAuthenticated)
+    {
+      return RedirectToAction("Index", "Home");
+    }
+
     if (id == null)
     {
       TempData["ErrorMessage"] = "ID do projeto não informado.";
@@ -135,6 +160,12 @@ public class ProjetosController : Controller
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> Editar(int id, [Bind("IdProjeto,NomeProjeto,DescricaoProjeto,Ano,Periodo,Categoria,PalavraChave,UrlRepositorio,UrlAplicacao,Integrantes,InformacoesContato")] Projeto projeto)
   {
+
+    if (!User.Identity.IsAuthenticated)
+    {
+      return RedirectToAction("Index", "Home");
+    }
+
     if (id != projeto.IdProjeto)
     {
       TempData["ErrorMessage"] = "O ID do projeto não corresponde ao projeto enviado.";
@@ -169,6 +200,12 @@ public class ProjetosController : Controller
   // GET: Projetos/Apagar/5
   public async Task<IActionResult> Apagar(int? id)
   {
+
+    if (!User.Identity.IsAuthenticated)
+    {
+      return RedirectToAction("Index", "Home");
+    }
+
     if (id == null)
     {
       TempData["ErrorMessage"] = "ID do projeto não informado.";
@@ -190,6 +227,12 @@ public class ProjetosController : Controller
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> ApagarConfirmacao(int id)
   {
+
+    if (!User.Identity.IsAuthenticated)
+    {
+      return RedirectToAction("Index", "Home");
+    }
+
     var projeto = await _context.Projetos.FindAsync(id);
     if (projeto != null)
     {
@@ -204,6 +247,12 @@ public class ProjetosController : Controller
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> AvaliarProjeto(int id, int rating, string comments)
   {
+
+    if (!User.Identity.IsAuthenticated)
+    {
+      return RedirectToAction("Index", "Home");
+    }
+
     var projeto = await _context.Projetos.FindAsync(id);
     if (projeto == null)
     {
@@ -219,6 +268,12 @@ public class ProjetosController : Controller
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> SalvarAnotacao(int id, string annotation)
   {
+
+    if (!User.Identity.IsAuthenticated)
+    {
+      return RedirectToAction("Index", "Home");
+    }
+
     var usuarioId = int.Parse(User.FindFirst("IdUsuario").Value);
 
     var projeto = await _context.Projetos.FindAsync(id);
@@ -341,6 +396,12 @@ public class ProjetosController : Controller
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> VerificarRepositorio(string repoUrl)
   {
+
+    if (!User.Identity.IsAuthenticated)
+    {
+      return RedirectToAction("Index", "Home");
+    }
+
     if (string.IsNullOrWhiteSpace(repoUrl))
     {
       ModelState.AddModelError("", "Por favor, insira a URL do repositório.");
