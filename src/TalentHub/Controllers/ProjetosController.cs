@@ -299,7 +299,7 @@ public class ProjetosController : Controller
   }
 
   // GET: Projetos/BuscarProjeto
-  public async Task<IActionResult> BuscarProjeto(string searchTerm)
+  public async Task<IActionResult> BuscarProjeto(string searchTerm, int? pageNumber)
   {
     if (string.IsNullOrWhiteSpace(searchTerm))
     {
@@ -307,12 +307,14 @@ public class ProjetosController : Controller
       return View("ResultadosBusca", new List<Projeto>());
     }
 
-    var projetos = await _context.Projetos
+    var query = _context.Projetos.AsQueryable()
         .Where(p => p.NomeProjeto.ToLower().Contains(searchTerm.ToLower()) ||
                     p.DescricaoProjeto.ToLower().Contains(searchTerm.ToLower()) ||
                     p.PalavraChave.ToLower().Contains(searchTerm.ToLower()) ||
-                    p.UrlRepositorio.ToLower().Contains(searchTerm.ToLower()))
-        .ToListAsync();
+                    p.UrlRepositorio.ToLower().Contains(searchTerm.ToLower()));
+
+    int pageSize = 10;
+    var projetos = await PaginatedList<Projeto>.CreateAsync(query.AsNoTracking(), pageNumber ?? 1, pageSize);
 
     if (projetos.Any())
     {
