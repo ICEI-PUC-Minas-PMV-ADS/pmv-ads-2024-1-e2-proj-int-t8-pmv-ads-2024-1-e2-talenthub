@@ -32,6 +32,7 @@ public class AnotacoesController : Controller
   {
     if (id == null)
     {
+      TempData["ErrorMessage"] = "Anotação não encontrada";
       return NotFound();
     }
 
@@ -42,6 +43,7 @@ public class AnotacoesController : Controller
 
     if (anotacao == null)
     {
+      TempData["ErrorMessage"] = "Anotação não encontrada";
       return NotFound();
     }
 
@@ -60,6 +62,7 @@ public class AnotacoesController : Controller
     {
       _context.Anotacoes.Remove(anotacao);
       await _context.SaveChangesAsync();
+      TempData["SuccessMessage"] = "Anotação apagada com sucesso";
     }
 
     return RedirectToAction(nameof(Index));
@@ -71,18 +74,21 @@ public class AnotacoesController : Controller
   {
     if (id == null)
     {
+      TempData["ErrorMessage"] = "Anotação não encontrada";
       return NotFound();
     }
 
     var anotacao = await _context.Anotacoes.FindAsync(id);
     if (anotacao == null)
     {
+      TempData["ErrorMessage"] = "Anotação não encontrada";
       return NotFound();
     }
 
     anotacao.TextoAnotacao = annotation;
     _context.Update(anotacao);
     await _context.SaveChangesAsync();
+    TempData["SuccessMessage"] = "Anotação salva com sucesso";
 
     return RedirectToAction(nameof(Index));
   }

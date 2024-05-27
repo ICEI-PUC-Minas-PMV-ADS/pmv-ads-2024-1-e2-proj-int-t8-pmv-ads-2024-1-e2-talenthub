@@ -49,6 +49,7 @@ public class AuthController : Controller
     var claimsIdentity = authenticateResult.Principal.Identities.FirstOrDefault();
     if (claimsIdentity == null)
     {
+      TempData["ErrorMessage"] = "Não foi possível obter as informações do usuário";
       return RedirectToAction("Index", "Auth");
     }
 
@@ -57,6 +58,7 @@ public class AuthController : Controller
 
     if (email == null)
     {
+      TempData["ErrorMessage"] = "Não foi possível obter as informações do usuário";
       return RedirectToAction("Index", "Auth");
     }
 

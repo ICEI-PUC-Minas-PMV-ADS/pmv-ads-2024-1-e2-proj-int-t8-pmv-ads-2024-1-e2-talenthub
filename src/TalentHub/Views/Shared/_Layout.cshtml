@@ -23,9 +23,6 @@
             </button>
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1 d-flex justify-content-end">
-                  @* <li class="nav-item">
-                      <a class="nav-link text-dark-blue fw-bold" asp-area="" asp-controller="Poc" asp-action="Index">Prova de conceito</a>
-                  </li> *@
                   <li class="nav-item">
                       <a class="nav-link text-dark-blue fw-bold" asp-area="" asp-controller="Home" asp-action="Index">Página inicial</a>
                   </li>
@@ -37,7 +34,6 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark-blue fw-bold" asp-area="" asp-controller="Anotacoes" asp-action="Index">Minhas anotações</a>
                     </li>
-                  
                       <li class="nav-item">
                           <span>
                             <form asp-action="Logout" asp-controller="Auth" method="post">
@@ -58,7 +54,23 @@
         </nav>
       </header>
       <div class="container">
-        <main role="main" class="pb-3 px-4"> @RenderBody() </main>
+        <main role="main" class="pb-3 px-4">
+          @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @TempData["SuccessMessage"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @TempData["ErrorMessage"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+           @RenderBody() </main>
       </div>
       <footer class="row bg-dark-gray text-white pt-4">
         <div class="container">
