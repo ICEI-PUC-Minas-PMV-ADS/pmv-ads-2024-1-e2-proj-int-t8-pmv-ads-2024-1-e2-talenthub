@@ -39,22 +39,26 @@ namespace TalentHub.Data
       modelBuilder.Entity<Anotacao>()
           .HasOne(a => a.Projeto)
           .WithMany(p => p.Anotacoes)
-          .HasForeignKey(a => a.IdProjeto);
+          .HasForeignKey(a => a.IdProjeto)
+          .OnDelete(DeleteBehavior.Cascade);
 
       modelBuilder.Entity<Anotacao>()
           .HasOne(a => a.Usuario)
           .WithMany(u => u.Anotacoes)
-          .HasForeignKey(a => a.IdUsuario);
+          .HasForeignKey(a => a.IdUsuario)
+          .OnDelete(DeleteBehavior.Cascade);
 
       modelBuilder.Entity<Avaliacao>()
           .HasOne(a => a.Projeto)
           .WithMany(p => p.Avaliacoes)
-          .HasForeignKey(a => a.IdProjeto);
+          .HasForeignKey(a => a.IdProjeto)
+          .OnDelete(DeleteBehavior.Cascade);
 
       modelBuilder.Entity<Avaliacao>()
           .HasOne(a => a.Usuario)
           .WithMany(u => u.Avaliacoes)
-          .HasForeignKey(a => a.IdUsuario);
+          .HasForeignKey(a => a.IdUsuario)
+          .OnDelete(DeleteBehavior.Cascade);
     }
   }
 }

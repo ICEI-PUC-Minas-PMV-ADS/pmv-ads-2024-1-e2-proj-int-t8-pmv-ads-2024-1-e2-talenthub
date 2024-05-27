@@ -41,9 +41,8 @@ namespace TalentHub.Models
 
     public float NotaMedia { get; set; }
 
-    public List<Avaliacao> Avaliacoes { get; set; }
-
-    public List<Anotacao> Anotacoes { get; set; }
+    public List<Anotacao> Anotacoes { get; set; } = new List<Anotacao>();
+    public List<Avaliacao> Avaliacoes { get; set; } = new List<Avaliacao>();
 
     [Required]
     public DateTime DataCriacao { get; set; } = DateTime.Now;
