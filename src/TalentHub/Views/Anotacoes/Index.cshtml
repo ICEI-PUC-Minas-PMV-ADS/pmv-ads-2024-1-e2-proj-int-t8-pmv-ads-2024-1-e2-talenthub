@@ -57,7 +57,9 @@
                                     </div>
                                 </div>
                                 <div class="">
-                                    <h5 class="mb-1 text-dark-blue encoded-sans">@item.Projeto.NomeProjeto</h5>
+                                    <h5 class="mb-1 ">
+                                        <a class="text-dark-blue encoded-sans text-decoration-none" href="@Url.Action("Detalhes", "Projetos", new { id = item.Projeto.IdProjeto })">@item.Projeto.NomeProjeto</a>
+                                    </h5>
                                     <p class="mb-1 mt-2 text-muted">@item.TextoAnotacao</p>
                                 </div>
                                 <div class="d-inline-flex align-items-center position-absolute end-0">

@@ -97,7 +97,8 @@
                         </div>
 
                         <div class="mb-4">
-                            <small class="rating-number">@Model.QtdVisualizacoes visualizações</small>
+                            <small class="rating-number">@Model.QtdVisualizacoes @((Model.QtdVisualizacoes == 1) ? "visualização" : "visualizações")</small>
+                            
                             <div class="rating-stars d-flex align-items-center mt-2">
                                 <span class="review-average me-2">@Model.NotaMedia.ToString("0.0")</span>
                                 @for (int i = 1; i <= 5; i++)
@@ -124,7 +125,10 @@
                     <p>@Model.DescricaoProjeto</p>
 
                     <h5>Integrantes do Projeto</h5>
-                    <p>@Model.Integrantes</p>
+                    @foreach (var integrante in Model.Integrantes.Split(','))
+                    {
+                        <span>@integrante<br /></span>
+                    }
 
                     <h5>Ano e Período/Eixo</h5>
                     <p>@Model.Ano/@Model.Periodo</p>
@@ -252,10 +256,7 @@
             <div class="modal-body">
                 <p><strong>Contato dos Integrantes:</strong></p>
                 <div class="p-3 bg-light border rounded">
-                    @foreach (var integrante in Model.Integrantes.Split(','))
-                    {
-                        <p>@integrante</p>
-                    }
+                    @Model.InformacoesContato
                 </div>
                 <p class="mt-3">Use as informações acima para entrar em contato com os integrantes do projeto.</p>
             </div>

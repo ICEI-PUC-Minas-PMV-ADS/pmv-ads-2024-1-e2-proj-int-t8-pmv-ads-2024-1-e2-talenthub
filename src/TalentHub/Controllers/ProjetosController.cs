@@ -69,7 +69,6 @@ public class ProjetosController : Controller
     return View(projeto);
   }
 
-
   // GET: Projetos/Criar
   public IActionResult Criar()
   {
@@ -110,6 +109,7 @@ public class ProjetosController : Controller
 
     return View(projeto);
   }
+
 
   // GET: Projetos/Editar/5
   public async Task<IActionResult> Editar(int? id)
@@ -210,26 +210,22 @@ public class ProjetosController : Controller
   {
     var usuarioId = int.Parse(User.FindFirst("IdUsuario").Value);
 
-    // Verificar se o projeto existe
     var projeto = await _context.Projetos.FindAsync(id);
     if (projeto == null)
     {
       return NotFound();
     }
 
-    // Procurar uma anotação existente para o projeto e usuário
     var anotacaoExistente = await _context.Anotacoes
         .FirstOrDefaultAsync(a => a.IdProjeto == projeto.IdProjeto && a.IdUsuario == usuarioId);
 
     if (anotacaoExistente != null)
     {
-      // Atualizar a anotação existente
       anotacaoExistente.TextoAnotacao = annotation;
       _context.Anotacoes.Update(anotacaoExistente);
     }
     else
     {
-      // Adicionar nova anotação
       var anotacao = new Anotacao
       {
         IdProjeto = projeto.IdProjeto,
@@ -245,7 +241,6 @@ public class ProjetosController : Controller
     }
     catch (DbUpdateException ex)
     {
-      // Adicionar log para o erro de chave estrangeira
       ModelState.AddModelError("", "Erro ao salvar a anotação: " + ex.InnerException?.Message);
       return RedirectToAction(nameof(Detalhes), new { id = projeto.IdProjeto });
     }
@@ -304,14 +299,15 @@ public class ProjetosController : Controller
     if (string.IsNullOrWhiteSpace(searchTerm))
     {
       ModelState.AddModelError("", "Por favor, insira um termo de busca.");
-      return View("ResultadosBusca", new List<Projeto>());
+      return View("ResultadosBusca", new PaginatedList<Projeto>(new List<Projeto>(), 0, 1, 10));
     }
 
+    searchTerm = searchTerm.ToLower();
     var query = _context.Projetos.AsQueryable()
-        .Where(p => p.NomeProjeto.ToLower().Contains(searchTerm.ToLower()) ||
-                    p.DescricaoProjeto.ToLower().Contains(searchTerm.ToLower()) ||
-                    p.PalavraChave.ToLower().Contains(searchTerm.ToLower()) ||
-                    p.UrlRepositorio.ToLower().Contains(searchTerm.ToLower()));
+        .Where(p => p.NomeProjeto.ToLower().Contains(searchTerm) ||
+                    p.DescricaoProjeto.ToLower().Contains(searchTerm) ||
+                    p.PalavraChave.ToLower().Contains(searchTerm) ||
+                    p.UrlRepositorio.ToLower().Contains(searchTerm));
 
     int pageSize = 10;
     var projetos = await PaginatedList<Projeto>.CreateAsync(query.AsNoTracking(), pageNumber ?? 1, pageSize);
@@ -323,7 +319,7 @@ public class ProjetosController : Controller
     else
     {
       ModelState.AddModelError("", "Nenhum projeto encontrado para o termo informado.");
-      return View("ResultadosBusca", new List<Projeto>());
+      return View("ResultadosBusca", new PaginatedList<Projeto>(new List<Projeto>(), 0, 1, pageSize));
     }
   }
 
@@ -350,40 +346,49 @@ public class ProjetosController : Controller
       var (Owner, Repo) = repoInfo.Value;
 
       var readmeContent = await _gitHubService.GetFileContent(Owner, Repo, new[] { "README.md" });
+      var name = string.Empty;
+      var integrantes = string.Empty;
+      var ano = string.Empty;
+      var periodo = string.Empty;
+
       if (readmeContent != null)
       {
         var decodedReadme = _gitHubService.IsBase64String(readmeContent)
             ? GitHubService.DecodeBase64Content(readmeContent)
             : readmeContent;
-        var (name, integrantes, ano, periodo) = GitHubService.ExtractDataFromReadme(decodedReadme);
-        var introducao = "";
-
-        string[] paths = new[] { "docs/01-Documentação de Contexto.md", "documentos/01-Documentação de Contexto.md" };
-        var fileContent = await _gitHubService.GetFileContent(Owner, Repo, paths);
-        if (fileContent != null)
-        {
-          introducao = _gitHubService.ExtractIntroduction(fileContent);
-        }
-
-        var novoProjeto = new Projeto
-        {
-          NomeProjeto = name,
-          Ano = ano ?? DateTime.Now.Year.ToString(),
-          Periodo = periodo ?? "1",
-          Categoria = CategoriaEnum.Outros,
-          PalavraChave = "",
-          UrlRepositorio = repoUrl,
-          DescricaoProjeto = introducao,
-          Integrantes = integrantes,
-        };
-
-        return View("Criar", novoProjeto);
+        (name, integrantes, ano, periodo) = GitHubService.ExtractDataFromReadme(decodedReadme, repoUrl);
       }
-      else
+
+      if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(ano) || string.IsNullOrWhiteSpace(periodo))
       {
-        ModelState.AddModelError("", "Não foi possível encontrar o README no GitHub.");
-        return RedirectToAction(nameof(ResultadosBusca));
+        var parsedData = GitHubService.ParseRepoUrlForDetails(repoUrl);
+        name = string.IsNullOrWhiteSpace(name) ? parsedData.name : name;
+        ano = string.IsNullOrWhiteSpace(ano) ? parsedData.ano : ano;
+        periodo = string.IsNullOrWhiteSpace(periodo) ? parsedData.periodo : periodo;
       }
+
+      var introducao = string.Empty;
+
+      string[] paths = new[] { "docs/01-Documentação de Contexto.md", "documentos/01-Documentação de Contexto.md", "documents/01-Documentação de Contexto.md" };
+      var fileContent = await _gitHubService.GetFileContent(Owner, Repo, paths);
+      if (fileContent != null)
+      {
+        introducao = _gitHubService.ExtractIntroduction(fileContent);
+      }
+
+      var novoProjeto = new Projeto
+      {
+        NomeProjeto = name,
+        Ano = !string.IsNullOrEmpty(ano) ? ano : DateTime.Now.Year.ToString(),
+        Periodo = !string.IsNullOrEmpty(periodo) ? periodo : "1",
+        Categoria = CategoriaEnum.Outros,
+        PalavraChave = "",
+        UrlRepositorio = repoUrl,
+        DescricaoProjeto = introducao,
+        Integrantes = integrantes,
+      };
+
+      return View("Criar", novoProjeto);
     }
     else
     {
@@ -391,6 +396,7 @@ public class ProjetosController : Controller
       return RedirectToAction(nameof(ResultadosBusca));
     }
   }
+
 
   private (string Owner, string Repo)? ParseGitHubUrl(string url)
   {
@@ -402,4 +408,16 @@ public class ProjetosController : Controller
     return null;
   }
 
+  private (string name, string ano, string periodo) ParseRepoUrlForDetails(string repoUrl)
+  {
+    var match = Regex.Match(repoUrl, @"pmv-(ads|sint)-(\d{4})-(\d)-e(\d)-.*-(\d+)-(.+)");
+    if (match.Success)
+    {
+      var ano = match.Groups[2].Value;
+      var periodo = match.Groups[3].Value + "-" + match.Groups[4].Value;
+      var name = match.Groups[6].Value.Replace("-", " ");
+      return (name, ano, periodo);
+    }
+    return (string.Empty, string.Empty, string.Empty);
+  }
 }

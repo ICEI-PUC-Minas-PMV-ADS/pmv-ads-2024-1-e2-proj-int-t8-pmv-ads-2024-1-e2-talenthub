@@ -58,7 +58,7 @@
             <div class="col-md-9">
                 @if (Model != null && Model.Any()) 
                 {
-                    <h3 class="text-start mb-4 fw-bold text-dark-blue">Resultados da sua busca <small class="fs-6 opacity-75">(@Model.Count() @if(@Model.Count() == 1){<span>projeto encontrado</span>}else{<span>projetos encontrados</span>})</small></h3>
+                    <h3 class="text-start mb-4 fw-bold text-dark-blue">Resultados da sua busca</h3>
                     <div class="list-group mb-5">
                         @foreach (var projeto in Model)
                         {
@@ -112,7 +112,7 @@
                         }
                     </div>
 
-                    <div class="pagination d-flex justify-content-center">
+                    <div class="pagination d-flex justify-content-center gap-2">
                         @if (Model.HasPreviousPage)
                         {
                             <a asp-action="ResultadosBusca" asp-route-pageNumber="@(Model.PageIndex - 1)" class="btn btn-outline-primary">Anterior</a>

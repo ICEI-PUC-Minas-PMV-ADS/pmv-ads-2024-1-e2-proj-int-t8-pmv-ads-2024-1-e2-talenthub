@@ -63,14 +63,21 @@ public class GitHubService
     return Encoding.UTF8.GetString(decodedBytes);
   }
 
-  public static (string Name, string Integrantes, string Ano, string Periodo) ExtractDataFromReadme(string readmeContent)
+  public static (string Name, string Integrantes, string Ano, string Periodo) ExtractDataFromReadme(string readmeContent, string repoUrl)
   {
-    var name = ExtractProjectName(readmeContent);
+    var (nameFromUrl, anoFromUrl, periodoFromUrl) = ParseRepoUrlForDetails(repoUrl);
+
+    var nameFromReadme = ExtractProjectName(readmeContent);
     var integrantes = ExtractIntegrantes(readmeContent);
-    var (ano, periodo) = ExtractAnoPeriodo(readmeContent);
+    var (anoFromReadme, periodoFromReadme) = ExtractAnoPeriodo(readmeContent);
+
+    var name = !string.IsNullOrEmpty(nameFromReadme) ? nameFromReadme : nameFromUrl;
+    var ano = !string.IsNullOrEmpty(anoFromUrl) ? anoFromUrl : anoFromReadme;
+    var periodo = !string.IsNullOrEmpty(periodoFromUrl) ? periodoFromUrl : periodoFromReadme;
 
     return (name, integrantes, ano, periodo);
   }
+
 
   private static string ExtractProjectName(string content)
   {
@@ -95,7 +102,6 @@ public class GitHubService
     return string.Empty;
   }
 
-
   private static (string Ano, string Periodo) ExtractAnoPeriodo(string content)
   {
     var anoPattern = @"\b[0-9]{4}\b";
@@ -114,53 +120,23 @@ public class GitHubService
     return (ano, periodo);
   }
 
+  public static (string name, string ano, string periodo) ParseRepoUrlForDetails(string repoUrl)
+  {
+    var match = Regex.Match(repoUrl, @"pmv-(ads|sint)-(\d{4})-(\d)-e(\d)-.*?-(.+)", RegexOptions.IgnoreCase);
+    if (match.Success)
+    {
+      var ano = match.Groups[2].Value;
+      var periodo = match.Groups[4].Value;
+      var name = match.Groups[5].Value.Split('-').Last().Replace("-", " ");
+      return (name, ano, periodo);
+    }
+    return (string.Empty, string.Empty, string.Empty);
+  }
+
+
   public bool IsBase64String(string base64)
   {
     Span<byte> buffer = new Span<byte>(new byte[base64.Length]);
     return Convert.TryFromBase64String(base64, buffer, out _);
   }
-}
-
-
-public class GitHubFile
-{
-  public string Name { get; set; }
-  public string Path { get; set; }
-  public string Sha { get; set; }
-  public int Size { get; set; }
-  public string Url { get; set; }
-  public string HtmlUrl { get; set; }
-  public string GitUrl { get; set; }
-  public string DownloadUrl { get; set; }
-  public string Type { get; set; }
-  public string Content { get; set; }
-  public string Encoding { get; set; }
-}
-
-public class GitHubRepositoryData
-{
-  public string Name { get; set; }
-  public string Description { get; set; }
-  public string HtmlUrl { get; set; }
-  public string CloneUrl { get; set; }
-  public string Language { get; set; }
-  public int StargazersCount { get; set; }
-  public int ForksCount { get; set; }
-  public Owner Owner { get; set; }
-}
-
-public class Owner
-{
-  public string Login { get; set; }
-  public string AvatarUrl { get; set; }
-  public string HtmlUrl { get; set; }
-}
-
-public class GitHubContributor
-{
-  public string Login { get; set; }
-  public int Id { get; set; }
-  public string AvatarUrl { get; set; }
-  public string HtmlUrl { get; set; }
-  public int Contributions { get; set; }
 }
