@@ -247,11 +247,12 @@ public class ProjetosController : Controller
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> AvaliarProjeto(int id, int rating, string comments)
   {
-
     if (!User.Identity.IsAuthenticated)
     {
       return RedirectToAction("Index", "Home");
     }
+
+    var usuarioId = int.Parse(User.FindFirst("IdUsuario").Value);
 
     var projeto = await _context.Projetos.FindAsync(id);
     if (projeto == null)
@@ -260,9 +261,40 @@ public class ProjetosController : Controller
       return NotFound();
     }
 
-    TempData["SuccessMessage"] = "Avaliação salva com sucesso!";
-    return RedirectToAction(nameof(Detalhes), new { id = id });
+    var avaliacaoExistente = await _context.Avaliacoes.FirstOrDefaultAsync(a => a.IdProjeto == projeto.IdProjeto && a.IdUsuario == usuarioId);
+    if (avaliacaoExistente != null)
+    {
+      avaliacaoExistente.Nota = rating;
+      avaliacaoExistente.Comentario = comments;
+    }
+    else
+    {
+      var novaAvaliacao = new Avaliacao
+      {
+        IdProjeto = projeto.IdProjeto,
+        IdUsuario = usuarioId,
+        Nota = rating,
+        Comentario = comments
+      };
+      _context.Avaliacoes.Add(novaAvaliacao);
+    }
+
+    try
+    {
+      await _context.SaveChangesAsync();
+      TempData["SuccessMessage"] = "Avaliação salva com sucesso!";
+    }
+    catch (DbUpdateException ex)
+    {
+      ModelState.AddModelError("", "Erro ao salvar a avaliação: " + ex.InnerException?.Message);
+      TempData["ErrorMessage"] = "Erro ao salvar a avaliação.";
+      return RedirectToAction(nameof(Detalhes), new { id = projeto.IdProjeto });
+    }
+
+    return RedirectToAction(nameof(Detalhes), new { id = projeto.IdProjeto });
   }
+
+
 
   [HttpPost]
   [ValidateAntiForgeryToken]
