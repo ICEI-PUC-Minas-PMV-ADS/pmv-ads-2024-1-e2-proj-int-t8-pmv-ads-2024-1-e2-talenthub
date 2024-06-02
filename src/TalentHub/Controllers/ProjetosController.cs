@@ -292,11 +292,9 @@ public class ProjetosController : Controller
       projeto.Avaliacoes.Add(novaAvaliacao);
     }
 
-    Console.WriteLine("Nota média antes da atualização: " + projeto.NotaMedia);
     if (projeto.Avaliacoes.Any())
     {
       projeto.NotaMedia = (float)projeto.Avaliacoes.Average(a => a.Nota);
-      Console.WriteLine("Nova nota média calculada: " + projeto.NotaMedia);
     }
     else
     {
