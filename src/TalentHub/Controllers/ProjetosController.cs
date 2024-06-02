@@ -48,6 +48,7 @@ public class ProjetosController : Controller
 
     var projeto = await _context.Projetos
                                 .Include(p => p.Anotacoes)
+                                .Include(p => p.Avaliacoes) 
                                 .FirstOrDefaultAsync(m => m.IdProjeto == id);
 
     if (projeto == null)
@@ -254,14 +255,16 @@ public class ProjetosController : Controller
 
     var usuarioId = int.Parse(User.FindFirst("IdUsuario").Value);
 
-    var projeto = await _context.Projetos.FindAsync(id);
+    var projeto = await _context.Projetos
+                                .Include(p => p.Avaliacoes)
+                                .FirstOrDefaultAsync(p => p.IdProjeto == id);
     if (projeto == null)
     {
       TempData["ErrorMessage"] = "Projeto não encontrado.";
       return NotFound();
     }
 
-    var avaliacaoExistente = await _context.Avaliacoes.FirstOrDefaultAsync(a => a.IdProjeto == projeto.IdProjeto && a.IdUsuario == usuarioId);
+    var avaliacaoExistente = projeto.Avaliacoes.FirstOrDefault(a => a.IdUsuario == usuarioId);
     if (avaliacaoExistente != null)
     {
       avaliacaoExistente.Nota = rating;
@@ -271,12 +274,23 @@ public class ProjetosController : Controller
     {
       var novaAvaliacao = new Avaliacao
       {
-        IdProjeto = projeto.IdProjeto,
+        IdProjeto = id,
         IdUsuario = usuarioId,
         Nota = rating,
         Comentario = comments
       };
-      _context.Avaliacoes.Add(novaAvaliacao);
+      projeto.Avaliacoes.Add(novaAvaliacao);
+    }
+
+    Console.WriteLine("Nota média antes da atualização: " + projeto.NotaMedia);
+    if (projeto.Avaliacoes.Any())
+    {
+      projeto.NotaMedia = (float)projeto.Avaliacoes.Average(a => a.Nota);
+      Console.WriteLine("Nova nota média calculada: " + projeto.NotaMedia);
+    }
+    else
+    {
+      projeto.NotaMedia = 0;
     }
 
     try
@@ -293,6 +307,7 @@ public class ProjetosController : Controller
 
     return RedirectToAction(nameof(Detalhes), new { id = projeto.IdProjeto });
   }
+
 
 
 
