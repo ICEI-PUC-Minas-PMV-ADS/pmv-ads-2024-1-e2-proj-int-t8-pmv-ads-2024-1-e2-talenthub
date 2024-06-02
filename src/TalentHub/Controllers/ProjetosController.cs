@@ -56,6 +56,15 @@ public class ProjetosController : Controller
       return NotFound();
     }
 
+    if (projeto.Avaliacoes.Any())
+    {
+        projeto.NotaMedia = (float)projeto.Avaliacoes.Average(a => a.Nota);
+    }
+    else
+    {
+        projeto.NotaMedia = 0;
+    }
+
     if (User != null && User.Identity.IsAuthenticated)
     {
       var usuarioId = int.Parse(User.FindFirst("IdUsuario").Value);
