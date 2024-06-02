@@ -48,11 +48,22 @@ public class ProjetosController : Controller
 
     var projeto = await _context.Projetos
                                 .Include(p => p.Anotacoes)
+                                .Include(p => p.Avaliacoes) 
+                                .AsSplitQuery()
                                 .FirstOrDefaultAsync(m => m.IdProjeto == id);
 
     if (projeto == null)
     {
       return NotFound();
+    }
+
+    if (projeto.Avaliacoes.Any())
+    {
+        projeto.NotaMedia = (float)projeto.Avaliacoes.Average(a => a.Nota);
+    }
+    else
+    {
+        projeto.NotaMedia = 0;
     }
 
     if (User != null && User.Identity.IsAuthenticated)
@@ -247,22 +258,66 @@ public class ProjetosController : Controller
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> AvaliarProjeto(int id, int rating, string comments)
   {
-
     if (!User.Identity.IsAuthenticated)
     {
       return RedirectToAction("Index", "Home");
     }
 
-    var projeto = await _context.Projetos.FindAsync(id);
+    var usuarioId = int.Parse(User.FindFirst("IdUsuario").Value);
+
+    var projeto = await _context.Projetos
+                                .Include(p => p.Avaliacoes)
+                                .FirstOrDefaultAsync(p => p.IdProjeto == id);
     if (projeto == null)
     {
       TempData["ErrorMessage"] = "Projeto não encontrado.";
       return NotFound();
     }
 
-    TempData["SuccessMessage"] = "Avaliação salva com sucesso!";
-    return RedirectToAction(nameof(Detalhes), new { id = id });
+    var avaliacaoExistente = projeto.Avaliacoes.FirstOrDefault(a => a.IdUsuario == usuarioId);
+    if (avaliacaoExistente != null)
+    {
+      avaliacaoExistente.Nota = rating;
+      avaliacaoExistente.Comentario = comments;
+    }
+    else
+    {
+      var novaAvaliacao = new Avaliacao
+      {
+        IdProjeto = id,
+        IdUsuario = usuarioId,
+        Nota = rating,
+        Comentario = comments
+      };
+      projeto.Avaliacoes.Add(novaAvaliacao);
+    }
+
+    if (projeto.Avaliacoes.Any())
+    {
+      projeto.NotaMedia = (float)projeto.Avaliacoes.Average(a => a.Nota);
+    }
+    else
+    {
+      projeto.NotaMedia = 0;
+    }
+
+    try
+    {
+      await _context.SaveChangesAsync();
+      TempData["SuccessMessage"] = "Avaliação salva com sucesso!";
+    }
+    catch (DbUpdateException ex)
+    {
+      ModelState.AddModelError("", "Erro ao salvar a avaliação: " + ex.InnerException?.Message);
+      TempData["ErrorMessage"] = "Erro ao salvar a avaliação.";
+      return RedirectToAction(nameof(Detalhes), new { id = projeto.IdProjeto });
+    }
+
+    return RedirectToAction(nameof(Detalhes), new { id = projeto.IdProjeto });
   }
+
+
+
 
   [HttpPost]
   [ValidateAntiForgeryToken]
