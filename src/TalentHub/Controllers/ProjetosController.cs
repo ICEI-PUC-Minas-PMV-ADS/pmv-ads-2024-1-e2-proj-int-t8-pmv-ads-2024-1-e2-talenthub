@@ -49,6 +49,7 @@ public class ProjetosController : Controller
     var projeto = await _context.Projetos
                                 .Include(p => p.Anotacoes)
                                 .Include(p => p.Avaliacoes) 
+                                .AsSplitQuery()
                                 .FirstOrDefaultAsync(m => m.IdProjeto == id);
 
     if (projeto == null)
