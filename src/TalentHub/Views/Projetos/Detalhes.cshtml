@@ -192,7 +192,7 @@
         <div class="modal-content">
             <form asp-action="AvaliarProjeto" method="post">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="rateProjectModalLabel">Avaliar Projeto</h5>
+                    <h5 class="modal-title" id="rateProjectInteragir">Avaliar Projeto</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
@@ -211,7 +211,7 @@
                     </div>
                     <div class="form-group mt-3">
                         <label for="comments" class="mb-1">Comentários</label>
-                        <textarea class="form-control" id="comments" name="comments" rows="3"></textarea>
+                        <textarea class="form-control" id="comments" name="comments" rows="3" required>@ViewBag.avaliacaoExistente?.Comentario</textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
