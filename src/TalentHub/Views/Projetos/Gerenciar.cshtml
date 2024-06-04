@@ -1,4 +1,7 @@
-﻿@{
+﻿@using TalentHub.Helpers
+@model PaginatedList<TalentHub.Models.Projeto>
+
+@{
     ViewData["Title"] = "Gerenciar projetos";
 }
 
@@ -73,12 +76,13 @@
                     var categoria = projeto.Categoria.ToString().ToLower();
                     <a href="@Url.Action("Detalhes", "Projetos", new { id = projeto.IdProjeto })" class="text-decoration-none">
                         <div class="list-group-item d-flex justify-content-between align-items-center border-0 @categoria">
-                            <div class="d-flex align-items-start">
+                            <div class="d-flex align-items-start me-3">
                                 <div class="me-3 text-center">
                                     <div class="icon-wrapper @categoria">
                                         <i class="@TalentHub.Helpers.CategoriaHelper.GetIconForCategoria((CategoriaEnum)Enum.Parse(typeof(CategoriaEnum), categoria.ToString(), true))"></i>
                                     </div>
-                                    @* <label class="fs-7 @projeto.Categoria.GetDescription()">@projeto.Categoria.GetDescription()</label> *@
+                                    <label class="fs-7 @categoria">@projeto.Categoria.GetDescription()</label>
+                                    
                                 </div>
 
                                 <div class="">
@@ -124,18 +128,37 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="position-absolute bottom-0 mt-3 end-0 me-3">
-                                <a href="@Url.Action("Editar", "Projetos", new { id = projeto.IdProjeto })" class="btn btn-xs rounded-blue-btn">
-                                    <i class="fa-solid fa-edit"></i>
+                            <div class="d-flex bottom-0">
+
+                                <a href="@Url.Action("Editar", "Projetos", new { id = projeto.IdProjeto })" class="btn me-2 btn-sm btn-outline-primary d-flex align-items-center">
+                                    <i class="fas fa-edit"></i>
+                                        Editar
                                 </a>
-                                <a href="#" class="btn btn-xs me-1 rounded-red-btn" data-bs-toggle="modal" data-bs-target="#confirmDeleteProjectModal" data-id="@projeto.IdProjeto">
-                                    <i class="fa-solid fa-trash"></i>
+                                <a href="#" class="btn btn-sm btn-outline-danger d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#confirmDeleteProjectModal" data-id="@projeto.IdProjeto">
+                                    <i class="fas fa-trash"></i>
+                                        Apagar
                                 </a>
                             </div>
                         </div>
                     </a>
 
                     <div class="border-bottom my-4"></div>
+                }
+            </div>
+            <div class="pagination d-flex justify-content-center gap-2">
+                @if (Model.HasPreviousPage)
+                {
+                    <a asp-action="Gerenciar" asp-route-pageNumber="@(Model.PageIndex - 1)" class="btn btn-outline-primary">Anterior</a>
+                }
+
+                @for (var i = 1; i <= Model.TotalPages; i++)
+                {
+                    <a asp-action="Gerenciar" asp-route-pageNumber="@i" class="btn @(Model.PageIndex == i ? "btn-primary" : "btn-outline-primary")">@i</a>
+                }
+
+                @if (Model.HasNextPage)
+                {
+                    <a asp-action="Gerenciar" asp-route-pageNumber="@(Model.PageIndex + 1)" class="btn btn-outline-primary">Próximo</a>
                 }
             </div>
         </div>
@@ -172,9 +195,7 @@
        
             <div class="modal-header">
                 <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Exclusão</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 Tem certeza de que deseja excluir este projeto?

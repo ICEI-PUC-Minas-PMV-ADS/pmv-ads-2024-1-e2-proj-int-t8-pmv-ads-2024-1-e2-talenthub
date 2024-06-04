@@ -28,18 +28,18 @@ public class ProjetosController : Controller
   // GET: Projetos/Gerenciar
   public async Task<IActionResult> Gerenciar(int? pageNumber)
   {
-    
+
     var usuarioId = int.Parse(User.FindFirst("IdUsuario").Value);
 
     if (!User.Identity.IsAuthenticated)
     {
       return RedirectToAction("Index", "Home");
     }
-    
-     var projetos = _context.Projetos
-                .Where(a => a.UsuarioIdUsuario == usuarioId)
-                .Where(a => a.Deletado == false)
-                .AsNoTracking();
+
+    var projetos = _context.Projetos
+               .Where(a => a.UsuarioIdUsuario == usuarioId)
+               .Where(a => a.Deletado == false)
+               .AsNoTracking();
 
     int pageSize = 10;
     return View(await PaginatedList<Projeto>.CreateAsync(projetos, pageNumber ?? 1, pageSize));
@@ -255,9 +255,9 @@ public class ProjetosController : Controller
     var projeto = await _context.Projetos.FindAsync(id);
     if (projeto != null)
     {
-        projeto.Deletado = true;
-        _context.Projetos.Update(projeto);
-        await _context.SaveChangesAsync();
+      projeto.Deletado = true;
+      _context.Projetos.Update(projeto);
+      await _context.SaveChangesAsync();
       TempData["SuccessMessage"] = "Projeto removido com sucesso!";
     }
     return RedirectToAction(nameof(Gerenciar));
@@ -390,7 +390,8 @@ public class ProjetosController : Controller
       query = query.Where(p => p.NomeProjeto.ToLower().Contains(searchTerm.ToLower()) ||
                                p.DescricaoProjeto.ToLower().Contains(searchTerm.ToLower()) ||
                                p.PalavraChave.ToLower().Contains(searchTerm.ToLower()) ||
-                               p.UrlRepositorio.ToLower().Contains(searchTerm.ToLower()));
+                               p.UrlRepositorio.ToLower().Contains(searchTerm.ToLower()))
+                               .Where(a => a.Deletado == false);
     }
 
     if (categorias != null && categorias.Length > 0)
@@ -444,7 +445,8 @@ public class ProjetosController : Controller
         .Where(p => p.NomeProjeto.ToLower().Contains(searchTerm) ||
                     p.DescricaoProjeto.ToLower().Contains(searchTerm) ||
                     p.PalavraChave.ToLower().Contains(searchTerm) ||
-                    p.UrlRepositorio.ToLower().Contains(searchTerm));
+                    p.UrlRepositorio.ToLower().Contains(searchTerm))
+                    .Where(a => a.Deletado == false);
 
     int pageSize = 10;
     var projetos = await PaginatedList<Projeto>.CreateAsync(query.AsNoTracking(), pageNumber ?? 1, pageSize);
