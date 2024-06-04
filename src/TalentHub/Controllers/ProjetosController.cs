@@ -47,10 +47,11 @@ public class ProjetosController : Controller
     }
 
     var projeto = await _context.Projetos
-                                .Include(p => p.Anotacoes)
-                                .Include(p => p.Avaliacoes) 
-                                .AsSplitQuery()
-                                .FirstOrDefaultAsync(m => m.IdProjeto == id);
+                  .Include(p => p.Anotacoes)
+                  .Include(p => p.Avaliacoes)
+                    .ThenInclude(a => a.Usuario)
+                  .AsSplitQuery()
+                  .FirstOrDefaultAsync(m => m.IdProjeto == id);
 
     if (projeto == null)
     {
@@ -59,11 +60,11 @@ public class ProjetosController : Controller
 
     if (projeto.Avaliacoes.Any())
     {
-        projeto.NotaMedia = (float)projeto.Avaliacoes.Average(a => a.Nota);
+      projeto.NotaMedia = (float)projeto.Avaliacoes.Average(a => a.Nota);
     }
     else
     {
-        projeto.NotaMedia = 0;
+      projeto.NotaMedia = 0;
     }
 
     if (User != null && User.Identity.IsAuthenticated)
@@ -279,6 +280,7 @@ public class ProjetosController : Controller
     {
       avaliacaoExistente.Nota = rating;
       avaliacaoExistente.Comentario = comments;
+      avaliacaoExistente.DataAvaliacao = DateTime.Now;
     }
     else
     {
@@ -287,7 +289,8 @@ public class ProjetosController : Controller
         IdProjeto = id,
         IdUsuario = usuarioId,
         Nota = rating,
-        Comentario = comments
+        Comentario = comments,
+        DataAvaliacao = DateTime.Now,
       };
       projeto.Avaliacoes.Add(novaAvaliacao);
     }
@@ -315,9 +318,6 @@ public class ProjetosController : Controller
 
     return RedirectToAction(nameof(Detalhes), new { id = projeto.IdProjeto });
   }
-
-
-
 
   [HttpPost]
   [ValidateAntiForgeryToken]
@@ -373,7 +373,7 @@ public class ProjetosController : Controller
   }
 
   // GET: Projetos/ResultadosBusca
-  public async Task<IActionResult> ResultadosBusca(string searchTerm, string[] categorias, string palavrasChave, int? ano, int? periodo, int? rating, int? pageNumber)
+  public async Task<IActionResult> ResultadosBusca(string searchTerm, string[]? categorias, string? palavrasChave, string? autor, int? ano, int? periodo, int? rating, int? pageNumber)
   {
     var query = _context.Projetos.AsQueryable();
 
@@ -394,6 +394,11 @@ public class ProjetosController : Controller
     if (!string.IsNullOrWhiteSpace(palavrasChave))
     {
       query = query.Where(p => p.PalavraChave.ToLower().Contains(palavrasChave.ToLower()));
+    }
+
+    if (!string.IsNullOrWhiteSpace(autor))
+    {
+      query = query.Where(p => p.Integrantes.ToLower().Contains(autor.ToLower()));
     }
 
     if (ano.HasValue)

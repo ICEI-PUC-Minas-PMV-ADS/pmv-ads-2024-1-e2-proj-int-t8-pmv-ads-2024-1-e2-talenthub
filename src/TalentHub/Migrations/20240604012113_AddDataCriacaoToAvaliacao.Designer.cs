@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TalentHub.Data;
 
@@ -11,9 +12,11 @@ using TalentHub.Data;
 namespace TalentHub.Migrations
 {
     [DbContext(typeof(TalentHubContext))]
-    partial class TalentHubContextModelSnapshot : ModelSnapshot
+    [Migration("20240604012113_AddDataCriacaoToAvaliacao")]
+    partial class AddDataCriacaoToAvaliacao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
