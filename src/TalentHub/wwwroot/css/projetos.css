@@ -60,6 +60,23 @@
   color: white;
 }
 
+.rounded-red-btn {
+  background-color: #f60000;
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  border-radius: 10px;
+  font-size: 1.0rem;
+  cursor: pointer;
+  gap: 10px;
+  outline: none;
+}
+
+.rounded-red-btn:hover {
+  background-color: #f37575;
+  color: white;
+}
+
 .list {
   list-style-type: none;
   padding: 10px;
@@ -253,4 +270,11 @@
 
 .icon-wrapper i {
   color: white;
+}
+
+.btn-xs {
+  padding: 0.55rem 1.0rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
 }

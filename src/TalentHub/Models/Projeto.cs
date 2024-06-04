@@ -40,6 +40,8 @@ namespace TalentHub.Models
     public int QtdVisualizacoes { get; set; }
 
     public float NotaMedia { get; set; }
+      
+    public int UsuarioIdUsuario { get; set; }
 
     public List<Anotacao> Anotacoes { get; set; } = new List<Anotacao>();
     public List<Avaliacao> Avaliacoes { get; set; } = new List<Avaliacao>();

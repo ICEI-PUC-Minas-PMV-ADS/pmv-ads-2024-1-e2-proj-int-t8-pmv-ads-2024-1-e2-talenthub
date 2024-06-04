@@ -26,16 +26,23 @@ public class ProjetosController : Controller
   }
 
   // GET: Projetos/Gerenciar
-  public async Task<IActionResult> Gerenciar()
+  public async Task<IActionResult> Gerenciar(int? pageNumber)
   {
+    
+    var usuarioId = int.Parse(User.FindFirst("IdUsuario").Value);
 
     if (!User.Identity.IsAuthenticated)
     {
       return RedirectToAction("Index", "Home");
     }
+    
+     var projetos = _context.Projetos
+                .Where(a => a.UsuarioIdUsuario == usuarioId)
+                .Where(a => a.Deletado == false)
+                .AsNoTracking();
 
-    var projetos = await _context.Projetos.ToListAsync();
-    return View(projetos);
+    int pageSize = 10;
+    return View(await PaginatedList<Projeto>.CreateAsync(projetos, pageNumber ?? 1, pageSize));
   }
 
   // GET: Projetos/Detalhes/1
@@ -235,7 +242,7 @@ public class ProjetosController : Controller
   }
 
   // POST: Projetos/Apagar/5
-  [HttpPost, ActionName("Apagar")]
+  [HttpPost]
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> ApagarConfirmacao(int id)
   {
@@ -248,11 +255,12 @@ public class ProjetosController : Controller
     var projeto = await _context.Projetos.FindAsync(id);
     if (projeto != null)
     {
-      _context.Projetos.Remove(projeto);
-      await _context.SaveChangesAsync();
+        projeto.Deletado = true;
+        _context.Projetos.Update(projeto);
+        await _context.SaveChangesAsync();
       TempData["SuccessMessage"] = "Projeto removido com sucesso!";
     }
-    return RedirectToAction(nameof(Index));
+    return RedirectToAction(nameof(Gerenciar));
   }
 
   [HttpPost]
