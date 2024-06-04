@@ -37,4 +37,12 @@ $(document).ready(function () {
     var modal = $(this);
     modal.find("#deleteNoteId").val(noteId);
   });
+  
+  $("#confirmDeleteProjectModal").on("show.bs.modal", function (event) {
+    var button = $(event.relatedTarget);
+    var projectId = button.data("id");
+
+    var modal = $(this);
+    modal.find("#deleteProjectId").val(projectId);
+  });
 });
