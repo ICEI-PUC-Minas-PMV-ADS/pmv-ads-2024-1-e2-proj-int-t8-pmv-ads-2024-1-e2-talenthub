@@ -171,13 +171,21 @@ public class ProjetosController : Controller
       TempData["ErrorMessage"] = "Projeto não encontrado.";
       return NotFound();
     }
+
+    var usuarioId = int.Parse(User.FindFirst("IdUsuario").Value);
+    if (projeto.UsuarioIdUsuario != usuarioId)
+    {
+      TempData["ErrorMessage"] = "Você não tem permissão para editar este projeto.";
+      return RedirectToAction(nameof(Detalhes), new { id = projeto.IdProjeto });
+    }
+
     return View(projeto);
   }
 
   // POST: Projetos/Edit/5
   [HttpPost]
   [ValidateAntiForgeryToken]
-  public async Task<IActionResult> Editar(int id, [Bind("IdProjeto,NomeProjeto,DescricaoProjeto,Ano,Periodo,Categoria,PalavraChave,UrlRepositorio,UrlAplicacao,Integrantes,InformacoesContato")] Projeto projeto)
+  public async Task<IActionResult> Editar(int id, [Bind("IdProjeto,NomeProjeto,DescricaoProjeto,Ano,Periodo,Categoria,PalavraChave,UrlRepositorio,UrlAplicacao,Integrantes,InformacoesContato,UsuarioIdUsuario")] Projeto projeto)
   {
 
     if (!User.Identity.IsAuthenticated)
@@ -190,6 +198,7 @@ public class ProjetosController : Controller
       TempData["ErrorMessage"] = "O ID do projeto não corresponde ao projeto enviado.";
       return NotFound();
     }
+
 
     if (ModelState.IsValid)
     {
