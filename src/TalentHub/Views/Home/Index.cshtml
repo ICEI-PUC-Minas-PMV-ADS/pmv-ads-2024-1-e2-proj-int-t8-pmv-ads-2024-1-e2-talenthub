@@ -19,308 +19,302 @@
         <div class="w-100 text-center fs-1 fw-bold text-white mb-5">@ViewBag.ProjectCount projetos cadastrados</div>
     </div>
     
-        <form asp-controller="Projetos" asp-action="BuscarProjeto" method="get">
-            <div class="search-container">
-                <div class="search-card py-4 px-4">
-                    
-                        <div class="input-group d-flex align-items-center">
-                            <div class="input-group-prepend">
-                                <span>
-                                    <img src="~/images/magnifier@100x100.png" alt="Buscar" height="50" />
-                                </span>
-                            </div>
-                            <input type="text" class="form-control input-group-text encoded-sans fw-600 fs-55" name="searchTerm"
-                                placeholder="Busque por nome de projeto, termos ou URL GitHub" aria-label="Busque por nome de projeto, termos ou URL GitHub" aria-describedby="basic-addon1">
-                            <div class="input-group-append">
-                                <button class="search-btn d-flex justify-content-between align-items-center" type="submit">
-                                    <img src="~/images/paper-plane@100x100.png" alt="Buscar" height="34" class="me-3" />
-                                    <div class="text-center fs-5 me-5 encoded-sans fw-600">Buscar</div>
-                                </button>
-                            </div>
-                        </div>
+    <form asp-controller="Projetos" asp-action="BuscarProjeto" method="get">
+        <div class="search-container">
+            <div class="search-card py-4 px-4">
+                <div class="input-group d-flex align-items-center">
+                    <div class="input-group-prepend">
+                        <span>
+                            <img src="~/images/magnifier@100x100.png" alt="Buscar" height="50" />
+                        </span>
+                    </div>
+                    <input type="text" class="form-control input-group-text encoded-sans fw-600 fs-55" name="searchTerm"
+                        placeholder="Busque por nome de projeto, termos ou URL GitHub" aria-label="Busque por nome de projeto, termos ou URL GitHub" aria-describedby="basic-addon1">
+                    <div class="input-group-append">
+                        <button class="search-btn d-flex justify-content-between align-items-center" type="submit">
+                            <img src="~/images/paper-plane@100x100.png" alt="Buscar" height="34" class="me-3" />
+                            <div class="text-center fs-5 me-5 encoded-sans fw-600">Buscar</div>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </form>
+        </div>
+    </form>
 
-        <form asp-controller="Projetos" asp-action="ResultadosBusca" method="get">
-            <div class="container content-container mt-5">
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="w-75">
-                            <h5 class="mb-4 fw-bold text-dark-blue">Refine sua busca</h5>
-                            <div class="mb-3">
-                                <h6 class="fw-bold text-dark-blue mb-3">Categorias</h6>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="categorias" value="Saude">
-                                    <label class="form-check-label">
-                                        Saúde
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="categorias" value="Tecnologia">
-                                    <label class="form-check-label">
-                                        Tecnologia
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="categorias" value="Financas">
-                                    <label class="form-check-label">
-                                        Finanças
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="categorias" value="ProjetosSociais">
-                                    <label class="form-check-label">
-                                        Projetos sociais
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="categorias" value="Turismo">
-                                    <label class="form-check-label">
-                                        Turismo
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="categorias" value="Lazer">
-                                    <label class="form-check-label">
-                                        Lazer
-                                    </label>
-                                </div>
-
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="categorias" value="Educacao"> 
-                                    <label class="form-check-label">
-                                        Educação
-                                    </label>
-                                </div>
-
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="categorias" value="Esporte">
-                                    <label class="form-check-label">
-                                        Esporte
-                                    </label>
-                                </div>
-
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="categorias" value="Ciencia">
-                                    <label class="form-check-label">
-                                        Ciência
-                                    </label>
-                                </div>
-
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="categorias" value="MeioAmbiente">
-                                    <label class="form-check-label">
-                                        Meio Ambiente
-                                    </label>
-                                </div>
-
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="categorias" value="Comercio">
-                                    <label class="form-check-label">
-                                        Comércio
-                                    </label>
-                                </div>
-
-
-
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="categorias" value="Outros">
-                                    <label class="form-check-label">
-                                        Outros
-                                    </label>
-                                </div>
-
+    <form asp-controller="Projetos" asp-action="ResultadosBusca" method="get">
+        <div class="container content-container mt-5">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="w-75">
+                        <h5 class="mb-4 fw-bold text-dark-blue">Refine sua busca</h5>
+                        <div class="mb-3">
+                            <h6 class="fw-bold text-dark-blue mb-3">Categorias</h6>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="categoriaSaude" name="categorias" value="Saude">
+                                <label class="form-check-label" for="categoriaSaude">
+                                    Saúde
+                                </label>
                             </div>
-                            
-                            <div class="mb-3 pt-3">
-                                <h6 class="fw-bold text-dark-blue mb-3">Palavras-chaves</h6>
-                                <input type="text" name="palavrasChave" id="palavrasChave" placeholder="Ex: Consultas, Carros" class="form-control border-primary p-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="categoriaTecnologia" name="categorias" value="Tecnologia">
+                                <label class="form-check-label" for="categoriaTecnologia">
+                                    Tecnologia
+                                </label>
                             </div>
-
-                            <div class="mb-3 pt-3">
-                                <h6 class="fw-bold text-dark-blue mb-3">Autor</h6>
-                                <input type="text" name="autor" id="autor" placeholder="Ex: José da Silva" class="form-control border-primary p-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="categoriaFinancas" name="categorias" value="Financas">
+                                <label class="form-check-label" for="categoriaFinancas">
+                                    Finanças
+                                </label>
                             </div>
-
-                            <div class="mb-3 pt-3">
-                                <div class="row">
-                                    <h6 class="fw-bold text-dark-blue mb-3">Ano e período/eixo</h6>
-                                    <div class="col">
-                                        <select name="ano" id="ano" class="form-control form-select border-primary p-2">
-                                            <option>-</option>
-                                            @foreach (var ano in anos)
-                                            {
-                                                <option value="@ano">@ano</option>
-                                            }
-                                        </select>
-                                    </div>
-                                    <div class="col">
-                                        <select name="periodo" id="periodo" class="form-control form-select border-primary p-2">
-                                            <option>-</option>
-                                            <option value="1">1°</option>
-                                            <option value="2">2°</option>
-                                            <option value="3">3°</option>
-                                            <option value="4">4°</option>
-                                            <option value="5">5°</option>
-                                            <option value="6">6°</option>
-                                            <option value="7">7°</option>
-                                            <option value="8">8°</option>
-                                        </select>
-                                    </div>
-                                </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="categoriaProjetosSociais" name="categorias" value="ProjetosSociais">
+                                <label class="form-check-label" for="categoriaProjetosSociais">
+                                    Projetos sociais
+                                </label>
                             </div>
-
-                            <div class="mb-3 pt-3">
-                                <h6 class="fw-bold text-dark-blue mb-3 d-flex gap-2 align-items-center">Avaliação
-                                    <i class="fa-regular fa-circle-question text-muted fs-5" data-toggle="tooltip" data-placement="top" title="Selecione a quantidade mínima de estrelas que os projetos devem ter"></i>
-                                </h6>
-                                <div class="rating-filter">
-                                    @for(int i = 1; i <= 4; i++){
-                                        <label class="rating-label">
-                                            <input type="radio" name="rating" value="@i" class="rating-input">
-                                            <div class="rating-stars">
-                                                @for(int j = 1; j <= i; j++){
-                                                    <i class="fas fa-star text-warning"></i>
-                                                }
-                                                @for(int k = i; k < 5; k++){
-                                                    <i class="far fa-star text-secondary"></i>
-                                                }
-                                            </div>
-                                        </label>
-                                    }
-                                </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="categoriaTurismo" name="categorias" value="Turismo">
+                                <label class="form-check-label" for="categoriaTurismo">
+                                    Turismo
+                                </label>
                             </div>
-
-                            <div class="mb-3 pt-3 d-flex flex-column gap-2">
-                                <button class="btn btn-outline-primary" type="submit">Filtrar</button>
-                                <button class="btn btn-link link-secondary" type="reset">
-                                    Limpar
-                                </button>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="categoriaLazer" name="categorias" value="Lazer">
+                                <label class="form-check-label" for="categoriaLazer">
+                                    Lazer
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="categoriaEducacao" name="categorias" value="Educacao"> 
+                                <label class="form-check-label" for="categoriaEducacao">
+                                    Educação
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="categoriaEsporte" name="categorias" value="Esporte">
+                                <label class="form-check-label" for="categoriaEsporte">
+                                    Esporte
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="categoriaCiencia" name="categorias" value="Ciencia">
+                                <label class="form-check-label" for="categoriaCiencia">
+                                    Ciência
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="categoriaMeioAmbiente" name="categorias" value="MeioAmbiente">
+                                <label class="form-check-label" for="categoriaMeioAmbiente">
+                                    Meio Ambiente
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="categoriaComercio" name="categorias" value="Comercio">
+                                <label class="form-check-label" for="categoriaComercio">
+                                    Comércio
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="categoriaOutros" name="categorias" value="Outros">
+                                <label class="form-check-label" for="categoriaOutros">
+                                    Outros
+                                </label>
                             </div>
                         </div>
+                        
+                        <div class="mb-3 pt-3">
+                            <h6 class="fw-bold text-dark-blue mb-3">Palavras-chaves</h6>
+                            <label for="palavrasChave" class="form-label sr-only">Palavras-chaves</label>
+                            <input type="text" name="palavrasChave" id="palavrasChave" placeholder="Ex: Consultas, Carros" class="form-control border-primary p-2">
+                        </div>
+
+                        <div class="mb-3 pt-3">
+                            <h6 class="fw-bold text-dark-blue mb-3">Autor</h6>
+                            <label for="autor" class="form-label sr-only">Autor</label>
+                            <input type="text" name="autor" id="autor" placeholder="Ex: José da Silva" class="form-control border-primary p-2">
+                        </div>
+
+                        <div class="mb-3 pt-3">
+                            <div class="row">
+                                <h6 class="fw-bold text-dark-blue mb-3">Ano e período/eixo</h6>
+                                <div class="col">
+                                    <label for="ano" class="form-label sr-only">Ano</label>
+                                    <select name="ano" id="ano" class="form-control form-select border-primary p-2">
+                                        <option>-</option>
+                                        @foreach (var ano in anos)
+                                        {
+                                            <option value="@ano">@ano</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label for="periodo" class="form-label sr-only">Período</label>
+                                    <select name="periodo" id="periodo" class="form-control form-select border-primary p-2">
+                                        <option>-</option>
+                                        <option value="1">1°</option>
+                                        <option value="2">2°</option>
+                                        <option value="3">3°</option>
+                                        <option value="4">4°</option>
+                                        <option value="5">5°</option>
+                                        <option value="6">6°</option>
+                                        <option value="7">7°</option>
+                                        <option value="8">8°</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 pt-3">
+                            <h6 class="fw-bold text-dark-blue mb-3 d-flex gap-2 align-items-center">Avaliação
+                                <i class="fa-regular fa-circle-question text-muted fs-5" data-toggle="tooltip" data-placement="top" title="Selecione a quantidade mínima de estrelas que os projetos devem ter"></i>
+                            </h6>
+                            <div class="rating-filter">
+                                @for(int i = 1; i <= 4; i++){
+                                    <label class="rating-label">
+                                        <input type="radio" id="rating-@i" name="rating" value="@i" class="rating-input">
+                                        <div class="rating-stars">
+                                            @for(int j = 1; j <= i; j++){
+                                                <i class="fas fa-star text-warning"></i>
+                                            }
+                                            @for(int k = i; k < 5; k++){
+                                                <i class="far fa-star text-secondary"></i>
+                                            }
+                                        </div>
+                                    </label>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="mb-3 pt-3 d-flex flex-column gap-2">
+                            <button class="btn btn-outline-primary" type="submit">Filtrar</button>
+                            <button class="btn btn-link link-secondary" type="reset">
+                                Limpar
+                            </button>
+                        </div>
                     </div>
+                </div>
 
-                    <div class="col-md-9">
-                        <h3 class="text-start mb-4 fw-bold text-dark-blue">Melhor Avaliados</h3>
-                        <div class="list-group mb-5">
-                            @foreach (var projeto in projetosMelhorAvaliados!)
-                            {
-                                var categoria = projeto.Categoria.ToString().ToLower();
-                                <a href="@Url.Action("Detalhes", "Projetos", new { id = projeto.IdProjeto })" class="text-decoration-none">
-                                    <div class="list-group-item d-flex justify-content-between align-items-center border-0 @categoria">
-                                        <div class="d-flex align-items-start">
-                                            <div class="me-3 text-center">
-                                                <div class="icon-wrapper @categoria">
-                                                    <i class="@TalentHub.Helpers.CategoriaHelper.GetIconForCategoria((CategoriaEnum)Enum.Parse(typeof(CategoriaEnum), categoria.ToString(), true))"></i>
-                                                </div>
-                                                <label class="fs-7 @projeto.Categoria.GetDescription()">@projeto.Categoria.GetDescription()</label>
+                <div class="col-md-9">
+                    <h3 class="text-start mb-4 fw-bold text-dark-blue">Melhor Avaliados</h3>
+                    <div class="list-group mb-5">
+                        @foreach (var projeto in projetosMelhorAvaliados!)
+                        {
+                            var categoria = projeto.Categoria.ToString().ToLower();
+                            <a href="@Url.Action("Detalhes", "Projetos", new { id = projeto.IdProjeto })" class="text-decoration-none">
+                                <div class="list-group-item d-flex justify-content-between align-items-center border-0 @categoria">
+                                    <div class="d-flex align-items-start">
+                                        <div class="me-3 text-center">
+                                            <div class="icon-wrapper @categoria">
+                                                <i class="@TalentHub.Helpers.CategoriaHelper.GetIconForCategoria((CategoriaEnum)Enum.Parse(typeof(CategoriaEnum), categoria.ToString(), true))"></i>
                                             </div>
+                                            <label class="fs-7 @projeto.Categoria.GetDescription()">@projeto.Categoria.GetDescription()</label>
+                                        </div>
 
-                                            <div class="">
-                                                <h5 class="mb-1 text-dark-blue encoded-sans">@projeto.NomeProjeto</h5>
-                                                <p class="mb-1 mt-2 text-muted">
-                                                    @{
-                                                        var descricao = projeto.DescricaoProjeto;
-                                                        string descricaoResumida = "";
-                                                        if (!string.IsNullOrEmpty(descricao))
-                                                        {
-                                                            if (descricao.Length > 170)
-                                                            {
-                                                                descricaoResumida = descricao.Substring(0, 170) + "...";
-                                                            }
-                                                            else
-                                                            {
-                                                                descricaoResumida = descricao;
-                                                            }
-                                                        }
-                                                        @descricaoResumida
-                                                    }
-                                                </p>
-                                            </div>
-
-                                            <div class="d-inline-flex align-items-center position-absolute end-0">
-                                                <span class="rating-number me-2">@projeto.NotaMedia.ToString("0.0")</span>
-                                                <div class="rating-stars d-inline-block">
-                                                    @for (int i = 1; i <= 5; i++)
+                                        <div class="">
+                                            <h5 class="mb-1 text-dark-blue encoded-sans">@projeto.NomeProjeto</h5>
+                                            <p class="mb-1 mt-2 text-muted">
+                                                @{
+                                                    var descricao = projeto.DescricaoProjeto;
+                                                    string descricaoResumida = "";
+                                                    if (!string.IsNullOrEmpty(descricao))
                                                     {
-                                                        if (i <= Math.Floor(projeto.NotaMedia))
+                                                        if (descricao.Length > 170)
                                                         {
-                                                            <i class="fas fa-star text-warning"></i>
-                                                        }
-                                                        else if (i == Math.Ceiling(projeto.NotaMedia) && projeto.NotaMedia % 1 != 0)
-                                                        {
-                                                            <i class="fas fa-star-half-alt text-warning"></i>
+                                                            descricaoResumida = descricao.Substring(0, 170) + "...";
                                                         }
                                                         else
                                                         {
-                                                            <i class="far fa-star text-warning"></i>
+                                                            descricaoResumida = descricao;
                                                         }
                                                     }
-                                                </div>
+                                                    @descricaoResumida
+                                                }
+                                            </p>
+                                        </div>
+
+                                        <div class="d-inline-flex align-items-center position-absolute end-0">
+                                            <span class="rating-number me-2">@projeto.NotaMedia.ToString("0.0")</span>
+                                            <div class="rating-stars d-inline-block">
+                                                @for (int i = 1; i <= 5; i++)
+                                                {
+                                                    if (i <= Math.Floor(projeto.NotaMedia))
+                                                    {
+                                                        <i class="fas fa-star text-warning"></i>
+                                                    }
+                                                    else if (i == Math.Ceiling(projeto.NotaMedia) && projeto.NotaMedia % 1 != 0)
+                                                    {
+                                                        <i class="fas fa-star-half-alt text-warning"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="far fa-star text-warning"></i>
+                                                    }
+                                                }
                                             </div>
                                         </div>
                                     </div>
-                                </a>
+                                </div>
+                            </a>
 
-                                <div class="border-bottom my-4"></div>
-                            }
-                        </div>
+                            <div class="border-bottom my-4"></div>
+                        }
+                    </div>
 
 
-                        <h3 class="text-start mb-4 fw-bold text-dark-blue">Mais acessados</h3>
+                    <h3 class="text-start mb-4 fw-bold text-dark-blue">Mais acessados</h3>
 
-                        <div class="list-group mb-5">
-                                @foreach (var projeto in projetosMaisAcessados)
-                                {
-                                    var categoria = projeto.Categoria.ToString().ToLower();
-                                    <a href="@Url.Action("Detalhes", "Projetos", new { id = projeto.IdProjeto })" class="text-decoration-none">
-                                        <div class="list-group-item d-flex justify-content-between align-items-center border-0 @categoria">
-                                            <div class="d-flex align-items-start">
-                                                <div class="me-3 text-center">
-                                                    <div class="icon-wrapper @categoria">
-                                                        <i class="@TalentHub.Helpers.CategoriaHelper.GetIconForCategoria((CategoriaEnum)Enum.Parse(typeof(CategoriaEnum), categoria.ToString(), true))"></i>
-                                                    </div>
-                                                    <label class="fs-7 @projeto.Categoria.GetDescription()">@projeto.Categoria.GetDescription()</label>
-                                                </div>
-
-                                                <div class="">
-                                                    <h5 class="mb-1 text-dark-blue encoded-sans">@projeto.NomeProjeto</h5>
-                                                    <p class="mb-1 mt-2 text-muted">
-                                                        @{
-                                                            var descricao = projeto.DescricaoProjeto;
-                                                            string descricaoResumida = "";
-                                                            if (!string.IsNullOrEmpty(descricao))
-                                                            {
-                                                                if (descricao.Length > 170)
-                                                                {
-                                                                    descricaoResumida = descricao.Substring(0, 170) + "...";
-                                                                }
-                                                                else
-                                                                {
-                                                                    descricaoResumida = descricao;
-                                                                }
-                                                            }
-                                                            @descricaoResumida
-                                                        }
-                                                    </p>
-                                                </div>
-
-                                                <div class="ms-auto text-right">
-                                                    <span class="badge text-muted fw-light">@projeto.QtdVisualizacoes acessos</span>
-                                                </div>
+                    <div class="list-group mb-5">
+                        @foreach (var projeto in projetosMaisAcessados)
+                        {
+                            var categoria = projeto.Categoria.ToString().ToLower();
+                            <a href="@Url.Action("Detalhes", "Projetos", new { id = projeto.IdProjeto })" class="text-decoration-none">
+                                <div class="list-group-item d-flex justify-content-between align-items-center border-0 @categoria">
+                                    <div class="d-flex align-items-start">
+                                        <div class="me-3 text-center">
+                                            <div class="icon-wrapper @categoria">
+                                                <i class="@TalentHub.Helpers.CategoriaHelper.GetIconForCategoria((CategoriaEnum)Enum.Parse(typeof(CategoriaEnum), categoria.ToString(), true))"></i>
                                             </div>
+                                            <label class="fs-7 @projeto.Categoria.GetDescription()">@projeto.Categoria.GetDescription()</label>
                                         </div>
-                                    </a>
 
-                                    <div class="border-bottom my-4"></div>
-                                }
-                            </div>
+                                        <div class="">
+                                            <h5 class="mb-1 text-dark-blue encoded-sans">@projeto.NomeProjeto</h5>
+                                            <p class="mb-1 mt-2 text-muted">
+                                                @{
+                                                    var descricao = projeto.DescricaoProjeto;
+                                                    string descricaoResumida = "";
+                                                    if (!string.IsNullOrEmpty(descricao))
+                                                    {
+                                                        if (descricao.Length > 170)
+                                                        {
+                                                            descricaoResumida = descricao.Substring(0, 170) + "...";
+                                                        }
+                                                        else
+                                                        {
+                                                            descricaoResumida = descricao;
+                                                        }
+                                                    }
+                                                    @descricaoResumida
+                                                }
+                                            </p>
+                                        </div>
+
+                                        <div class="ms-auto text-right">
+                                            <span class="badge text-muted fw-light">@projeto.QtdVisualizacoes acessos</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="border-bottom my-4"></div>
+                        }
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
+    </form>
 </div>
 
-<link rel="stylesheet" href="~/css/home.css?t=@DateTime.Now" asp-append-version="true" />
-<link rel="stylesheet" href="~/css/projetos.css?t=@DateTime.Now" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/projetos.css" asp-append-version="true" />
