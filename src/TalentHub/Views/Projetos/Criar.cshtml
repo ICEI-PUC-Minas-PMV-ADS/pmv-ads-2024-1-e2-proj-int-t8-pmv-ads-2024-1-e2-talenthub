@@ -3,6 +3,8 @@
 @{
     ViewData["Title"] = "Criar novo projeto";
 
+    var usuarioId = User.FindFirst("IdUsuario")?.Value;
+
     var anos = new List<int>();
     for (int i = 2015; i <= DateTime.Now.Year; i++)
     {
@@ -49,6 +51,8 @@
                 <form asp-action="Criar" method="post" class="my-4">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+                    <input type="hidden" asp-for="UsuarioIdUsuario" value="@usuarioId" />
+                
                     <div class="row mb-3">
                         <div class="col-md-12">
                             <label asp-for="UrlRepositorio" class="control-label fw-bold text-dark-blue mb-2">URL do Repositório</label>

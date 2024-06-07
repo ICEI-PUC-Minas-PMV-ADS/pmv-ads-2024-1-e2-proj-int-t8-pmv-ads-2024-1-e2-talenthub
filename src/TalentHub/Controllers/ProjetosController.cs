@@ -104,13 +104,14 @@ public class ProjetosController : Controller
     {
       return RedirectToAction("Index", "Home");
     }
+
     return View();
   }
 
   // POST: Projetos/Criar
   [HttpPost]
   [ValidateAntiForgeryToken]
-  public async Task<IActionResult> Criar([Bind("NomeProjeto,UrlRepositorio,UrlAplicacao,Integrantes,Ano,Periodo,PalavraChave,DescricaoProjeto,Categoria,InformacoesContato")] Projeto projeto)
+  public async Task<IActionResult> Criar([Bind("NomeProjeto,UrlRepositorio,UrlAplicacao,Integrantes,Ano,Periodo,PalavraChave,DescricaoProjeto,Categoria,InformacoesContato,UsuarioIdUsuario")] Projeto projeto)
   {
 
     if (!User.Identity.IsAuthenticated)
