@@ -40,10 +40,11 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- |
 | RF-001 | Os alunos devem ser capazes de cadastrar seus projetos na aplicação, fornecendo informações essenciais como nome do projeto, descrição, integrantes do grupo | ALTA       |
 | RF-002 | A aplicação deve permitir que os professores cadastrem anotações pessoais em cada projeto, facilitando o acompanhamento dos mesmos                           | ALTA       |
-| RF-003 | Os usuários poderão avaliar e realizar anotações nos projetos                                                                                                | MÉDIA      |
+| RF-003 | Os usuários poderão avaliar os projetos                                                                                                                      | MÉDIA      |
 | RF-004 | Deve ser possível filtrar os projetos por categoria, nome e outros filtros relevantes                                                                        | ALTA       |
 | RF-005 | A página inicial deve destacar projetos com base em critérios como maiores avaliações e número de acessos                                                    | MÉDIA      |
 | RF-006 | Os alunos devem receber novas notificações sobre atualizações importantes, como novas avaliações nos projetos                                                | BAIXA      |
+| RF-007 | Os usuários poderão realizar anotações nos projetos                                                                                                          | MÉDIA      |
 
 ### Requisitos não Funcionais
 
