@@ -2,7 +2,7 @@
 
 As funcionalidades dos testes realizados na aplicação web:
 
-CT01: **Cadastro de projetos**
+### CT01: **Cadastro de projetos**
 
 - Para cadastrar um novo projeto, os alunos devem acessar o navegar e informar o endereço da aplicação. Logo a seguir fazer o "*Login*", e em seguida clicar em "*Gerenciar Projetos*".
 
@@ -40,10 +40,36 @@ quando clicar o botão [criar], não é possível cadastrar o projeto, demostran
 destaque em vermelho, conforme esperado.
 
 
-| **Caso de Teste** 	| **CT-02 – Realizar login** 	|
-|:---:	|:---:	|
-|	Requisito Associado 	| RF-00Y - A aplicação deve permitir que um usuário previamente cadastrado faça login |
-|Registro de evidência | www.teste.com.br/drive/ct-02 |
+### CT02: **Filtrar projetos**
+
+**Objetivo do teste:** Verificar se a funcionalidade de filtragem de projetos funciona corretamente, permitindo filtrar por categoria, nome, entre outros critérios.
+
+**Passo a passo**:
+- Acessar a página inicial do TalentHub
+- Utilizar a pesquisa genérica localizada no topo da página ou então a pesquisa refinada na lateral esquerda
+
+**Resultado:**
+
+Foi observado que os projetos foram filtrados corretamente de acordo com os filtros fornecidos pelo usuário, conforme exemplo abaixo:
+
+![filtros-talenthub](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e2-proj-int-t8-pmv-ads-2024-1-e2-talenthub/assets/56805870/8a010940-b120-48a2-8881-0cfe15511407)
+
+### CT04: **Avaliar projeto**
+
+**Objetivo do teste:**  Acessar um projeto e realizar a avaliação do mesmo.
+
+**Passo a passo:**
+- Realizar o login no TalentHub
+- Selecionar o projeto para avaliar
+- Clicar em [Avaliar projeto]
+- Selecionar a nota e inserir um comentário para o projeto
+
+**Resultado:**
+
+Conforme o exemplo abaixo foi possível observar que a avaliação do projeto foi salva e informada ao usuário por meio da mensagem 'Avaliação salva com sucesso!' e foi exibida corretamente no rodapé do projeto na seção 'Avaliações e comentários'.
+
+![avaliar-projeto](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e2-proj-int-t8-pmv-ads-2024-1-e2-talenthub/assets/56805870/6efcc35f-cc80-42d5-816c-1fe30935d1f9)
+
 
 ## Avaliação
 
