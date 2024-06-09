@@ -29,9 +29,18 @@
 
 ### CT-04
 
-| **Caso de Teste**       | **Avaliação e anotação**                                                                                                   |
+| **Caso de Teste**       | **Avaliar projeto**                                                                                                        |
 | ----------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| **Requisito Associado** | RF-003 - Deve ser possível avaliar e realizar avaliações no projeto.                                                       |
-| **Objetivo do Teste**   | Verificar se está sendo gravado de forma correta a avaliação e anotação.                                                   |
-| **Passos**              | - Acessar o navegador<br>- Fazer login na aplicação com uma conta de aluno<br>- Selecionar um projeto<br>-Avaliar e anotar |
-| **Critério de Êxito**   | As avaliações e anotações devem ser gravadas corretamente e ser visualizadas.                                              |
+| **Requisito Associado** | RF-003 - Deve ser possível realizar avaliações no projeto.                                                                 |
+| **Objetivo do Teste**   | Verificar se está sendo gravado de forma correta a avaliação.                                                              |
+| **Passos**              | - Acessar o navegador<br>- Fazer login na aplicação com uma conta de aluno<br>- Selecionar um projeto<br>-Avaliar o projeto|
+| **Critério de Êxito**   | As avaliações devem ser gravadas corretamente e ser visualizadas.                                                          |
+
+### CT-05
+
+| **Caso de Teste**       | **Anotação no projeto**                                                                                                        |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| **Requisito Associado** | RF-007 - Os usuários poderão realizar anotações nos projetos                                                                 |
+| **Objetivo do Teste**   | Verificar se está sendo gravado de forma correta a anotação.                                                              |
+| **Passos**              | - Acessar o navegador<br>- Fazer login na aplicação com uma conta de aluno<br>- Selecionar um projeto<br>-Realizar uma anotação no projeto|
+| **Critério de Êxito**   | As anotações devem ser gravadas corretamente e ser visualizadas.                                                          |

@@ -71,6 +71,24 @@ Conforme o exemplo abaixo foi possível observar que a avaliação do projeto fo
 ![avaliar-projeto](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e2-proj-int-t8-pmv-ads-2024-1-e2-talenthub/assets/56805870/6efcc35f-cc80-42d5-816c-1fe30935d1f9)
 
 
+### CT05: **Anotação no projeto**
+
+**Objetivo do teste:**  Acessar um projeto e realizar a anotações no mesmo.
+
+**Passo a passo:**
+- Realizar o login no TalentHub
+- Selecionar o projeto
+- Clicar em [ Fazer anotação ]
+- Inserir um lembrete sobre o projeto
+- Clicar em [ Salvar Anotação ]
+
+**Resultado:**
+
+Conforme o exemplo abaixo foi possível observar que a anotação no projeto foi salva e informada ao usuário por meio da mensagem 'Anotação salva com sucesso!' e foi exibida corretamente clicando novamente em 'Minha notação'.
+
+![anotação-projeto]()
+
+
 ## Avaliação
 
 Discorra sobre os resultados do teste. Ressaltando pontos fortes e fracos identificados na solução. Comente como o grupo pretende atacar esses pontos nas próximas iterações. Apresente as falhas detectadas e as melhorias geradas a partir dos resultados obtidos nos testes.
