@@ -39,6 +39,36 @@ Foi observado que os testes apresentados ocorreu de maneira correta e dentro do 
 quando clicar o botão [criar], não é possível cadastrar o projeto, demostrando o campo a ser obrigatório em 
 destaque em vermelho, conforme esperado.
 
+### **Edição de projetos**
+
+- Para editar o projeto cadastrado na aplicação é importante o usuário depois de fazer o seu login, clicar na guia "*Gerenciar Projeto*". Pois essa ação redireciona para a página dos projetos cadastrados pelo próprio cadastrante.
+
+  ![01_editar](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e2-proj-int-t8-pmv-ads-2024-1-e2-talenthub/assets/144956029/1ea6ba6b-d781-453b-bb8d-f1919fcb2471)
+
+- A essa página redirecionada, lista os projetos cadastrados. Pegamos o último projeto cadatrado "POMODORO'S ORGANIZER" como exemplo para a edição.
+
+![02_editar](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e2-proj-int-t8-pmv-ads-2024-1-e2-talenthub/assets/144956029/ee7b3a25-355c-4b9a-96f4-b8aa73aaa224)
+
+- Em cada projeto cadastrado parecerá um botão de "*Editar*" e "*Apagar*". Clicando no botão *"Editar*" será redirecionado para a página de cadastro do projeto, possibilitando alterar e editar os campos desejados. Pegamos os campos "Integrantes" e "Imformações de contato" como exemplo.
+
+![04_editar](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e2-proj-int-t8-pmv-ads-2024-1-e2-talenthub/assets/144956029/476efd3a-9001-44ce-97bd-fa89a6bafc62)
+
+![05_editar](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e2-proj-int-t8-pmv-ads-2024-1-e2-talenthub/assets/144956029/abe5b028-d369-416b-a2db-ebf91fc9b61b)
+
+- Logo depois de editado o campo desejado logo em seguida clicar no botão "*Salvar projeto*", vai parecer uma mensage no topo da página "**Projeto atualizado com sucesso!**".
+
+ ![06_editar](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e2-proj-int-t8-pmv-ads-2024-1-e2-talenthub/assets/144956029/4cadf05c-7d39-40a9-ab61-582dd63c85c6)
+
+### Observação:
+   Só é possível editar somente os projetos que cadastrou, ou seja, impossibilita a edição de projetos de outros cadastrantes.
+    
+**Descrição do teste:**
+
+  Para observar possíveis falhas em seu funcionamentos, possibilitando que os usuários tenha êxodo na sua funcionalidades.
+
+**Resultado do teste:**
+
+  Foi observado que os testes apresentados ocorreu de maneira correta e dentro do esperado.
 
 ### CT02: **Filtrar projetos**
 
