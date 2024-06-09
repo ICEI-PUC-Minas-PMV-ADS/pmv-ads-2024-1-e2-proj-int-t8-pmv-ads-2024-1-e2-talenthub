@@ -85,7 +85,7 @@ Conforme o exemplo abaixo foi possível observar que a avaliação do projeto fo
 
 Conforme o exemplo abaixo foi possível observar que a anotação no projeto foi salva e informada ao usuário por meio da mensagem 'Anotação salva com sucesso!' e foi exibida corretamente clicando novamente em 'Minha notação'.
 
-![anotação-projeto]()
+![anotação-projeto](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e2-proj-int-t8-pmv-ads-2024-1-e2-talenthub/assets/61726518/ed9a3081-cfc6-478a-8aa4-e8292d3c5968)
                                      
 ## Avaliação
 
