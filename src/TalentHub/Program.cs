@@ -92,6 +92,20 @@ builder.Services.AddScoped<GitHubService>(serviceProvider =>
     return new GitHubService(httpClient, gitHubToken);
 });
 
+builder.Services.AddHttpClient<AzureLanguageService>((serviceProvider, client) =>
+{
+    var apiKey = builder.Configuration["AzureLanguageService:ApiKey"];
+    var endpoint = builder.Configuration["AzureLanguageService:Endpoint"];
+
+    if (string.IsNullOrEmpty(apiKey) || string.IsNullOrEmpty(endpoint))
+    {
+        throw new InvalidOperationException("Chave da API ou endpoint do Azure Language Service não configurados.");
+    }
+
+    client.BaseAddress = new Uri(endpoint);
+    client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", apiKey);
+});
+
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 var app = builder.Build();
