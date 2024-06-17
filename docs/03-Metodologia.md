@@ -13,7 +13,6 @@ O time está organizado da seguinte forma:
 
 **Equipe de Desenvolvimento:**
 
-- André Santana
 - Bruno Lopes
 - Jozimar Santos
 - Rodolfo Iannazzo

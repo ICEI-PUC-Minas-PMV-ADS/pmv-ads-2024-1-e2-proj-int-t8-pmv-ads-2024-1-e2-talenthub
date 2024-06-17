@@ -11,11 +11,13 @@ public class ProjetosController : Controller
 {
   private readonly TalentHubContext _context;
   private readonly GitHubService _gitHubService;
+  private readonly AzureLanguageService _azureLanguageService;
 
-  public ProjetosController(TalentHubContext context, GitHubService gitHubService)
+  public ProjetosController(TalentHubContext context, GitHubService gitHubService, AzureLanguageService azureLanguageService)
   {
     _context = context;
     _gitHubService = gitHubService;
+    _azureLanguageService = azureLanguageService;
   }
 
   // GET: Projetos
@@ -476,7 +478,6 @@ public class ProjetosController : Controller
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> VerificarRepositorio(string repoUrl)
   {
-
     if (!User.Identity.IsAuthenticated)
     {
       return RedirectToAction("Index", "Home");
@@ -533,16 +534,20 @@ public class ProjetosController : Controller
         introducao = _gitHubService.ExtractIntroduction(fileContent);
       }
 
+      var keyPhrases = await _azureLanguageService.ExtractKeyPhrasesAsync(introducao, 15);
+
+      var nomesIntegrantes = GetFormattedNames(integrantes);
+
       var novoProjeto = new Projeto
       {
         NomeProjeto = name,
         Ano = !string.IsNullOrEmpty(ano) ? ano : DateTime.Now.Year.ToString(),
         Periodo = !string.IsNullOrEmpty(periodo) ? periodo : "1",
         Categoria = CategoriaEnum.Outros,
-        PalavraChave = "",
+        PalavraChave = string.Join(", ", keyPhrases),
         UrlRepositorio = repoUrl,
         DescricaoProjeto = introducao,
-        Integrantes = integrantes,
+        Integrantes = nomesIntegrantes,
       };
 
       return View("Criar", novoProjeto);
@@ -553,6 +558,12 @@ public class ProjetosController : Controller
       TempData["ErrorMessage"] = "URL do repositório inválida.";
       return RedirectToAction(nameof(ResultadosBusca));
     }
+  }
+
+  public string GetFormattedNames(string content)
+  {
+    var names = _azureLanguageService.ExtractNames(content);
+    return string.Join(", ", names);
   }
 
 
