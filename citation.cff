@@ -1,0 +1,21 @@
+message: Please cite this software using these metadata.
+title: TalentHub
+authors:
+  - family-names: Pires Alves de Castro
+    given-names: Thiago
+  - family-names: Iannazzo Querino da Silva
+    given-names: Rodolfo
+  - family-names: Aparecido de Jesus Santos
+    given-names: Jozimar
+  - family-names: Figueiredo Guanabarino Penna Lopes
+    given-names: Bruno Henrique
+keywords:
+  - Busca
+  - Pesquisa
+  - Projetos
+  - Repositórios
+  - Talentos
+  - Ranking
+repository-code: https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e2-proj-int-t8-pmv-ads-2024-1-e2-talenthub
+version: 1.0.0
+date-released: 2024-06-22
