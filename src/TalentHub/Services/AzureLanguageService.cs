@@ -18,12 +18,18 @@ public class AzureLanguageService
 
   public async Task<List<string>> ExtractKeyPhrasesAsync(string text, int maxKeyPhrases = 15)
   {
+    const int maxLength = 5120;
+    if (text.Length > maxLength)
+    {
+      text = text.Substring(0, maxLength);
+    }
+
     var requestContent = new
     {
       documents = new[]
         {
-                new { language = "pt", id = "1", text }
-            }
+            new { language = "pt", id = "1", text }
+        }
     };
 
     var response = await _httpClient.PostAsync($"{_endpoint}/text/analytics/v3.1/keyPhrases",
@@ -38,6 +44,7 @@ public class AzureLanguageService
 
     return keyPhrases.Take(maxKeyPhrases).ToList();
   }
+
 
   public List<string> ExtractNames(string content)
   {
@@ -84,6 +91,25 @@ public class AzureLanguageService
     }
 
     return names.Where(name => !string.IsNullOrWhiteSpace(name)).Distinct().ToList();
+  }
+
+  public async Task<CategoriaEnum> SugerirCategoriaAsync(string text)
+  {
+    var keyPhrases = await ExtractKeyPhrasesAsync(text, 200);
+    var categorias = Enum.GetValues(typeof(CategoriaEnum)).Cast<CategoriaEnum>().ToList();
+
+    foreach (var phrase in keyPhrases)
+    {
+      foreach (var categoria in categorias)
+      {
+        if (phrase.Contains(categoria.GetDescription(), StringComparison.OrdinalIgnoreCase))
+        {
+          return categoria;
+        }
+      }
+    }
+
+    return CategoriaEnum.Outros;
   }
 
 }
