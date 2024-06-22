@@ -46,16 +46,33 @@ public class GitHubService
 
   public string ExtractIntroduction(string content)
   {
-    var startIndex = content.IndexOf("# Introdução");
-    var endIndex = content.IndexOf("## Problema");
-
-    if (startIndex != -1 && endIndex != -1)
+    var startIndex = content.IndexOf("# ");
+    if (startIndex == -1)
     {
-      startIndex += "# Introdução".Length;
-      return content.Substring(startIndex, endIndex - startIndex).Trim();
+      return string.Empty;
     }
-    return string.Empty;
+
+    startIndex = content.IndexOf("\n", startIndex);
+    if (startIndex == -1)
+    {
+      return string.Empty;
+    }
+
+    startIndex += "\n".Length;
+
+    var endIndex = content.IndexOf("\n##", startIndex);
+    if (endIndex == -1)
+    {
+      endIndex = content.IndexOf("\n#", startIndex);
+    }
+    if (endIndex == -1)
+    {
+      endIndex = content.Length;
+    }
+
+    return content.Substring(startIndex, endIndex - startIndex).Trim();
   }
+
 
   public static string DecodeBase64Content(string base64Content)
   {
@@ -78,11 +95,23 @@ public class GitHubService
     return (name, integrantes, ano, periodo);
   }
 
-
   private static string ExtractProjectName(string content)
   {
-    var lines = content.Split('\n');
-    return lines.Length > 0 ? lines[0].Replace("# ", "").Trim() : string.Empty;
+    var lines = content.Split('\n').Select(line => line.Trim()).ToList();
+
+    foreach (var line in lines)
+    {
+      if (line.StartsWith("# "))
+      {
+        return line.Replace("# ", "").Trim();
+      }
+      else if (line.StartsWith("![") || line.StartsWith("<img"))
+      {
+        continue;
+      }
+    }
+
+    return string.Empty;
   }
 
   private static string ExtractIntegrantes(string content)

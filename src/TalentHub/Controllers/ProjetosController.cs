@@ -534,23 +534,32 @@ public class ProjetosController : Controller
         introducao = _gitHubService.ExtractIntroduction(fileContent);
       }
 
-      var keyPhrases = await _azureLanguageService.ExtractKeyPhrasesAsync(introducao, 15);
-
-      var nomesIntegrantes = GetFormattedNames(integrantes);
-
-      var novoProjeto = new Projeto
+      if (!string.IsNullOrEmpty(introducao))
       {
-        NomeProjeto = name,
-        Ano = !string.IsNullOrEmpty(ano) ? ano : DateTime.Now.Year.ToString(),
-        Periodo = !string.IsNullOrEmpty(periodo) ? periodo : "1",
-        Categoria = CategoriaEnum.Outros,
-        PalavraChave = string.Join(", ", keyPhrases),
-        UrlRepositorio = repoUrl,
-        DescricaoProjeto = introducao,
-        Integrantes = nomesIntegrantes,
-      };
+        var keyPhrases = await _azureLanguageService.ExtractKeyPhrasesAsync(introducao, 15);
+        var categoria = await _azureLanguageService.SugerirCategoriaAsync(introducao);
+        var nomesIntegrantes = GetFormattedNames(integrantes);
 
-      return View("Criar", novoProjeto);
+        var novoProjeto = new Projeto
+        {
+          NomeProjeto = name,
+          Ano = !string.IsNullOrEmpty(ano) ? ano : DateTime.Now.Year.ToString(),
+          Periodo = !string.IsNullOrEmpty(periodo) ? periodo : "1",
+          Categoria = categoria,
+          PalavraChave = string.Join(", ", keyPhrases),
+          UrlRepositorio = repoUrl,
+          DescricaoProjeto = introducao,
+          Integrantes = nomesIntegrantes,
+        };
+
+        return View("Criar", novoProjeto);
+      }
+      else
+      {
+        ModelState.AddModelError("", "Texto de introdução não encontrado.");
+        TempData["ErrorMessage"] = "Texto de introdução não encontrado.";
+        return RedirectToAction(nameof(ResultadosBusca));
+      }
     }
     else
     {
@@ -565,7 +574,6 @@ public class ProjetosController : Controller
     var names = _azureLanguageService.ExtractNames(content);
     return string.Join(", ", names);
   }
-
 
   private (string Owner, string Repo)? ParseGitHubUrl(string url)
   {
