@@ -5,25 +5,28 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TalentHub.Migrations
 {
+    /// <inheritdoc />
     public partial class AddDataCriacaoAndDeletadoToProjeto : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
+            migrationBuilder.AddColumn<DateTime>(
                 name: "DataCriacao",
                 table: "Projetos",
-                type: "TEXT",
+                type: "datetime2",
                 nullable: false,
-                defaultValueSql: "CURRENT_TIMESTAMP");
+                defaultValueSql: "GETDATE()");
 
-            migrationBuilder.AddColumn<int>(
+            migrationBuilder.AddColumn<bool>(
                 name: "Deletado",
                 table: "Projetos",
-                type: "INTEGER",
+                type: "bit",
                 nullable: false,
-                defaultValue: 0);
+                defaultValue: false);
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
