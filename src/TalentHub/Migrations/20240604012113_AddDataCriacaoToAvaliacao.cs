@@ -5,18 +5,21 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TalentHub.Migrations
 {
+    /// <inheritdoc />
     public partial class AddDataCriacaoToAvaliacao : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
+            migrationBuilder.AddColumn<DateTime>(
                 name: "DataAvaliacao",
                 table: "Avaliacoes",
-                type: "TEXT",
+                type: "datetime2",
                 nullable: false,
-                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).ToString("yyyy-MM-ddTHH:mm:ssZ"));
+                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
