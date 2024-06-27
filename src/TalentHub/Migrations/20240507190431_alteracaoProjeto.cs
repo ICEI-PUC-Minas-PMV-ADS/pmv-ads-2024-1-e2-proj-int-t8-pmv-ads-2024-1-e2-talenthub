@@ -4,10 +4,8 @@
 
 namespace TalentHub.Migrations
 {
-    /// <inheritdoc />
     public partial class alteracaoProjeto : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.RenameColumn(
@@ -18,40 +16,39 @@ namespace TalentHub.Migrations
             migrationBuilder.AddColumn<string>(
                 name: "Ano",
                 table: "Projetos",
-                type: "nvarchar(max)",
+                type: "TEXT",
                 nullable: false,
                 defaultValue: "");
 
             migrationBuilder.AddColumn<int>(
                 name: "Categoria",
                 table: "Projetos",
-                type: "int",
+                type: "INTEGER",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<string>(
                 name: "DescricaoProjeto",
                 table: "Projetos",
-                type: "nvarchar(max)",
+                type: "TEXT",
                 nullable: false,
                 defaultValue: "");
 
             migrationBuilder.AddColumn<string>(
                 name: "PalavraChave",
                 table: "Projetos",
-                type: "nvarchar(max)",
+                type: "TEXT",
                 nullable: false,
                 defaultValue: "");
 
             migrationBuilder.AddColumn<string>(
                 name: "Periodo",
                 table: "Projetos",
-                type: "nvarchar(max)",
+                type: "TEXT",
                 nullable: false,
                 defaultValue: "");
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
