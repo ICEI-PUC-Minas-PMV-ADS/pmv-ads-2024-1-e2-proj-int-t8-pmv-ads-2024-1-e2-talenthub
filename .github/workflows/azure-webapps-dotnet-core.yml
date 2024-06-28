@@ -41,9 +41,8 @@ jobs:
 
       - name: dotnet publish
         run: |
-          mkdir -p ${{ github.workspace }}/myapp
           dotnet publish src/TalentHub/TalentHub.csproj -c Release -o ${{ github.workspace }}/myapp
-          cp src/TalentHub/talenthub.db ${{ github.workspace }}/myapp/
+          cp src/TalentHub/talenthub.db ${{ github.workspace }}/myapp
           ls -la ${{ github.workspace }}/myapp
 
       - name: Upload artifact for deployment job
@@ -64,14 +63,11 @@ jobs:
 
       - name: Verify artifact download
         run: |
-          ls -la ${{ github.workspace }}
+          ls -la ${{ github.workspace }}/myapp
           if [ $? -ne 0 ]; then
             echo "Error: Artifact .net-app not found or corrupted."
             exit 1
           fi
-
-      - name: List contents of the artifact directory
-        run: ls -la ${{ github.workspace }}/myapp
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
