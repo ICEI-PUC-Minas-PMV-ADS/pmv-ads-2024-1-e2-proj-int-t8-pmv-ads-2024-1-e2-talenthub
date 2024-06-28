@@ -4,14 +4,16 @@
 
 namespace TalentHub.Migrations
 {
+    /// <inheritdoc />
     public partial class AddInformacoesContatoToProjeto : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
                 name: "UrlAplicacao",
                 table: "Projetos",
-                type: "TEXT",
+                type: "nvarchar(max)",
                 nullable: true,
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)");
@@ -19,10 +21,11 @@ namespace TalentHub.Migrations
             migrationBuilder.AddColumn<string>(
                 name: "InformacoesContato",
                 table: "Projetos",
-                type: "TEXT",
+                type: "nvarchar(max)",
                 nullable: true);
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
@@ -32,11 +35,11 @@ namespace TalentHub.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "UrlAplicacao",
                 table: "Projetos",
-                type: "TEXT",
+                type: "nvarchar(max)",
                 nullable: false,
                 defaultValue: "",
                 oldClrType: typeof(string),
-                oldType: "TEXT",
+                oldType: "nvarchar(max)",
                 oldNullable: true);
         }
     }

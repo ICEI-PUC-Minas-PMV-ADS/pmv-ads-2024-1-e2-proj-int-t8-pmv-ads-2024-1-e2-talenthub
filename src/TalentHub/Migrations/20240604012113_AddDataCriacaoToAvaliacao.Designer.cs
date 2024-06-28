@@ -2,7 +2,9 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TalentHub.Data;
 
 #nullable disable
@@ -13,6 +15,7 @@ namespace TalentHub.Migrations
     [Migration("20240604012113_AddDataCriacaoToAvaliacao")]
     partial class AddDataCriacaoToAvaliacao
     {
+        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
@@ -20,21 +23,25 @@ namespace TalentHub.Migrations
                 .HasAnnotation("ProductVersion", "8.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
             modelBuilder.Entity("TalentHub.Models.Anotacao", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("IdProjeto")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<int>("IdUsuario")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("TextoAnotacao")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -49,24 +56,25 @@ namespace TalentHub.Migrations
                 {
                     b.Property<int>("IdAvaliacao")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdAvaliacao"));
 
                     b.Property<string>("Comentario")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DataAvaliacao")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<DateTime>("DataAvaliacao")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("IdProjeto")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<int>("IdUsuario")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<int>("Nota")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.HasKey("IdAvaliacao");
 
@@ -81,61 +89,63 @@ namespace TalentHub.Migrations
                 {
                     b.Property<int>("IdProjeto")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdProjeto"));
 
                     b.Property<string>("Ano")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Categoria")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
-                    b.Property<string>("DataCriacao")
+                    b.Property<DateTime>("DataCriacao")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
 
-                    b.Property<int>("Deletado")
-                        .HasColumnType("INTEGER");
+                    b.Property<bool>("Deletado")
+                        .HasColumnType("bit");
 
                     b.Property<string>("DescricaoProjeto")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("InformacoesContato")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Integrantes")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NomeProjeto")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("NotaMedia")
-                        .HasColumnType("REAL");
+                        .HasColumnType("real");
 
                     b.Property<string>("PalavraChave")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Periodo")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("QtdVisualizacoes")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("UrlAplicacao")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UrlRepositorio")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("UsuarioIdUsuario")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.HasKey("IdProjeto");
 
@@ -148,15 +158,17 @@ namespace TalentHub.Migrations
                 {
                     b.Property<int>("IdUsuario")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdUsuario"));
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NomeUsuario")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdUsuario");
 

@@ -4,18 +4,20 @@
 
 namespace TalentHub.Migrations
 {
+    /// <inheritdoc />
     public partial class InitialCreate : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
                 name: "Usuarios",
                 columns: table => new
                 {
-                    IdUsuario = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    NomeUsuario = table.Column<string>(type: "TEXT", nullable: false),
-                    Email = table.Column<string>(type: "TEXT", nullable: false)
+                    IdUsuario = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NomeUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -26,15 +28,15 @@ namespace TalentHub.Migrations
                 name: "Projetos",
                 columns: table => new
                 {
-                    IdProjeto = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    NomeProjeto = table.Column<string>(type: "TEXT", nullable: false),
-                    UrlRepositorio = table.Column<string>(type: "TEXT", nullable: false),
-                    UrlAplicacao = table.Column<string>(type: "TEXT", nullable: false),
-                    Integrantes = table.Column<string>(type: "TEXT", nullable: false),
-                    QtdVisualizacoes = table.Column<int>(nullable: false),
-                    NotaMedia = table.Column<float>(nullable: false),
-                    UsuarioIdUsuario = table.Column<int>(nullable: true)
+                    IdProjeto = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NomeProjeto = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UrlRepositorio = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UrlAplicacao = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Integrantes = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    QtdVisualizacoes = table.Column<int>(type: "int", nullable: false),
+                    NotaMedia = table.Column<float>(type: "real", nullable: false),
+                    UsuarioIdUsuario = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -50,13 +52,13 @@ namespace TalentHub.Migrations
                 name: "Anotacoes",
                 columns: table => new
                 {
-                    IdAnotacao = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    IdUsuario = table.Column<int>(nullable: false),
-                    UsuarioIdUsuario = table.Column<int>(nullable: false),
-                    IdProjeto = table.Column<int>(nullable: false),
-                    ProjetoIdProjeto = table.Column<int>(nullable: false),
-                    TextoAnotacao = table.Column<string>(type: "TEXT", nullable: false)
+                    IdAnotacao = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdUsuario = table.Column<int>(type: "int", nullable: false),
+                    UsuarioIdUsuario = table.Column<int>(type: "int", nullable: false),
+                    IdProjeto = table.Column<int>(type: "int", nullable: false),
+                    ProjetoIdProjeto = table.Column<int>(type: "int", nullable: false),
+                    TextoAnotacao = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -79,14 +81,14 @@ namespace TalentHub.Migrations
                 name: "Avaliacoes",
                 columns: table => new
                 {
-                    IdAvaliacao = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    IdUsuario = table.Column<int>(nullable: false),
-                    UsuarioIdUsuario = table.Column<int>(nullable: false),
-                    IdProjeto = table.Column<int>(nullable: false),
-                    ProjetoIdProjeto = table.Column<int>(nullable: false),
-                    Nota = table.Column<int>(nullable: false),
-                    Comentario = table.Column<string>(type: "TEXT", nullable: false)
+                    IdAvaliacao = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdUsuario = table.Column<int>(type: "int", nullable: false),
+                    UsuarioIdUsuario = table.Column<int>(type: "int", nullable: false),
+                    IdProjeto = table.Column<int>(type: "int", nullable: false),
+                    ProjetoIdProjeto = table.Column<int>(type: "int", nullable: false),
+                    Nota = table.Column<int>(type: "int", nullable: false),
+                    Comentario = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -131,6 +133,7 @@ namespace TalentHub.Migrations
                 column: "UsuarioIdUsuario");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
