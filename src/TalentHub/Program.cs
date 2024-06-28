@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.EntityFrameworkCore;
 using TalentHub.Data;
-using Microsoft.Data.SqlClient;
 using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.Extensions.Logging;
 using System.Net.Http.Headers;
@@ -53,6 +52,7 @@ builder.Services.AddDbContext<TalentHubContext>(options =>
 
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
+builder.Logging.AddDebug();
 
 builder.Services.AddHttpClient<GitHubService>((serviceProvider, client) =>
 {
@@ -103,6 +103,7 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
+    app.UseDeveloperExceptionPage();
     app.UseHsts();
 }
 else
