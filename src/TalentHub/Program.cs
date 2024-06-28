@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.EntityFrameworkCore;
 using TalentHub.Data;
+using Microsoft.Data.SqlClient;
 using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.Extensions.Logging;
 using System.Net.Http.Headers;
@@ -52,8 +53,6 @@ builder.Services.AddDbContext<TalentHubContext>(options =>
 
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
-builder.Logging.AddDebug();
-builder.Logging.AddEventSourceLogger();
 
 builder.Services.AddHttpClient<GitHubService>((serviceProvider, client) =>
 {
@@ -101,10 +100,24 @@ builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        var context = services.GetRequiredService<TalentHubContext>();
+        context.Database.Migrate();
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred while migrating the database.");
+    }
+}
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    app.UseDeveloperExceptionPage();
     app.UseHsts();
 }
 else
