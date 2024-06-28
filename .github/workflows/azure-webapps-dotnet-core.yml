@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install .NET Core SDK from custom URL
+      - name: Install .NET Core SDK
         run: |
           curl -o dotnet.tar.gz ${{ env.DOTNET_SDK_URL }}
           mkdir -p "$HOME/dotnet" && tar zxf dotnet.tar.gz -C "$HOME/dotnet"
@@ -28,7 +28,7 @@ jobs:
           echo 'DOTNET_ROOT=$HOME/dotnet' >> $GITHUB_ENV
           dotnet --version
 
-      - name: Set up dependency caching for faster builds
+      - name: Set up dependency caching
         uses: actions/cache@v3
         with:
           path: ~/.nuget/packages
@@ -36,16 +36,16 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nuget-
 
-      - name: Build with dotnet
+      - name: Build
         run: dotnet build src/TalentHub/TalentHub.csproj --configuration Release
 
-      - name: dotnet publish
+      - name: Publish
         run: |
           dotnet publish src/TalentHub/TalentHub.csproj -c Release -o ${{ github.workspace }}/myapp
           cp src/TalentHub/talenthub.db ${{ github.workspace }}/myapp
           ls -la ${{ github.workspace }}/myapp
 
-      - name: Upload artifact for deployment job
+      - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: .net-app
@@ -56,22 +56,17 @@ jobs:
     needs: build
 
     steps:
-      - name: Download artifact from build job
+      - name: Download artifact
         uses: actions/download-artifact@v3
         with:
           name: .net-app
 
-      - name: Verify artifact download
-        run: |
-          ls -la ${{ github.workspace }}/myapp
-          if [ $? -ne 0 ]; then
-            echo "Error: Artifact .net-app not found or corrupted."
-            exit 1
-          fi
+      - name: List directory contents
+        run: ls -la ${{ github.workspace }}
 
-      - name: Deploy to Azure Web App
+      - name: Deploy to Azure
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: ${{ github.workspace }}/myapp
+          package: ${{ github.workspace }}
