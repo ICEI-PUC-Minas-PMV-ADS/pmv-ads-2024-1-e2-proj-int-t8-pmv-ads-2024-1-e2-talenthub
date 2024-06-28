@@ -4,10 +4,8 @@
 
 namespace TalentHub.Migrations
 {
-    /// <inheritdoc />
     public partial class UpdateForeignKeyConstraints : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
@@ -111,7 +109,6 @@ namespace TalentHub.Migrations
                 onDelete: ReferentialAction.Cascade);
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
@@ -149,28 +146,28 @@ namespace TalentHub.Migrations
             migrationBuilder.AddColumn<int>(
                 name: "ProjetoIdProjeto",
                 table: "Avaliacoes",
-                type: "int",
+                type: "INTEGER",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<int>(
                 name: "UsuarioIdUsuario",
                 table: "Avaliacoes",
-                type: "int",
+                type: "INTEGER",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<int>(
                 name: "ProjetoIdProjeto",
                 table: "Anotacoes",
-                type: "int",
+                type: "INTEGER",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<int>(
                 name: "UsuarioIdUsuario",
                 table: "Anotacoes",
-                type: "int",
+                type: "INTEGER",
                 nullable: false,
                 defaultValue: 0);
 
