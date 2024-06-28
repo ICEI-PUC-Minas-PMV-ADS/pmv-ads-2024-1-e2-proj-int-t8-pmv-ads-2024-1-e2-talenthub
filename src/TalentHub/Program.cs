@@ -5,6 +5,7 @@ using TalentHub.Data;
 using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.Extensions.Logging;
 using System.Net.Http.Headers;
+using Microsoft.Data.SqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
