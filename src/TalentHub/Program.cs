@@ -5,7 +5,6 @@ using TalentHub.Data;
 using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.Extensions.Logging;
 using System.Net.Http.Headers;
-using Microsoft.Data.SqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,23 +46,14 @@ builder.Services.AddAuthentication(options =>
 });
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-var dbPassword = builder.Configuration["ConnectionStrings:DefaultConnection:Password"];
-
-if (!string.IsNullOrEmpty(dbPassword))
-{
-    var builderConn = new SqlConnectionStringBuilder(connectionString)
-    {
-        Password = dbPassword
-    };
-    connectionString = builderConn.ConnectionString;
-}
 
 builder.Services.AddDbContext<TalentHubContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseSqlite(connectionString));
 
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 builder.Logging.AddDebug();
+builder.Logging.AddEventSourceLogger();
 
 builder.Services.AddHttpClient<GitHubService>((serviceProvider, client) =>
 {
